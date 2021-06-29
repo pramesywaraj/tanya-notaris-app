@@ -1,0 +1,28 @@
+.foreground {
+    background: #F37A51;
+    opacity: 0.88;
+    align-items: center;
+    width: 100%;
+}
+
+@media (min-width: 360px) {
+    .foreground {
+        font-size: 40px;
+        font-weight: 700;
+        color: #fff;
+        padding: 100px 0;
+        padding-left: 165px;
+        height: 258px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .foreground {
+        font-size: 40px;
+        font-weight: 700;
+        color: #fff;
+        padding: 100px 0;
+        padding-left: 165px;
+        height: 258px;
+    }
+}
