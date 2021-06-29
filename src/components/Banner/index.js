@@ -7,8 +7,8 @@ export default function Banner({ name }) {
 
     return (
         <div className="flex box-border w-full bg-banner-img h-banner bg-cover sm:h-banner-sm">
-            <div className="absolute bg-primary w-full opacity-80 h-banner sm:h-banner-sm"></div>
-            <span className="absolute font-bold text-white text-banner-mobile py-3.75rem px-1rem sm:text-banner-desktop sm:py-6.25rem sm:px-3.75rem  lg:px-10rem">
+            <div className="absolute bg-primary opacity-80 h-banner w-full sm:h-banner-sm"></div>
+            <span className="absolute font-bold text-white text-header3 py-60px px-16px sm:text-header1 sm:py-100px sm:px-60px desktop:px-160px">
                 {content.name}
             </span>
         </div>

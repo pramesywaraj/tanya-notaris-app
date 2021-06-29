@@ -15,7 +15,7 @@ export default function Section({ description, image }) {
     return (
         <div className="flex flex-row gap-x-16px sm:flex-1">
             <img src={content.image} alt="Section Image" className="rounded-lg h-section-img w-section-img sm:h-section-img-web sm:w-section-img-web" />
-            <p className={`font-semibold text-section2-mobile md:text-section2-web`}>
+            <p className={`font-semibold text-body md:text-body1`}>
                 {content.description}
             </p>
         </div>

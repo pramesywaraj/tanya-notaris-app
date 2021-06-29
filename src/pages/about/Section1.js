@@ -16,13 +16,13 @@ export default function Section1() {
         image_link : "/section3.png",
     }
     return (
-        <section className="pt-40px px-1rem sm:py-2rem sm:px-3.75rem lg:py-6.25rem lg:px-10rem">
+        <section className="pt-40px px-16px sm:py-32px sm:px-60px lg:py-100px lg:px-160px">
                 <div className="flex flex-col items-center gap-x-30px pb-40px sm:pb-80px sm:flex-row">
                     <div className="object-cover sm:flex-1">
                         <img src={content.image_link} alt="Section Image" className="rounded-lg" />
                     </div>
-                    <div className="self-center font-bold pt-1rem text-section1-mobile sm:flex-1 sm:pt-0px">
-                        <p className={`font-semibold text-section-sm md:text-section1-tab xl:text-section1-desktop`}>
+                    <div className="self-center font-bold pt-16px text-header5 sm:flex-1 sm:pt-0px">
+                        <p className={`font-semibold text-body1 md:text-header5 xl:text-header2`}>
                             {content.description}
                         </p>
                     </div>
