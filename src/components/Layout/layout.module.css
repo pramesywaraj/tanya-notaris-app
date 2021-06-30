@@ -1,0 +1,5 @@
+.main-container {
+    padding-top: 56px;
+
+    @apply flex flex-col justify-center;
+}

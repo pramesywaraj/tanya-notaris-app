@@ -4,7 +4,7 @@ export default function Layout({ children }) {
     return (
         <main>
             <Navbar />
-            <div className="flex flex-col justify-center h-screen">{children}</div>
+            <div className="main-container">{children}</div>
         </main>
     );
 }
