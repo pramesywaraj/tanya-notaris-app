@@ -1,0 +1,9 @@
+@tailwind components;
+
+.navbar {
+    @apply bg-white fixed flex flex-col justify-center w-full text-center;
+}
+
+.navbar-logo {
+    @apply flex-1;
+}

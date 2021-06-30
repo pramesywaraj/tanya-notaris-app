@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import NavbarLogo from "assets/tanya-notaris-navbar-logo.svg";
+import "components/Navbar/navbar.module.css";
 
 function NavbarLinks({ link, name }) {
     return (
@@ -26,11 +27,15 @@ export default function Navbar() {
     ];
 
     return (
-        <header className="relative select-none bg-white desktop:flex desktop:items-stretch w-full">
-            <div className="mr-8">
+        // <header className="relative select-none bg-white desktop:flex desktop:items-stretch w-full">
+        <header className="navbar">
+            <button className="navbar-menu">
+                <h4>Menu</h4>
+            </button>
+            <a className="navbar-logo">
                 <Image src={NavbarLogo} alt="Tanya Notaris Logo" />
-            </div>
-            <nav className="">
+            </a>
+            <nav className="smallPhone:invisible desktop:visible">
                 <ul className="flex">
                     {links.map(({ link, name }, i) => (
                         <NavbarLinks key={`item-${i}`} link={link} name={name} />
