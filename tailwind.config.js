@@ -10,6 +10,7 @@ module.exports = {
     fontFamily: {
         sans: ["Open Sans", "sans-serif"],
     },
+    mode: "jit",
     theme: {
         extend: {
             colors: {
