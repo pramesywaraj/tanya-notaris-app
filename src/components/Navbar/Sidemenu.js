@@ -4,8 +4,12 @@
 import { Fragment } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+
 import NavbarLogo from "assets/tanya-notaris-navbar-logo.svg";
 import CloseIcon from "assets/cross.svg";
+import colors from "constants/colors";
+
+import { Button } from "components/Button";
 
 import "components/Navbar/navbar.module.css";
 
@@ -90,7 +94,24 @@ export default function Sidemenu({ handleSideMenu, isShowSideMenu }) {
                 <div className="sidemenu-content">
                     <SidemenuNav handleNavigate={handleNavigate} />
                     <div className="sidemenu-btn-group">
-
+                        <Button
+                            onClick={(e) => handleNavigate(e, "/login")}
+                            styles={{ width: "100%" }}
+                        >
+                            Masuk
+                        </Button>
+                        <Button
+                            onClick={(e) => handleNavigate(e, "/login")}
+                            styles={{
+                                width: "100%",
+                                backgroundColor: "transparent",
+                                border: `1px solid ${colors.primary}`,
+                                color: colors.primary,
+                                marginTop: "14px",
+                            }}
+                        >
+                            Daftar
+                        </Button>
                     </div>
                 </div>
             </div>

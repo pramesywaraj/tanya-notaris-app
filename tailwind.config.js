@@ -15,6 +15,7 @@ module.exports = {
         extend: {
             colors: {
                 primary: "rgb(243, 122, 81)",
+                darkPrimary: "rgb(209, 101, 65)",
                 secondary: "rgb(124, 88, 159)",
                 black: "rgb(51, 51, 51)",
                 mute: "rgb(119, 119, 119, 1)",

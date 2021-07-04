@@ -1,5 +1,6 @@
 @import "../styles/tailwind.css";
 @import "../components/Navbar/navbar.module.css";
+@import "../components/Button/button.module.css";
 @import "../components/Layout/layout.module.css";
 
 @layer base {

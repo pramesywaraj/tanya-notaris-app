@@ -8,6 +8,7 @@ import MenuIcon from "assets/mobile-menu-burger.svg";
 import NavbarSideMenu from "components/Navbar/Sidemenu";
 
 import "components/Navbar/navbar.module.css";
+import { Button } from "components/Button";
 
 function NavbarLinks({ style, link, name }) {
     return (
@@ -46,15 +47,15 @@ export default function Navbar() {
             name: "Mengapa Kami",
         },
         {
-            link: "/about",
+            link: "/services",
             name: "Layanan Kami",
         },
         {
-            link: "/about",
+            link: "/faq",
             name: "FAQ",
         },
         {
-            link: "/about",
+            link: "/articles",
             name: "Artikel Notaris",
         },
     ];
@@ -78,6 +79,9 @@ export default function Navbar() {
             </a>
             <NavbarNav links={links} />
             <NavbarSideMenu handleSideMenu={handleSideMenu} isShowSideMenu={isShowSideMenu} />
+            <div className="navbar-login-btn">
+                <Button styles={{ padding: "12px 55px", fontSize: "18px" }}>Masuk</Button>
+            </div>
             <div className="helper-div" />
         </header>
     );

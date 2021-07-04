@@ -10,6 +10,10 @@
     @apply bg-white flex flex-row items-center text-center;
 }
 
+.navbar-login-btn {
+    @apply hidden;
+}
+
 .navbar-menu {
     @apply items-center flex;
 }
@@ -32,6 +36,10 @@
 }
 
 @media screen(desktop) {
+    .navbar {
+        height: 80px;
+    }
+
     .navbar-menu {
         @apply hidden;
     }
@@ -50,11 +58,15 @@
     }
 
     .navbar-nav ul {
-        @apply flex flex-row;
+        @apply flex flex-row font-semibold;
     }
 
     .helper-div {
         @apply hidden;
+    }
+
+    .navbar-login-btn {
+        @apply block;
     }
 }
 
@@ -112,7 +124,7 @@
 }
 
 .sidemenu-content {
-    @apply flex flex-col justify-between;
+    @apply flex flex-col justify-between h-full;
 }
 
 .sidemenu-nav {
@@ -135,5 +147,4 @@
 }
 
 .sidemenu-btn-group {
-    @apply flex-1;
 }
