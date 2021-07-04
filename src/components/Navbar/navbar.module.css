@@ -66,7 +66,12 @@
     }
 
     .navbar-login-btn {
-        @apply block;
+        @apply flex flex-row items-center justify-end;
+    }
+
+    .navbar-user-icon {
+        width: 20px;
+        height: 20px;
     }
 }
 
