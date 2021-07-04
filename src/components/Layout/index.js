@@ -1,8 +1,8 @@
-import Navbar from "components/Navbar";
+import { Navbar } from "components/Navbar";
 
 export default function Layout({ children }) {
     return (
-        <main>
+        <main className="layout-padding">
             <Navbar />
             <div className="main-container">{children}</div>
         </main>
