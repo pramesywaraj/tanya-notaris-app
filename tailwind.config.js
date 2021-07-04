@@ -51,6 +51,14 @@ module.exports = {
             "2k": "2048px",
             "4k": "3840px",
         },
+        flex: {
+            1: "1 1 0%",
+            auto: "1 1 auto",
+            initial: "0 1 auto",
+            inherit: "inherit",
+            none: "none",
+            2: "2 2 0%",
+        },
     },
     variants: {
         extend: {},
