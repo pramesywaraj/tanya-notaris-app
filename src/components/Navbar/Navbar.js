@@ -97,12 +97,7 @@ export default function Navbar() {
                 <Image className="relative" src={MenuIcon} alt="burger-menu" objectFit="contain" />
             </button>
             <div className="relative navbar-logo">
-                <Image
-                    src={NavbarLogo}
-                    alt="Tanya Notaris Logo"
-                    layout="fill"
-                    objectFit="contain"
-                />
+                <Image src={NavbarLogo} alt="Tanya Notaris Logo" objectFit="contain" />
             </div>
             <NavbarNav links={links} />
             <NavbarSideMenu handleSideMenu={handleSideMenu} isShowSideMenu={isShowSideMenu} />

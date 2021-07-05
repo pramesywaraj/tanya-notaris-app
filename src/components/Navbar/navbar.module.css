@@ -44,7 +44,8 @@
 
     .navbar-logo {
         width: 200px;
-        @apply items-start;
+        height: 32px;
+        @apply items-center;
     }
 
     .navbar-nav {
