@@ -1,10 +1,10 @@
-import Navbar from "components/Navbar";
+import { Navbar } from "components/Navbar";
 
 export default function Layout({ children }) {
     return (
-        <main>
+        <main className="layout-padding">
             <Navbar />
-            <div className="flex flex-col justify-center h-screen">{children}</div>
+            <div className="main-container">{children}</div>
         </main>
     );
 }

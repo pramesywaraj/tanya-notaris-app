@@ -1,0 +1,43 @@
+.main-container {
+    @apply flex flex-col justify-center;
+}
+
+.layout-padding {
+    @apply px-4;
+}
+
+@media screen(tablet) {
+    .layout-padding {
+        @apply px-12;
+    }
+}
+
+@media screen(lgTablet) {
+    html {
+        font-size: 16px;
+    }
+
+    .layout-padding {
+        @apply px-20;
+    }
+}
+
+@media screen(desktop) {
+    html {
+        font-size: 16px;
+    }
+
+    .layout-padding {
+        @apply px-36;
+    }
+}
+
+@media screen(fullDesktop) {
+    html {
+        font-size: 16px;
+    }
+
+    .layout-padding {
+        @apply px-44;
+    }
+}

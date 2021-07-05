@@ -15,6 +15,7 @@ module.exports = {
         extend: {
             colors: {
                 primary: "rgb(243, 122, 81)",
+                darkPrimary: "rgb(209, 101, 65)",
                 secondary: "rgb(124, 88, 159)",
                 black: "rgb(51, 51, 51)",
                 mute: "rgb(119, 119, 119, 1)",
@@ -50,6 +51,14 @@ module.exports = {
             fullDesktop: "1920px",
             "2k": "2048px",
             "4k": "3840px",
+        },
+        flex: {
+            1: "1 1 0%",
+            auto: "1 1 auto",
+            initial: "0 1 auto",
+            inherit: "inherit",
+            none: "none",
+            2: "2 2 0%",
         },
     },
     variants: {
