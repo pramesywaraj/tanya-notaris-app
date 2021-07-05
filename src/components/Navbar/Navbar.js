@@ -94,15 +94,16 @@ export default function Navbar() {
         // <header className="relative select-none bg-white desktop:flex desktop:items-stretch w-full">
         <header className="navbar">
             <button className="navbar-menu" onClick={handleSideMenu}>
-                <Image className="relative" src={MenuIcon} alt="burger-menu" />
+                <Image className="relative" src={MenuIcon} alt="burger-menu" objectFit="contain" />
             </button>
-            <a className="navbar-logo">
+            <div className="relative navbar-logo">
                 <Image
-                    className="relative navbar-logo-image"
                     src={NavbarLogo}
                     alt="Tanya Notaris Logo"
+                    layout="fill"
+                    objectFit="contain"
                 />
-            </a>
+            </div>
             <NavbarNav links={links} />
             <NavbarSideMenu handleSideMenu={handleSideMenu} isShowSideMenu={isShowSideMenu} />
             <div className="navbar-login-btn">{!isLoggedIn ? logoutBtn : loginBtn}</div>
