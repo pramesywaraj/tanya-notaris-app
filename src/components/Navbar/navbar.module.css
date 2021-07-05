@@ -15,16 +15,14 @@
 }
 
 .navbar-menu {
-    @apply items-center flex;
+    width: 17.5px;
+    height: 17.5px;
 }
 
 .navbar-logo {
-    @apply flex flex-grow items-center justify-center;
-}
-
-.navbar-logo-image {
     width: 141px;
     height: 28px;
+    @apply flex flex-grow items-center justify-center;
 }
 
 .navbar-nav {
@@ -45,12 +43,8 @@
     }
 
     .navbar-logo {
-        @apply flex-grow-0 items-start;
-    }
-
-    .navbar-logo-image {
-        width: 169px;
-        height: 32px;
+        width: 200px;
+        @apply items-start;
     }
 
     .navbar-nav {
@@ -110,6 +104,7 @@
     overflow-x: hidden;
     height: 0;
     width: 80%;
+    max-width: 360px;
 
     padding: 1rem;
 
