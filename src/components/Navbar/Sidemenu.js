@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
 import NavbarLogo from "assets/tanya-notaris-navbar-logo.svg";
 import CloseIcon from "assets/cross.svg";
 import colors from "constants/colors";
+import { navigationLinks } from "constants/navigation";
 
 import { Button } from "components/Button";
 
@@ -36,28 +37,13 @@ function SidemenuHeader({ handleSideMenu }) {
 }
 
 function SidemenuNav({ handleNavigate }) {
-    const links = [
+    const [links, setLinks] = useState([
         {
             link: "/",
             name: "Home",
         },
-        {
-            link: "/about",
-            name: "Mengapa Kami",
-        },
-        {
-            link: "/about",
-            name: "Layanan Kami",
-        },
-        {
-            link: "/about",
-            name: "FAQ",
-        },
-        {
-            link: "/",
-            name: "Artikel Notaris",
-        },
-    ];
+        ...navigationLinks,
+    ]);
 
     return (
         <nav className="sidemenu-nav">
