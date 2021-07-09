@@ -25,21 +25,13 @@ module.exports = {
             backgroundImage: theme => ({
               'banner-img': "url('/banner-img.png')",
             }),
-            spacing: {
-              '160px' : '160px',
-              '100px' : '100px',
-              '80px' : '80px',
-              '40px' : '40px',
-              '32px' : '32px',
-              '30px': '30px',
-              '16px' : '16px',
-              '0px' : '0px',
-            },
         },
         spacing: {
+          '390px' : '390px',
           '160px' : '160px',
           '100px' : '100px',
           '80px' : '80px',
+          '60px' : '60px',
           '40px' : '40px',
           '32px' : '32px',
           '30px': '30px',
@@ -51,10 +43,13 @@ module.exports = {
           'banner': '158px',
           'section-img' : '98px',
           'section-img-web': '160px',
+          'icon' : '70px',
         },
         width: {
+          'icon' : '140px',
           'section-img' : '70px',
           'section-img-web': '224px',
+          'section-last': '1800px',
           full : '100%',
         },
         fontSize: {

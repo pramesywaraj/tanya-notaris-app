@@ -17,16 +17,16 @@ export default function Section1() {
     }
     return (
         <section className="pt-40px px-16px sm:py-32px sm:px-60px lg:py-100px lg:px-160px">
-                <div className="flex flex-col items-center gap-x-30px pb-40px sm:pb-80px sm:flex-row">
-                    <div className="object-cover sm:flex-1">
-                        <img src={content.image_link} alt="Section Image" className="rounded-lg" />
-                    </div>
-                    <div className="self-center font-bold pt-16px text-header5 sm:flex-1 sm:pt-0px">
-                        <p className={`font-semibold text-body1 md:text-header5 xl:text-header2`}>
-                            {content.description}
-                        </p>
-                    </div>
+            <div className="flex flex-col items-center gap-x-30px pb-40px sm:pb-80px sm:flex-row">
+                <div className="object-cover sm:flex-1">
+                    <img src={content.image_link} alt="Section Image" className="rounded-lg" />
                 </div>
+                <div className="self-center font-bold pt-16px text-header5 sm:flex-1 sm:pt-0px">
+                    <p className={`font-semibold text-body1 md:text-header5 xl:text-header2`}>
+                        {content.description}
+                    </p>
+                </div>
+            </div>
             <div class="flex flex-col gap-y-30px sm:flex-row sm:gap-x-30px">
                 <Section image={content1.image_link} description={content1.description} variant="text-medium" size="width-medium"/>
                 <Section image={content2.image_link} description={content2.description} variant="text-medium" size="width-medium"/>
