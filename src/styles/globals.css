@@ -11,10 +11,8 @@
 
         @apply text-black;
     }
+}
 
-    @media screen(lgTablet) {
-        html {
-            font-size: 16px;
-        }
-    }
+* {
+    box-sizing: border-box;
 }
