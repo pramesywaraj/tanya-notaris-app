@@ -1,0 +1,151 @@
+@tailwind components;
+
+/* NAVBAR */
+.navbar {
+    height: 56px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+
+    @apply bg-white flex flex-row items-center text-center;
+}
+
+.navbar-login-btn {
+    @apply hidden;
+}
+
+.navbar-menu {
+    width: 17.5px;
+    height: 17.5px;
+}
+
+.navbar-logo {
+    width: 141px;
+    height: 28px;
+    @apply flex flex-grow items-center justify-center;
+}
+
+.navbar-nav {
+    @apply hidden desktop:block;
+}
+
+.helper-div {
+    width: 18px;
+}
+
+@media screen(desktop) {
+    .navbar {
+        height: 80px;
+    }
+
+    .navbar-menu {
+        @apply hidden;
+    }
+
+    .navbar-logo {
+        width: 200px;
+        height: 32px;
+        @apply items-center;
+    }
+
+    .navbar-nav {
+        @apply ml-8 w-full;
+    }
+
+    .navbar-nav ul {
+        @apply flex flex-row font-semibold;
+    }
+
+    .helper-div {
+        @apply hidden;
+    }
+
+    .navbar-login-btn {
+        @apply flex flex-row items-center justify-end;
+    }
+
+    .navbar-user-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* SIDEMENU */
+.sidemenu-backdrop {
+    position: fixed;
+    z-index: 1;
+    background-color: #333333;
+    height: 100vh;
+    width: 100vw;
+
+    top: 0;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    visibility: hidden;
+    opacity: 0;
+
+    -webkit-transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}
+
+.sidemenu-backdrop.active {
+    visibility: visible;
+    opacity: 0.7;
+
+    transition-delay: 0s;
+}
+
+.sidemenu-container {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    height: 0;
+    width: 80%;
+    max-width: 360px;
+
+    padding: 1rem;
+
+    transform: translateX(-100%);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+
+    @apply flex flex-col h-full bg-white;
+}
+
+.sidemenu-container.active {
+    transform: translateX(0);
+}
+
+.sidemenu-header {
+    @apply flex flex-row justify-between;
+}
+
+.sidemenu-content {
+    @apply flex flex-col justify-between h-full;
+}
+
+.sidemenu-nav {
+    padding: 24px 8px;
+    @apply flex-1 text-left items-center;
+}
+
+.sidemenu-nav a {
+    font-size: 18px;
+    @apply font-semibold;
+}
+
+.sidemenu-nav-links {
+    padding: 16px 0;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.borderless {
+    border-bottom: none;
+}
+
+.sidemenu-btn-group {
+}

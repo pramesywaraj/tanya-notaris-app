@@ -10,10 +10,12 @@ module.exports = {
     fontFamily: {
         sans: ["Open Sans", "sans-serif"],
     },
+    mode: "jit",
     theme: {
         extend: {
             colors: {
                 primary: "rgb(243, 122, 81)",
+                darkPrimary: "rgb(209, 101, 65)",
                 secondary: "rgb(124, 88, 159)",
                 black: "rgb(51, 51, 51)",
                 mute: "rgb(119, 119, 119, 1)",
@@ -72,10 +74,10 @@ module.exports = {
         },
         screens: {
             smallPhone: { max: "374px" },
-            phone: { min: "375px", max: "767px" },
-            tablet: { min: "768px", max: "1023px" },
-            lgTablet: { min: "1024px", max: "1279px" },
-            desktop: { min: "1280px", max: "1919px" },
+            phone: "375px",
+            tablet: "768px",
+            lgTablet: "1024px",
+            desktop: "1280px",
             fullDesktop: "1920px",
             "2k": "2048px",
             "4k": "3840px",
@@ -88,6 +90,14 @@ module.exports = {
           ...theme('colors'),
           'primary': '#F37A51',
         }),
+        flex: {
+            1: "1 1 0%",
+            auto: "1 1 auto",
+            initial: "0 1 auto",
+            inherit: "inherit",
+            none: "none",
+            2: "2 2 0%",
+        },
     },
     variants: {
         extend: {},

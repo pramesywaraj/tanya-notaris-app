@@ -1,19 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "../styles/tailwind.css";
+@import "../components/Navbar/navbar.module.css";
+@import "../components/Button/button.module.css";
+@import "../components/Layout/layout.module.css";
 
 @layer base {
     html {
         font-family: "Montserrat", sans-serif;
         scroll-behavior: smooth;
+        font-size: 14px;
 
         @apply text-black;
     }
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
-
-
-

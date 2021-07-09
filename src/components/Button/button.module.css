@@ -1,0 +1,21 @@
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* NORMAL BUTTON */
+.btn-normal {
+    padding: 12px 1rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+
+    @apply bg-primary text-white font-semibold hover:bg-darkPrimary transition-colors;
+}
