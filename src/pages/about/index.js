@@ -7,11 +7,11 @@ export default function index() {
     const banner = "Mengapa Kami";
 
     return (
-        <div className="">
-                <Banner name={banner} />
-                <Section1 />
-                <Section2 />
-                <Section3 />
-        </div>
+        <>
+            <Banner name={banner} />
+            <Section1 />
+            <Section2 />
+            <Section3 />
+        </>
     )
 }
