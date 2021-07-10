@@ -6,8 +6,9 @@
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    z-index: 2;
 
-    @apply bg-white flex flex-row items-center text-center;
+    @apply bg-white flex flex-row items-center text-center px-4;
 }
 
 .navbar-login-btn {
@@ -33,9 +34,23 @@
     width: 18px;
 }
 
+@media screen(tablet) {
+    .navbar {
+        @apply px-12;
+    }
+}
+
+@media screen(lgTablet) {
+    .navbar {
+        @apply px-20;
+    }
+}
+
 @media screen(desktop) {
     .navbar {
         height: 80px;
+
+        @apply px-36;
     }
 
     .navbar-menu {
@@ -67,6 +82,12 @@
     .navbar-user-icon {
         width: 20px;
         height: 20px;
+    }
+}
+
+@media screen(fullDesktop) {
+    .navbar {
+        @apply px-44;
     }
 }
 
@@ -148,4 +169,8 @@
 }
 
 .sidemenu-btn-group {
+}
+
+.test {
+    @apply px-2;
 }

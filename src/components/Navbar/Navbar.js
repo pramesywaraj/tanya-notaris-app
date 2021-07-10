@@ -6,21 +6,13 @@ import NavbarLogo from "assets/tanya-notaris-navbar-logo.svg";
 import IconUser from "assets/icon-user.svg";
 import MenuIcon from "assets/mobile-menu-burger.svg";
 
+import NavbarLinks from "components/Navbar/NavbarLinks";
 import NavbarSideMenu from "components/Navbar/Sidemenu";
 import { Button } from "components/Button";
 
 import "components/Navbar/navbar.module.css";
 import colors from "constants/colors";
-
-function NavbarLinks({ style, link, name }) {
-    return (
-        <li style={style}>
-            <Link href={link}>
-                <a>{name}</a>
-            </Link>
-        </li>
-    );
-}
+import { navigationLinks } from "constants/navigation";
 
 function NavbarNav({ links }) {
     const linkStyle = { marginLeft: "2rem" };
@@ -44,25 +36,8 @@ function NavbarNav({ links }) {
 export default function Navbar() {
     const [isShowSideMenu, setIsShowSideMenu] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [links, setLinks] = useState(navigationLinks);
 
-    const links = [
-        {
-            link: "/about",
-            name: "Mengapa Kami",
-        },
-        {
-            link: "/services",
-            name: "Layanan Kami",
-        },
-        {
-            link: "/faq",
-            name: "FAQ",
-        },
-        {
-            link: "/articles",
-            name: "Artikel Notaris",
-        },
-    ];
     const loginBtn = <Button styles={{ padding: "12px 55px", fontSize: "18px" }}>Masuk</Button>;
     const logoutBtn = (
         <>
@@ -71,6 +46,7 @@ export default function Navbar() {
                 <Image width="30" height="30" src={IconUser} alt="User Account Icon" />
             </div>
             <Button
+                classNames="test"
                 onClick={() => { }}
                 styles={{
                     height: "56px",

@@ -9,6 +9,8 @@
     text-align: center;
     -webkit-appearance: none;
     -moz-appearance: none;
+
+    @apply focus:outline-none;
 }
 
 /* NORMAL BUTTON */
@@ -18,4 +20,12 @@
     font-size: 1.2rem;
 
     @apply bg-primary text-white font-semibold hover:bg-darkPrimary transition-colors;
+}
+
+/* ICON BUTTON */
+.btn-iconed {
+    padding: 12px 1rem;
+    border-radius: 12px;
+
+    @apply bg-transparent;
 }

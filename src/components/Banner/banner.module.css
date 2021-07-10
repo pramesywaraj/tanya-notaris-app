@@ -1,0 +1,27 @@
+.about-banner-padding {
+    @apply -mx-4;
+}
+
+@media screen(tablet) {
+    .about-banner-padding {
+        @apply -mx-12;
+    }
+}
+
+@media screen(lgTablet) {
+    .about-banner-padding {
+        @apply -mx-20;
+    }
+}
+
+@media screen(desktop) {
+    .about-banner-padding {
+        @apply -mx-36;
+    }
+}
+
+@media screen(fullDesktop) {
+    .about-banner-padding {
+        @apply -mx-44;
+    }
+}
