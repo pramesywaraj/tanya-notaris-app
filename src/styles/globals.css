@@ -1,10 +1,14 @@
 @import "../styles/tailwind.css";
+/* Component */
 @import "../components/Navbar/navbar.module.css";
 @import "../components/Footer/footer.module.css";
 @import "../components/Layout/layout.module.css";
-
 @import "../components/Banner/banner.module.css";
 @import "../components/Button/button.module.css";
+@import "../components/Input/input.module.css";
+
+/* Page */
+@import "./login.module.css";
 
 @layer base {
     html {

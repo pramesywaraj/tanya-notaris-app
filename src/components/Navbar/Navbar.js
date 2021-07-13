@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import NavbarLogo from "assets/tanya-notaris-navbar-logo.svg";
 import IconUser from "assets/icon-user.svg";
@@ -38,7 +39,23 @@ export default function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [links, setLinks] = useState(navigationLinks);
 
-    const loginBtn = <Button styles={{ padding: "12px 55px", fontSize: "18px" }}>Masuk</Button>;
+    const router = useRouter();
+
+    const handleSideMenu = () => {
+        setIsShowSideMenu(!isShowSideMenu);
+    };
+
+    const handleNavigateToLogin = (e) => {
+        e.preventDefault();
+
+        router.push("/login");
+    };
+
+    const loginBtn = (
+        <Button onClick={handleNavigateToLogin} styles={{ padding: "12px 55px", fontSize: "18px" }}>
+            Masuk
+        </Button>
+    );
     const logoutBtn = (
         <>
             <div className="flex flex-row mr-4 justify-between">
@@ -47,7 +64,7 @@ export default function Navbar() {
             </div>
             <Button
                 classNames="test"
-                onClick={() => { }}
+                onClick={handleNavigateToLogin}
                 styles={{
                     height: "56px",
                     width: "168px",
@@ -62,10 +79,6 @@ export default function Navbar() {
         </>
     );
 
-    const handleSideMenu = () => {
-        setIsShowSideMenu(!isShowSideMenu);
-    };
-
     return (
         // <header className="relative select-none bg-white desktop:flex desktop:items-stretch w-full">
         <header className="navbar">
@@ -77,7 +90,7 @@ export default function Navbar() {
             </div>
             <NavbarNav links={links} />
             <NavbarSideMenu handleSideMenu={handleSideMenu} isShowSideMenu={isShowSideMenu} />
-            <div className="navbar-login-btn">{!isLoggedIn ? logoutBtn : loginBtn}</div>
+            <div className="navbar-login-btn">{isLoggedIn ? logoutBtn : loginBtn}</div>
             <div className="helper-div" />
         </header>
     );
