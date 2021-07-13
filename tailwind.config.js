@@ -15,15 +15,16 @@ module.exports = {
         extend: {
             colors: {
                 primary: "rgb(243, 122, 81)",
-                transparentPrimary: "rgb(243, 122, 81, 0.8)",
+                transparentPrimary: "rgba(243, 122, 81, 0.8)",
                 darkPrimary: "rgb(209, 101, 65)",
                 secondary: "rgb(124, 88, 159)",
                 black: "rgb(51, 51, 51)",
-                mute: "rgb(119, 119, 119, 1)",
+                mute: "rgba(119, 119, 119, 1)",
                 grey: "rgb(199, 199, 199)",
                 light: "rgb(235, 235, 235)",
                 white: "rgb(255, 255, 255)",
                 dark: "rgb(18, 18, 18)",
+                purple: "rgba(124, 88, 159, 1)",
             },
             backgroundImage: theme => ({
                 'banner-img': "url('/banner-img.png')",
@@ -56,6 +57,7 @@ module.exports = {
             },
         },
         fontSize: {
+            large: [pxToRem(72), "98px"],
             header1: [pxToRem(40), "58px"],
             header2: [pxToRem(32), "48px"],
             header3: [pxToRem(28), "40px"],
