@@ -1,0 +1,6 @@
+@tailwind components;
+
+.test-name {
+    font-weight: 700;
+    font-size: 500px;
+}

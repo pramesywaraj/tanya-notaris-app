@@ -6,6 +6,10 @@
 @import "../components/Banner/banner.module.css";
 @import "../components/Button/button.module.css";
 
+@import "../components/Artikel/highlight.module.css";
+@import "../components/Search/search.module.css";
+
+
 @layer base {
     html {
         font-family: "Montserrat", sans-serif;
