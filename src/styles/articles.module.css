@@ -1,0 +1,25 @@
+.header-articles {
+    @apply flex flex-col items-start gap-y-32px;
+}
+
+.header-title {
+    @apply font-bold text-header2;
+}
+
+@media screen(tablet) {
+    .header-articles {
+        @apply flex-row justify-between;
+    }
+
+    .container {
+        max-width: fit-content !important;
+
+        @apply w-full;
+    }
+}
+
+@media screen(tablet) {
+    .header-articles {
+        @apply flex-row justify-between;
+    }
+}
