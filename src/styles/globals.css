@@ -14,9 +14,14 @@
     html {
         font-family: "Montserrat", sans-serif;
         scroll-behavior: smooth;
-        font-size: 14px;
 
-        @apply text-black;
+        @apply text-small text-black;
+    }
+
+    @media screen(tablet) {
+        html {
+            @apply text-body;
+        }
     }
 }
 
