@@ -1,5 +1,7 @@
 .main-container {
     min-height: calc(100vh - 56px);
+    max-width: 1920px;
+    margin: auto;
     @apply flex flex-col;
 }
 
