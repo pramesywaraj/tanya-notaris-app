@@ -7,13 +7,13 @@ import { IconButton } from "components/Button";
 export default function Search({ classNames, onClick, styles }) {
     return (
         <div className={`search-container ${classNames}`} onClick={onClick} style={{ ...styles }}>
-            <input placeholder="Cari Artikel" className="search-input"></input>
+            <input placeholder="Cari Artikel" className="search-input" />
             <IconButton 
                 src={SearchIcon}
                 styles={{
                     backgroundColor: colors.primary, 
-                    borderBottomLeftRadius: "0px",
-                    borderTopLeftRadius: "0px",
+                    borderBottomLeftRadius: 0,
+                    borderTopLeftRadius: 0,
                 }}
             />
         </div>

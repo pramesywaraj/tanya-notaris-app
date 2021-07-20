@@ -1,4 +1,6 @@
 .header-articles {
+    margin-top: 40px;
+
     @apply flex flex-col items-start gap-y-32px;
 }
 
@@ -20,6 +22,8 @@
 
 @media screen(tablet) {
     .header-articles {
+        margin-top: 60px;
+
         @apply flex-row justify-between;
     }
 }
