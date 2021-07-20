@@ -11,7 +11,14 @@
     max-width: 1920px;
     margin: auto;
 
-    @apply bg-white flex flex-row items-center text-center px-4;
+    background: transparent;
+    transition: background 0.5s ease;
+
+    @apply flex flex-row items-center text-center px-4;
+}
+
+.navbar.active {
+    background: white;
 }
 
 .navbar-login-btn {

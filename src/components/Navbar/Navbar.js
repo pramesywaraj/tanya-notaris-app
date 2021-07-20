@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -38,6 +38,7 @@ export default function Navbar() {
     const [isShowSideMenu, setIsShowSideMenu] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [links, setLinks] = useState(navigationLinks);
+    const [navbarBg, setNavbarBg] = useState(false);
 
     const router = useRouter();
 
@@ -50,6 +51,24 @@ export default function Navbar() {
 
         router.push("/login");
     };
+
+    const handleChangeNavbarBg = () => {
+        if (window.scrollY > 32) {
+            setNavbarBg(true);
+        } else {
+            setNavbarBg(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleChangeNavbarBg);
+
+        return () => {
+            window.removeEventListener("scroll", handleChangeNavbarBg);
+        };
+    }, []);
+
+    // Render Section
 
     const loginBtn = (
         <Button onClick={handleNavigateToLogin} styles={{ padding: "12px 55px", fontSize: "18px" }}>
@@ -81,7 +100,7 @@ export default function Navbar() {
 
     return (
         // <header className="relative select-none bg-white desktop:flex desktop:items-stretch w-full">
-        <header className="navbar">
+        <header className={navbarBg ? "navbar active" : "navbar"}>
             <button className="navbar-menu" onClick={handleSideMenu}>
                 <Image className="relative" src={MenuIcon} alt="burger-menu" objectFit="contain" />
             </button>
