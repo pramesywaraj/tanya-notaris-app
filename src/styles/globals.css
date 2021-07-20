@@ -28,3 +28,31 @@
 * {
     box-sizing: border-box;
 }
+
+.padding-off {
+    @apply -mx-4 !important;
+}
+
+@media screen(tablet) {
+    .padding-off {
+        @apply -mx-12 !important;
+    }
+}
+
+@media screen(lgTablet) {
+    .padding-off {
+        @apply -mx-20 !important;
+    }
+}
+
+@media screen(desktop) {
+    .padding-off {
+        @apply -mx-36 !important;
+    }
+}
+
+@media screen(fullDesktop) {
+    .padding-off {
+        @apply -mx-44 !important;
+    }
+}

@@ -1,0 +1,145 @@
+.home-section {
+    position: relative;
+
+    width: 100%;
+}
+
+/* .home-section::before {
+    content: url("/vector_home_bg_1.svg");
+    position: absolute;
+    left: 0;
+    top: 0;
+} */
+
+.home-section h1 {
+    @apply font-bold text-header3;
+}
+
+.home-info-section {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 90vh;
+    width: 100%;
+}
+
+.home-offer-container {
+    /* Temporary */
+    height: 500px;
+}
+
+/* About Section */
+.home-about-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-about-description-container {
+    @apply mb-4;
+}
+
+.home-about-title-container {
+    @apply mb-6;
+}
+
+.home-about-title-container p {
+    margin-top: 16px;
+    @apply font-semibold;
+}
+
+.home-about-point-container {
+    @apply mb-6;
+}
+
+.home-about-point-container .home-about-items {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    align-items: flex-start;
+}
+
+.home-about-image-container {
+    position: relative;
+    width: 100%;
+    min-height: 188px;
+}
+
+.home-about-items-image {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    max-width: 70px;
+    padding: 8px;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.home-about-items .home-about-items-description {
+    @apply ml-4;
+}
+
+.home-about-items-description #title {
+    @apply font-bold text-body;
+}
+
+.home-about-items-description #description {
+    @apply text-body;
+}
+/*  */
+
+/* Achievements section */
+.home-achivements-section {
+    margin: 40px auto;
+    background-color: rgba(243, 122, 81, 0.05);
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    row-gap: 24px;
+
+    @apply px-4 py-8;
+}
+
+.home-achievements-items {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    flex-basis: 50%;
+}
+
+.home-achievements-items-image {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    max-width: 40px;
+    padding: 8px;
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: center;
+
+    @apply bg-primary;
+}
+
+.home-achievements-items .home-achievements-items-description {
+    margin-left: 12px;
+}
+
+.home-achievements-items-description #numbers {
+    @apply font-bold text-header3;
+}
+
+.home-achievements-items-description #caption {
+    @apply text-body;
+}
+
+/* Testimonies section */
+.home-testimonies-section {
+    @apply mb-10;
+}
