@@ -16,7 +16,7 @@ export default function Section1() {
         image_link : "/section3.png",
     }
     return (
-        <section className="pt-40px px-16px sm:py-32px sm:px-60px lg:py-100px lg:px-160px">
+        <section className="pt-40px sm:py-32px lg:py-100px">
             <div className="flex flex-col items-center gap-x-30px pb-40px sm:pb-80px sm:flex-row">
                 <div className="object-cover sm:flex-1">
                     <img src={content.image_link} alt="Section Image" className="rounded-lg" />

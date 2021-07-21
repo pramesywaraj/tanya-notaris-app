@@ -24,7 +24,7 @@ export default function Section2() {
         image_link: "/section.svg",
     };
     return (
-        <section className="pt-40px px-16px sm:py-32px sm:px-60px lg:py-40px lg:px-160px">
+        <section className="pt-40px sm:py-32px lg:py-40px">
             <div className="flex flex-col gap-y-16px md:flex-row gap-x-16px">
                 <div className="flex flex-col gap-y-16px md:flex-1 lg:pr-100px lg:gap-y-32px">
                     <h1 className="text-header3 font-bold lg:text-header1">
@@ -77,10 +77,9 @@ export default function Section2() {
                     <img
                         src={img.image_link}
                         alt="Section Image"
-                        className="md:w-6/12 object-cover rounded-2xl"
+                        className="md:w-full object-cover rounded-2xl"
                     />
                 </div>
-                <div></div>
             </div>
         </section>
     );

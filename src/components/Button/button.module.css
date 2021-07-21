@@ -29,3 +29,11 @@
 
     @apply bg-transparent;
 }
+
+.btn-search {
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+
+    @apply bg-primary text-white hover:bg-darkPrimary transition-colors;
+}
