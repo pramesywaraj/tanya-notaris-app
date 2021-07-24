@@ -1,6 +1,6 @@
 import Section from "components/Section"
 
-export default function Section1() {
+export default function OverviewSection() {
     const content = {
         description : "Tanya Notaris berfokus untuk melindungi sisi hukum bisnis dari usaha kecil dan menengah (UKM) melalui platform digital",
         image_link : "/section1.png"
@@ -27,7 +27,7 @@ export default function Section1() {
                     </p>
                 </div>
             </div>
-            <div class="flex flex-col gap-y-30px sm:flex-row sm:gap-x-30px">
+            <div class="flex flex-col gap-y-30px sm:flex-row sm:gap-x-30px">         
                 <Section image={content1.image_link} description={content1.description} variant="text-medium" size="width-medium"/>
                 <Section image={content2.image_link} description={content2.description} variant="text-medium" size="width-medium"/>
             </div>
