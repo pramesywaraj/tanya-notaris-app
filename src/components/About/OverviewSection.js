@@ -1,6 +1,6 @@
 import Section from "components/Section"
 
-export default function Section1() {
+export default function OverviewSection() {
     const content = {
         description : "Tanya Notaris berfokus untuk melindungi sisi hukum bisnis dari usaha kecil dan menengah (UKM) melalui platform digital",
         image_link : "/section1.png"
@@ -16,7 +16,7 @@ export default function Section1() {
         image_link : "/section3.png",
     }
     return (
-        <section className="pt-40px px-16px sm:py-32px sm:px-60px lg:py-100px lg:px-160px">
+        <section className="pt-40px sm:py-32px lg:py-100px">
             <div className="flex flex-col items-center gap-x-30px pb-40px sm:pb-80px sm:flex-row">
                 <div className="object-cover sm:flex-1">
                     <img src={content.image_link} alt="Section Image" className="rounded-lg" />
@@ -27,7 +27,7 @@ export default function Section1() {
                     </p>
                 </div>
             </div>
-            <div class="flex flex-col gap-y-30px sm:flex-row sm:gap-x-30px">
+            <div class="flex flex-col gap-y-30px sm:flex-row sm:gap-x-30px">         
                 <Section image={content1.image_link} description={content1.description} variant="text-medium" size="width-medium"/>
                 <Section image={content2.image_link} description={content2.description} variant="text-medium" size="width-medium"/>
             </div>

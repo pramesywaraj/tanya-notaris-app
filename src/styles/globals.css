@@ -9,6 +9,10 @@
 
 /* Page */
 @import "./login.module.css";
+@import "./articles.module.css";
+
+@import "../components/Artikel/articles.module.css";
+@import "../components/Search/search.module.css";
 
 @layer base {
     html {
@@ -55,4 +59,15 @@
     .padding-off {
         @apply -mx-44 !important;
     }
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border: none;
+    outline: none;
+}
+
+section {
+    padding-bottom: 40px;
 }

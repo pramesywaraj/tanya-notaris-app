@@ -1,4 +1,4 @@
-export default function Section3() {
+export default function ProfileSection() {
     const content = {
         title : "Tentang Perusahaan",
         description1 : "Kontrak Hukum adalah platform cerdas pertama yang melayani jasa legal untuk UMKM dan perusahaan besar sejak 2016 di Indonesia. Kami bangga menjadi yang pertama dan satu-satunya platform yang melayani legalitas tanpa ada batasan, berkualitas, dan terjangkau. Kontrak Hukum juga merupakan startup di bidang hukum pertama yang mendapatkan pendanaan di Indonesia.",
@@ -14,7 +14,7 @@ export default function Section3() {
     }
 
     return (
-        <section className="pt-40px px-16px sm:py-32px sm:px-60px lg:py-40px lg:px-160px">
+        <section className="mt-40px mb-100px sm:py-32px lg:py-40px">
             <div className="flex flex-col gap-y-30px pb-40px lg:flex-row-reverse lg:gap-x-60px lg:pb-100px">
                 <div className="flex flex-col gap-y-16px lg:gap-y-32px">
                     <h1 className="text-header3 font-bold sm:text-header1"> 
