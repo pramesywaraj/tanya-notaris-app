@@ -34,7 +34,7 @@ function NavbarNav({ links }) {
     );
 }
 
-export default function Navbar() {
+export default function Navbar({ isNoLayout }) {
     const [isShowSideMenu, setIsShowSideMenu] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [links, setLinks] = useState(navigationLinks);
@@ -62,6 +62,8 @@ export default function Navbar() {
 
     useEffect(() => {
         window.addEventListener("scroll", handleChangeNavbarBg);
+
+        if (isNoLayout) setNavbarBg(true);
 
         return () => {
             window.removeEventListener("scroll", handleChangeNavbarBg);
