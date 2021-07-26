@@ -10,6 +10,7 @@
 /* Page */
 @import "./login.module.css";
 @import "./articles.module.css";
+@import "./detail.module.css";
 
 @import "../components/Artikel/articles.module.css";
 @import "../components/Search/search.module.css";
