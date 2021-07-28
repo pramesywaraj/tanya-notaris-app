@@ -17,9 +17,8 @@
 .btn-normal {
     padding: 12px 1rem;
     border-radius: 12px;
-    font-size: 1.2rem;
 
-    @apply bg-primary text-white font-semibold hover:bg-darkPrimary transition-colors;
+    @apply bg-primary text-white text-body font-semibold hover:bg-darkPrimary transition-colors;
 }
 
 /* ICON BUTTON */
