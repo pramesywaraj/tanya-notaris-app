@@ -92,7 +92,7 @@
 /*  */
 
 /* Achievements section */
-.home-achivements-section {
+.home-achievements-section {
     margin: 40px auto;
     background-color: rgba(243, 122, 81, 0.05);
 
@@ -100,7 +100,7 @@
     flex-flow: row wrap;
     align-items: center;
 
-    row-gap: 24px;
+    row-gap: 16px;
 
     @apply px-4 py-8;
 }
@@ -113,18 +113,29 @@
     flex-basis: 50%;
 }
 
-.home-achievements-items-image {
-    position: relative;
-    width: 100%;
-    height: 40px;
-    max-width: 40px;
-    padding: 8px;
+.home-achievements-items-image-container {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 5px;
     border-radius: 4px;
 
     display: flex;
     justify-content: center;
 
+    position: relative;
+
     @apply bg-primary;
+}
+
+.home-achievements-items-image-container > div {
+    position: unset !important;
+}
+
+.home-achievements-items-image {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: 100% !important;
 }
 
 .home-achievements-items .home-achievements-items-description {
@@ -139,7 +150,55 @@
     @apply text-body;
 }
 
+@media screen(lgTablet) {
+    .home-achievements-section {
+        justify-content: space-between;
+        row-gap: 24px;
+    }
+
+    .home-achievements-items {
+        align-items: center;
+        flex-basis: 20%;
+    }
+
+    .home-achievements-items-image-container {
+        width: 72px !important;
+        height: 72px !important;
+    }
+
+    .home-achievements-items-image {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
 /* Testimonies section */
 .home-testimonies-section {
     @apply mb-10;
+}
+
+.home-testimonies-slide-item {
+    display: flex !important;
+    justify-content: center;
+    padding: 8px 8px;
+}
+
+.home-testimonies-clients {
+    text-align: center;
+}
+
+.home-testimonies-clients .home-testimonies-clients-img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Notaris Article Section */
+.home-articles-container {
+    @apply grid grid-cols-2 gap-x-4 gap-y-4;
+}
+
+@media screen(lgTablet) {
+    .home-articles-container {
+        @apply pt-30px grid-cols-4 gap-x-30px;
+    }
 }
