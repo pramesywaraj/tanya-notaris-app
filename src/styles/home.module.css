@@ -66,6 +66,9 @@
     min-height: 188px;
 }
 
+.home-about-image {
+}
+
 .home-about-items-image {
     position: relative;
     width: 100%;
@@ -88,6 +91,31 @@
 
 .home-about-items-description #description {
     @apply text-body;
+}
+
+@media screen(lgTablet) {
+    .home-about-section {
+        flex-direction: row;
+    }
+
+    .home-about-description-container {
+        flex: 1;
+    }
+
+    .home-about-image-container {
+        position: relative;
+        flex: 1;
+
+        @apply ml-10;
+    }
+
+    .home-about-image-container > div {
+        position: unset !important;
+    }
+
+    .home-about-image {
+        border-radius: 12px;
+    }
 }
 /*  */
 

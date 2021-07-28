@@ -81,7 +81,13 @@ function AboutSection() {
                 <div className={styles["home-about-point-container"]}>{renderContents}</div>
             </div>
             <div className={styles["home-about-image-container"]}>
-                <Image src={AboutImage} alt="Co-worker that do the toss" layout="responsive" />
+                <Image
+                    className={styles["home-about-image"]}
+                    src={AboutImage}
+                    alt="Co-worker that do the toss"
+                    layout="responsive"
+                    objectFit="cover"
+                />
             </div>
         </section>
     );
