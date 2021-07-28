@@ -1,0 +1,25 @@
+.carousel-container {
+    width: 100%;
+    margin: 24px 0;
+}
+
+.carousel-inner-slider {
+    margin: 32px 0;
+}
+
+.carousel-dots {
+    position: relative !important;
+}
+
+.slider-dot {
+    width: 16px;
+    height: 16px;
+    background: #c7c7c7;
+    border-radius: 50%;
+
+    transition: background 0.2s ease;
+}
+
+.slider-dot-active {
+    background: #f37a51;
+}
