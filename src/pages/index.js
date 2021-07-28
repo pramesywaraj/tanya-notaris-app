@@ -379,7 +379,7 @@ export default function Home() {
     };
 
     return (
-        <div className="py-8">
+        <div className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]}`}>
             <section className={`${styles["home-section"]} ${styles["home-info-section"]}`}>
                 <h1>Disini nanti ada carousel</h1>
             </section>
@@ -388,12 +388,6 @@ export default function Home() {
                 <h1>Apa Yang Kami Tawarkan</h1>
                 <div className={styles["home-offer-container"]}></div>
             </section>
-
-            <section className={`${styles["home-section"]}`}>
-                <h1>Apa Yang Kami Tawarkan</h1>
-                <div className={styles["home-offer-container"]}></div>
-            </section>
-
             <AboutSection />
             <AchievementSection />
             <TestimoniesSection />

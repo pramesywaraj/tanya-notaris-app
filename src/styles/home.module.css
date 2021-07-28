@@ -1,15 +1,13 @@
+.home-page-top {
+}
+.home-page-middle {
+}
+
 .home-section {
     position: relative;
 
     width: 100%;
 }
-
-/* .home-section::before {
-    content: url("/vector_home_bg_1.svg");
-    position: absolute;
-    left: 0;
-    top: 0;
-} */
 
 .home-section h1 {
     @apply font-bold text-header3;
@@ -92,31 +90,6 @@
 .home-about-items-description #description {
     @apply text-body;
 }
-
-@media screen(lgTablet) {
-    .home-about-section {
-        flex-direction: row;
-    }
-
-    .home-about-description-container {
-        flex: 1;
-    }
-
-    .home-about-image-container {
-        position: relative;
-        flex: 1;
-
-        @apply ml-10;
-    }
-
-    .home-about-image-container > div {
-        position: unset !important;
-    }
-
-    .home-about-image {
-        border-radius: 12px;
-    }
-}
 /*  */
 
 /* Achievements section */
@@ -178,28 +151,6 @@
     @apply text-body;
 }
 
-@media screen(lgTablet) {
-    .home-achievements-section {
-        justify-content: space-between;
-        row-gap: 24px;
-    }
-
-    .home-achievements-items {
-        align-items: center;
-        flex-basis: 20%;
-    }
-
-    .home-achievements-items-image-container {
-        width: 72px !important;
-        height: 72px !important;
-    }
-
-    .home-achievements-items-image {
-        width: 40px !important;
-        height: 40px !important;
-    }
-}
-
 /* Testimonies section */
 .home-testimonies-section {
     @apply mb-10;
@@ -226,6 +177,66 @@
 }
 
 @media screen(lgTablet) {
+    .home-page-top::before {
+        content: url("/vector_home_bg_1.svg");
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* About */
+    .home-about-section {
+        flex-direction: row;
+    }
+
+    .home-about-section::before {
+        content: url("/vector_home_bg_2.svg");
+        position: absolute;
+        transform: translate(-50%, -35%);
+        z-index: -1;
+    }
+
+    .home-about-description-container {
+        flex: 1;
+    }
+
+    .home-about-image-container {
+        position: relative;
+        flex: 1;
+
+        @apply ml-10;
+    }
+
+    .home-about-image-container > div {
+        position: unset !important;
+    }
+
+    .home-about-image {
+        border-radius: 12px;
+    }
+
+    /* Achievements */
+    .home-achievements-section {
+        justify-content: space-between;
+        row-gap: 24px;
+    }
+
+    .home-achievements-items {
+        align-items: center;
+        flex-basis: 20%;
+    }
+
+    .home-achievements-items-image-container {
+        width: 72px !important;
+        height: 72px !important;
+    }
+
+    .home-achievements-items-image {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    /* Articles */
     .home-articles-container {
         @apply pt-30px grid-cols-4 gap-x-30px;
     }
