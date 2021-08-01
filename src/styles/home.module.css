@@ -13,6 +13,8 @@
     @apply font-bold text-header3;
 }
 
+/* Home Info */
+
 .home-info-section {
     display: flex;
 
@@ -21,6 +23,13 @@
     min-height: 90vh;
     width: 100%;
 }
+
+.home-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/*  */
 
 .home-offer-container {
     /* Temporary */

@@ -21,6 +21,18 @@ import IconAwards from "assets/icon-home-awards.svg";
 
 import DefaultCompany from "assets/default-company.svg";
 
+function HomeInformationSection() {
+    return (
+        <section className={`${styles["home-section"]} ${styles["home-info-section"]}`}>
+            <div className={styles["home-info-container"]}>
+                <div>
+
+                </div>
+            </div>
+        </section>
+    );
+}
+
 function AboutSection() {
     const [contents, setContents] = useState([
         {
@@ -315,8 +327,8 @@ function TestimoniesSection() {
                             className={styles["home-testimonies-clients-img"]}
                             src={item.src}
                             alt={`clients-${index}`}
-                            width={50}
-                            height={50}
+                            width={60}
+                            height={60}
                         />
                     </div>
                 )}
@@ -380,10 +392,7 @@ export default function Home() {
 
     return (
         <div className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]}`}>
-            <section className={`${styles["home-section"]} ${styles["home-info-section"]}`}>
-                <h1>Disini nanti ada carousel</h1>
-            </section>
-
+            <HomeInformationSection />
             <section className={`${styles["home-section"]}`}>
                 <h1>Apa Yang Kami Tawarkan</h1>
                 <div className={styles["home-offer-container"]}></div>
