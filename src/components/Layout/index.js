@@ -19,7 +19,7 @@ export default function Layout({ children }) {
 
     return (
         <main>
-            <Navbar />
+            <Navbar isNoLayout={isNoLayout} />
             <div className="main-container layout-padding">{children}</div>
             {!isNoLayout && <Footer />}
         </main>
