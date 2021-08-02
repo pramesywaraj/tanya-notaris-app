@@ -1,0 +1,14 @@
+.detail-container {
+    margin-top: 80px;
+    max-width: 45.625rem;
+    width: 100%;
+}
+
+.detail-image {
+    width: 100%;
+}
+
+.detail-social-container {
+    margin-bottom: 120px;
+    flex: 1;
+}

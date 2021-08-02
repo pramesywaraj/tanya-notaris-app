@@ -89,6 +89,7 @@ module.exports = {
             lg: { min: "1024px" },
             xl: { min: "1280px" },
             maxlgTablet: { max: "1024px" },
+            maxDesktop: { max: "1280px" },
         },
         backgroundColor: (theme) => ({
             ...theme("colors"),

@@ -6,10 +6,13 @@
 @import "../components/Banner/banner.module.css";
 @import "../components/Button/button.module.css";
 @import "../components/Input/input.module.css";
+@import "../components/Items/items.module.css";
 
 /* Page */
 @import "./login.module.css";
 @import "./articles.module.css";
+@import "./detail.module.css";
+@import "./faq.module.css";
 
 @import "../components/Artikel/articles.module.css";
 @import "../components/Search/search.module.css";
