@@ -8,12 +8,13 @@ export default function Search({ classNames, onClick, styles }) {
     return (
         <div className={`search-container ${classNames}`} onClick={onClick} style={{ ...styles }}>
             <input placeholder="Cari Artikel" className="search-input" />
-            <IconButton 
+            <IconButton
                 src={SearchIcon}
                 styles={{
-                    backgroundColor: colors.primary, 
+                    backgroundColor: colors.primary,
                     borderBottomLeftRadius: 0,
                     borderTopLeftRadius: 0,
+                    display: "flex",
                 }}
             />
         </div>
