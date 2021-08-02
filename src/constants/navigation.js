@@ -4,7 +4,7 @@ export const navigationLinks = [
         name: "Mengapa Kami",
     },
     {
-        link: "/services",
+        link: "/service",
         name: "Layanan Kami",
     },
     {

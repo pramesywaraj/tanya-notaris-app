@@ -1,0 +1,8 @@
+.service-section-container {
+    padding: 10rem;
+}
+
+.service-title-container {
+    display: flex;
+    justify-content: space-between;
+}
