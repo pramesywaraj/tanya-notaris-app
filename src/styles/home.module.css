@@ -1,0 +1,252 @@
+.home-page-top {
+}
+.home-page-middle {
+}
+
+.home-section {
+    position: relative;
+
+    width: 100%;
+}
+
+.home-section h1 {
+    @apply font-bold text-header3;
+}
+
+/* Home Info */
+
+.home-info-section {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 90vh;
+    width: 100%;
+}
+
+.home-info-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/*  */
+
+.home-offer-container {
+    /* Temporary */
+    height: 500px;
+}
+
+/* About Section */
+.home-about-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-about-description-container {
+    @apply mb-4;
+}
+
+.home-about-title-container {
+    @apply mb-6;
+}
+
+.home-about-title-container p {
+    margin-top: 16px;
+    @apply font-semibold;
+}
+
+.home-about-point-container {
+    @apply mb-6;
+}
+
+.home-about-point-container .home-about-items {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    align-items: flex-start;
+}
+
+.home-about-image-container {
+    position: relative;
+    width: 100%;
+    min-height: 188px;
+}
+
+.home-about-image {
+}
+
+.home-about-items-image {
+    position: relative;
+    width: 100%;
+    height: 70px;
+    max-width: 70px;
+    padding: 8px;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.home-about-items .home-about-items-description {
+    @apply ml-4;
+}
+
+.home-about-items-description #title {
+    @apply font-bold text-body;
+}
+
+.home-about-items-description #description {
+    @apply text-body;
+}
+/*  */
+
+/* Achievements section */
+.home-achievements-section {
+    margin: 40px auto;
+    background-color: rgba(243, 122, 81, 0.05);
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    row-gap: 16px;
+
+    @apply px-4 py-8;
+}
+
+.home-achievements-items {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    flex-basis: 50%;
+}
+
+.home-achievements-items-image-container {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 5px;
+    border-radius: 4px;
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+
+    @apply bg-primary;
+}
+
+.home-achievements-items-image-container > div {
+    position: unset !important;
+}
+
+.home-achievements-items-image {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: 100% !important;
+}
+
+.home-achievements-items .home-achievements-items-description {
+    margin-left: 12px;
+}
+
+.home-achievements-items-description #numbers {
+    @apply font-bold text-header3;
+}
+
+.home-achievements-items-description #caption {
+    @apply text-body;
+}
+
+/* Testimonies section */
+.home-testimonies-section {
+    @apply mb-10;
+}
+
+.home-testimonies-slide-item {
+    display: flex !important;
+    justify-content: center;
+    padding: 8px 8px;
+}
+
+.home-testimonies-clients {
+    text-align: center;
+}
+
+.home-testimonies-clients .home-testimonies-clients-img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Notaris Article Section */
+.home-articles-container {
+    @apply grid grid-cols-2 gap-x-4 gap-y-4;
+}
+
+@media screen(lgTablet) {
+    .home-page-top::before {
+        content: url("/vector_home_bg_1.svg");
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* About */
+    .home-about-section {
+        flex-direction: row;
+    }
+
+    .home-about-section::before {
+        content: url("/vector_home_bg_2.svg");
+        position: absolute;
+        transform: translate(-50%, -35%);
+        z-index: -1;
+    }
+
+    .home-about-description-container {
+        flex: 1;
+    }
+
+    .home-about-image-container {
+        position: relative;
+        flex: 1;
+
+        @apply ml-10;
+    }
+
+    .home-about-image-container > div {
+        position: unset !important;
+    }
+
+    .home-about-image {
+        border-radius: 12px;
+    }
+
+    /* Achievements */
+    .home-achievements-section {
+        justify-content: space-between;
+        row-gap: 24px;
+    }
+
+    .home-achievements-items {
+        align-items: center;
+        flex-basis: 20%;
+    }
+
+    .home-achievements-items-image-container {
+        width: 72px !important;
+        height: 72px !important;
+    }
+
+    .home-achievements-items-image {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    /* Articles */
+    .home-articles-container {
+        @apply pt-30px grid-cols-4 gap-x-30px;
+    }
+}
