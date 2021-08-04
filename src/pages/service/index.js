@@ -4,6 +4,7 @@ import styles from "styles/service.module.css";
 
 import { Search } from "components/Search";
 import Pagination from "components/Pagination";
+import { FilterBottomSheet } from "components/BottomSheet";
 
 import { parseCurrency } from "Utils";
 
@@ -35,6 +36,7 @@ function ServiceCard({ data, containerStyle }) {
 }
 
 export default function ServicePage() {
+    const [isShowFilter, setIsShowFilter] = useState(false);
     const [services, setServices] = useState([
         {
             id: Math.random(),
@@ -119,6 +121,10 @@ export default function ServicePage() {
         console.log("handle change page");
     };
 
+    const handleToggleFilter = (stat) => {
+        setIsShowFilter(stat);
+    };
+
     return (
         <section className={styles["service-section-container"]}>
             <div className={styles["service-title-container"]}>
@@ -136,6 +142,16 @@ export default function ServicePage() {
                     ))}
             </div>
             <Pagination data={paginations} onPageChange={handleChangePage} />
+            <button
+                className={styles["service-filter-button"]}
+                onClick={() => handleToggleFilter(true)}
+            >
+                Filter
+            </button>
+            <FilterBottomSheet
+                isShow={isShowFilter}
+                handleDisplay={() => handleToggleFilter(false)}
+            />
         </section>
     );
 }

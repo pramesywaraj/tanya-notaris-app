@@ -69,3 +69,15 @@
 .service-card-content-secondary #price {
     @apply text-body1 text-primary font-bold;
 }
+
+.service-filter-button {
+    position: fixed;
+    width: 9.5rem;
+    height: 3rem;
+    left: 50%;
+    bottom: 40px;
+    margin-left: -4.25rem;
+    border-radius: 12px;
+
+    @apply bg-primary text-white hover:bg-darkPrimary transition-colors text-body1;
+}
