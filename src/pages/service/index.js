@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Image from "next/image";
+import styles from "styles/service.module.css";
 
 import { Search } from "components/Search";
-import styles from "styles/service.module.css";
+import Pagination from "components/Pagination";
 
 import { parseCurrency } from "Utils";
 
@@ -65,6 +66,59 @@ export default function ServicePage() {
         },
     ]);
 
+    const [paginations, setPaginations] = useState([
+        {
+            url: null,
+            label: "&laquo; Previous",
+            active: false,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=1",
+            label: "1",
+            active: true,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=2",
+            label: "2",
+            active: false,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=3",
+            label: "3",
+            active: false,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=4",
+            label: "4",
+            active: false,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=5",
+            label: "5",
+            active: false,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=6",
+            label: "6",
+            active: false,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=7",
+            label: "7",
+            active: false,
+        },
+        {
+            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=2",
+            label: "Next &raquo;",
+            active: false,
+        },
+    ]);
+
+    const handleChangePage = () => {
+        // call api
+        console.log("handle change page");
+    };
+
     return (
         <section className={styles["service-section-container"]}>
             <div className={styles["service-title-container"]}>
@@ -81,6 +135,7 @@ export default function ServicePage() {
                         />
                     ))}
             </div>
+            <Pagination data={paginations} onPageChange={handleChangePage} />
         </section>
     );
 }
