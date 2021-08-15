@@ -1,12 +1,14 @@
 .pagination-container {
     margin: 16px 0;
     row-gap: 12px;
-    @apply flex flex-row items-center justify-center w-full;
+    @apply flex flex-row items-center justify-center;
 }
 
 .pagination-item {
     background-color: white;
     padding: 8px 12px;
+
+    margin: 0 12px;
 
     border-radius: 4px;
 }
