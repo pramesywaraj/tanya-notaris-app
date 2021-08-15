@@ -12,8 +12,11 @@
     @apply text-header3 font-bold;
 }
 
-.service-list-container {
+.service-contents-container {
     margin-top: 40px;
+}
+
+.service-list-container {
     @apply flex-1 h-full;
 }
 
@@ -25,12 +28,15 @@
 
     display: flex;
     flex-direction: row;
+
+    overflow: scroll;
 }
 
 .service-card-image-container {
     position: relative;
     width: 100%;
     height: 64px;
+    min-width: 64px;
     max-width: 64px;
     padding: 12px;
     border-radius: 4px;
@@ -42,9 +48,14 @@
 }
 
 .service-card-content-container {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
     margin-left: 12px;
+}
+
+.service-card-content-primary {
+    white-space: nowrap;
+    max-width: 80%;
+    @apply flex flex-col;
 }
 
 .service-card-content-primary #title {
@@ -52,13 +63,8 @@
 }
 
 .service-card-content-primary #description {
-    display: inline-block;
-    position: relative;
-
-    max-width: 220px;
-
-    white-space: nowrap;
     overflow: hidden;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
 }
 
@@ -80,4 +86,57 @@
     border-radius: 12px;
 
     @apply bg-primary text-white hover:bg-darkPrimary transition-colors text-body1;
+}
+
+.service-filter-container {
+    display: none;
+}
+
+.service-pagination-container {
+    margin: 24px 0;
+    @apply flex flex-row items-center justify-center w-full;
+}
+
+@media screen(tablet) {
+    .service-section-container {
+        @apply mb-28;
+    }
+
+    .service-card-content-primary #description {
+        max-width: none;
+        white-space: wrap;
+
+        @apply w-full;
+    }
+}
+
+@media screen(lgTablet) {
+    .service-contents-container {
+        display: grid;
+        grid-template-columns: minmax(100px, 280px) 1fr;
+
+        grid-column-gap: 30px;
+    }
+
+    .service-title-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .service-title-container > h1 {
+        @apply text-header1;
+    }
+
+    .service-filter-container {
+        display: block;
+    }
+
+    .service-filter-button {
+        display: none;
+    }
+
+    .service-pagination-container {
+        @apply justify-end;
+    }
 }

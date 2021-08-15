@@ -1,7 +1,7 @@
 /* Question Item */
 .question-content {
     padding: 12px 12px;
-    border: 1px solid #C7C7C7;
+    border: 1px solid #c7c7c7;
     border-radius: 12px;
 
     @apply flex justify-between items-center;
@@ -44,34 +44,36 @@
 }
 
 /* Filter Item */
-.filter-nav {
-    padding: 24px 8px;
-    @apply flex-1 text-left items-center;
+.filter-item-container {
+    @apply flex flex-row items-center;
 }
 
-.filter-nav a {
+.filter-item-container a {
     font-size: 18px;
     @apply font-semibold;
 }
 
-.filter-nav a.active {
+.filter-item-container a.active {
     @apply text-primary;
 }
 
-.filter-nav-links {
-    padding: 24px 0;
+.round-selector {
+    border-radius: 50px;
+    width: 24px;
+    height: 24px;
+
+    border: 1px solid #c7c7c7;
+
+    @apply bg-transparent;
+}
+
+.round-active {
+    @apply bg-primary;
+}
+
+.bordered {
+    margin-bottom: 16px;
     border-bottom: 1px solid #c7c7c7;
-
-    @apply flex justify-between items-center;
-}
-
-.filter-nav-links.active {
-    color: blue;
-}
-
-.filter-arrow {
-    height: 18px;
-    width: 18px;
 }
 
 .borderless {

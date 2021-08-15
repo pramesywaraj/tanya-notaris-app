@@ -1,34 +1,55 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import useRequest from "hooks/useRequest";
+import usePagination from "hooks/usePagination";
+
 import styles from "styles/service.module.css";
 
 import { Search } from "components/Search";
 import Pagination from "components/Pagination";
 import { FilterBottomSheet } from "components/BottomSheet";
+import { CardFilter } from "components/Card";
+import { SkeletonLoader } from "components/Loader";
 
 import { parseCurrency } from "Utils";
-
 import IconPendirianPT from "assets/icon-pendirian-pt.svg";
 
-function ServiceCard({ data, containerStyle }) {
-    const { title, description, price, image } = data;
+const FILTER_TYPE = "FILTER/TYPE";
+const FILTER_INDUSTRY = "FILTER/INDUSTRY";
+
+function ServiceCard({ data, containerStyle, isLoading }) {
+    const { title, description, price, icon } = data;
 
     return (
         <div style={{ ...containerStyle }} className={styles["service-card-container"]}>
-            {image && (
+            {isLoading && <SkeletonLoader circle height={64} width={64} />}
+            {!isLoading && (
                 <div className={styles["service-card-image-container"]}>
-                    <Image src={image} alt={title} objectFit="contain" />
+                    <Image src={icon || IconPendirianPT} alt={title} objectFit="contain" />
                 </div>
             )}
+
             <div className={styles["service-card-content-container"]}>
                 <div className={styles["service-card-content-primary"]}>
-                    <p id={styles["title"]}>{title}</p>
-                    <p id={styles["description"]}>{description}</p>
+                    <p id={styles["title"]}>
+                        {isLoading && <SkeletonLoader width={120} height={25} />}
+                        {!isLoading && title}
+                    </p>
+                    <p id={styles["description"]}>
+                        {isLoading && <SkeletonLoader height={15} />}
+                        {!isLoading && description}
+                    </p>
                 </div>
 
                 <div className={styles["service-card-content-secondary"]}>
-                    <p>Mulai dari</p>
-                    <p id={styles["price"]}>{parseCurrency(price)}</p>
+                    <p>
+                        {isLoading && <SkeletonLoader width={120} height={15} />}
+                        {!isLoading && "Mulai dari"}
+                    </p>
+                    <p id={styles["price"]}>
+                        {isLoading && <SkeletonLoader width={150} height={20} />}
+                        {!isLoading && parseCurrency(price)}
+                    </p>
                 </div>
             </div>
         </div>
@@ -37,111 +58,153 @@ function ServiceCard({ data, containerStyle }) {
 
 export default function ServicePage() {
     const [isShowFilter, setIsShowFilter] = useState(false);
-    const [services, setServices] = useState([
-        {
-            id: Math.random(),
-            title: "Pendirian PT",
-            description: "Kami membantu mengurus anak2 yang terlantar karena orangtua mereka gaes.",
-            price: 10000000,
-            image: IconPendirianPT,
-        },
-        {
-            id: Math.random(),
-            title: "Pendirian PT",
-            description: "Kami membantu mengurus anak2 yang terlantar karena orangtua mereka gaes.",
-            price: 10000000,
-            image: IconPendirianPT,
-        },
-        {
-            id: Math.random(),
-            title: "Pendirian PT",
-            description: "Kami membantu mengurus anak2 yang terlantar karena orangtua mereka gaes.",
-            price: 10000000,
-            image: IconPendirianPT,
-        },
-        {
-            id: Math.random(),
-            title: "Pendirian PT",
-            description: "Kami membantu mengurus anak2 yang terlantar karena orangtua mereka gaes.",
-            price: 10000000,
-            image: IconPendirianPT,
-        },
-    ]);
 
-    const [paginations, setPaginations] = useState([
-        {
-            url: null,
-            label: "&laquo; Previous",
-            active: false,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=1",
-            label: "1",
-            active: true,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=2",
-            label: "2",
-            active: false,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=3",
-            label: "3",
-            active: false,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=4",
-            label: "4",
-            active: false,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=5",
-            label: "5",
-            active: false,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=6",
-            label: "6",
-            active: false,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=7",
-            label: "7",
-            active: false,
-        },
-        {
-            url: "http://tanya-notaris-dev.herokuapp.com/v1/products?page=2",
-            label: "Next &raquo;",
-            active: false,
-        },
-    ]);
+    const [filterCategories, setFilterCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(null);
 
-    const handleChangePage = () => {
-        // call api
-        console.log("handle change page");
+    const [filterIndustries, setFilterIndustries] = useState([]);
+    const [selectedIndustries, setSelectedIndustries] = useState(null);
+    const [queryParams, setQueryParams] = useState("");
+    const firstLoad = useRef(true);
+
+    const {
+        data: typesData,
+        error: typesError,
+        isLoadingData: isLoadingFetchingTypes,
+    } = useRequest("v1/types");
+    const {
+        data: industriesData,
+        error: industriesError,
+        isLoadingData: isLoadingFetchingIndustries,
+    } = useRequest("v1/industries");
+    // const { data: serviceData, error: serviceError } = useRequest("v1/products?per_page=5");
+    const {
+        items: services,
+        paginationItems,
+        error,
+        setPage,
+        isLoadingData: isLoadServices,
+    } = usePagination("v1/products", queryParams);
+
+    useEffect(() => {
+        if (typesData) {
+            const { data } = typesData;
+            setFilterCategories(data);
+        }
+    }, [typesData]);
+
+    useEffect(() => {
+        if (industriesData) {
+            const { data } = industriesData;
+            setFilterIndustries(data);
+        }
+    }, [industriesData]);
+
+    useEffect(() => {
+        if (firstLoad.current) {
+            firstLoad.current = false;
+
+            return;
+        }
+
+        const tempCategoryQuery = selectedCategory ? `type[]=${selectedCategory}&` : "";
+        const tempIndustryQuery = selectedIndustries ? `industry[]=${selectedIndustries}&` : "";
+
+        setQueryParams(tempCategoryQuery.concat(tempIndustryQuery));
+    }, [selectedCategory, selectedIndustries]);
+
+    // Functions
+
+    const handleChangePage = (selectedPage) => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+        setPage(selectedPage);
     };
 
     const handleToggleFilter = (stat) => {
         setIsShowFilter(stat);
     };
 
+    const handleChangeFilterValue = (value, type) => {
+        if (queryParams) {
+            // if include search query then empty it first
+            if (queryParams.includes("q")) setQueryParams("");
+        }
+
+        if (type === FILTER_TYPE) {
+            setSelectedCategory(value);
+            return;
+        }
+        if (type === FILTER_INDUSTRY) {
+            setSelectedIndustries(value);
+            return;
+        }
+    };
+
+    const handleChangeSearchQuery = (searchText) => {
+        setQueryParams(`q=${searchText}&`);
+    };
+
+    const renderContents = () => (
+        <div className={styles["service-contents-container"]}>
+            <div className={styles["service-filter-container"]}>
+                <CardFilter
+                    title="Kategori"
+                    options={filterCategories}
+                    handleChange={(value) => handleChangeFilterValue(value, FILTER_TYPE)}
+                    handleSelectAll={() => setSelectedCategory("")}
+                    name="type"
+                    isLoading={isLoadingFetchingTypes}
+                />
+                <CardFilter
+                    containerStyle={{ marginTop: 32 }}
+                    title="Industri"
+                    options={filterIndustries}
+                    handleChange={(value) => handleChangeFilterValue(value, FILTER_INDUSTRY)}
+                    handleSelectAll={() => setSelectedIndustries("")}
+                    name="industry"
+                    isLoading={isLoadingFetchingIndustries}
+                />
+            </div>
+            <div className={styles["service-list-container"]}>
+                {!isLoadServices && services
+                    ? services.map((service, index) => (
+                        <ServiceCard
+                            key={`service-${index + 1}`}
+                            data={service || {}}
+                            containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
+                        />
+                    ))
+                    : [1, 2, 3, 4, 5, 6].map((_, index) => (
+                        <ServiceCard
+                            key={`service-${index + 1}`}
+                            data={{}}
+                            containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
+                            isLoading
+                        />
+                    ))}
+                {paginationItems && paginationItems.length > 0 && (
+                    <div className={styles["service-pagination-container"]}>
+                        <Pagination data={paginationItems} onPageChange={handleChangePage} />
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+
     return (
         <section className={styles["service-section-container"]}>
             <div className={styles["service-title-container"]}>
                 <h1>Layanan Kami</h1>
-                <Search classNames="w-full mt-4 tablet:w-auto" />
+                <Search
+                    classNames="w-full mt-4 tablet:w-auto lgTablet:"
+                    onSearch={handleChangeSearchQuery}
+                    onReset={() => setQueryParams("")}
+                />
             </div>
-            <div className={styles["service-list-container"]}>
-                {services.length > 0 &&
-                    services.map((service, index) => (
-                        <ServiceCard
-                            key={`service-${index + 1}`}
-                            data={service}
-                            containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
-                        />
-                    ))}
-            </div>
-            <Pagination data={paginations} onPageChange={handleChangePage} />
+            {!error ? renderContents() : <p>Terjadi Kesalahan</p>}
             <button
                 className={styles["service-filter-button"]}
                 onClick={() => handleToggleFilter(true)}
