@@ -199,7 +199,7 @@ export default function ServicePage() {
             <div className={styles["service-title-container"]}>
                 <h1>Layanan Kami</h1>
                 <Search
-                    classNames="w-full mt-4 tablet:w-auto lgTablet:"
+                    classNames="w-full mt-4 tablet:w-auto lgTablet:mt-0"
                     onSearch={handleChangeSearchQuery}
                     onReset={() => setQueryParams("")}
                 />
