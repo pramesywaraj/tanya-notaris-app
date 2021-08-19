@@ -8,7 +8,10 @@ const useRequest = (path) => {
     }
 
     const url = `${apiBaseURL}/${path}`;
-    const { data, error, isValidating } = useSWR(url, fetcher);
+    const { data, error, isValidating } = useSWR(url, fetcher, {
+        refreshInterval: 600000,
+        revalidateOnFocus: false,
+    });
 
     if (error) {
         const { response } = error;
