@@ -1,65 +1,68 @@
-import "styles/faq.module.css";
+import { useState, useEffect } from "react";
+import style from "styles/faq.module.css";
+
+import useRequest from "hooks/useRequest";
 
 import { Search } from "components/Search";
-import { useState } from "react"
 import { QuestionItem, FilterItem } from "components/Items";
 import { FilterBottomSheet } from "components/BottomSheet";
+import { CardFilter } from "components/Card";
 
-
-export default function index() {
+export default function FAQPage() {
     const [isShowFilter, setIsShowFilter] = useState(false);
+
+    const [filterCategories, setFilterCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState(false);
+
+    const [contents, setIsContents] = useState([]); // temporary
+    const {
+        data: typesData,
+        error: typesError,
+        isLoadingData: isLoadingFetchingTypes,
+    } = useRequest("v1/types");
+
+    useEffect(() => {
+        if (typesData) {
+            const { data } = typesData;
+            setFilterCategories(data);
+        }
+    }, [typesData]);
 
     const handleToggleFilter = (stat) => {
         setIsShowFilter(stat);
     };
 
-    const [contents, setContents] = useState([
-        {
-            id: 1,
-            question: "PT vs CV, manakah yang lebih aman? ",
-            answer: "Perseroan Terbatas (PT) memiliki kelebihan di mana harta kekayaan pribadi pemegang saham dipisahkan dari harta perusahaan, sehingga dalam hal terjadi kerugian atau kebangkrutan hanya akan melibatkan harta sebatas yang disetorkan dalam bentuk kepemilikan saham. ",
-        },
-        {
-            id: 2,
-            question: "PT vs CV, manakah yang lebih aman? ",
-            answer: "Perseroan Terbatas (PT) memiliki kelebihan di mana harta kekayaan pribadi pemegang saham dipisahkan dari harta perusahaan, sehingga dalam hal terjadi kerugian atau kebangkrutan hanya akan melibatkan harta sebatas yang disetorkan dalam bentuk kepemilikan saham. ",
-        },
-        {
-            id: 3,
-            question: "PT vs CV, manakah yang lebih aman? ",
-            answer: "Perseroan Terbatas (PT) memiliki kelebihan di mana harta kekayaan pribadi pemegang saham dipisahkan dari harta perusahaan, sehingga dalam hal terjadi kerugian atau kebangkrutan hanya akan melibatkan harta sebatas yang disetorkan dalam bentuk kepemilikan saham. ",
-        },
-        {
-            id: 4,
-            question: "PT vs CV, manakah yang lebih aman? ",
-            answer: "Perseroan Terbatas (PT) memiliki kelebihan di mana harta kekayaan pribadi pemegang saham dipisahkan dari harta perusahaan, sehingga dalam hal terjadi kerugian atau kebangkrutan hanya akan melibatkan harta sebatas yang disetorkan dalam bentuk kepemilikan saham. ",
-        },
+    const handleChangeFilterValue = (value) => {
+        // if (queryParams) {
+        //     // if include search query then empty it first
+        //     if (queryParams.includes("q")) setQueryParams("");
+        // }
 
-    ]);
+        setSelectedCategory(value);
+        return;
+    };
 
     return (
-        <>
-            <section className="faq-header">
+        <section className={style["faq-section-container"]}>
+            <div className="faq-header">
                 <h1 className="faq-title">Frequently Asked Question</h1>
                 <Search classNames="w-full tablet:w-auto" />
-            </section>
-            <section className="faq-body">
+            </div>
+            <div className="faq-body">
                 <div className="faq-filter">
-                    <div className="filter-container w-full">
-                        <div className="filter-header">
-                            <h3>Kategori</h3>
-                        </div>
-                        <div className="filter-content">
-                            <FilterItem />
-                        </div>
-                    </div>
+                    <CardFilter
+                        title="Kategori"
+                        options={filterCategories}
+                        handleChange={(value) => handleChangeFilterValue(value)}
+                        handleSelectAll={() => setSelectedCategory("")}
+                        name="type"
+                        isLoading={isLoadingFetchingTypes}
+                    />
                 </div>
                 <div className="faq-question">
-                    {
-                        contents.map((content, index) => (
-                            <QuestionItem content={content} />
-                        ))
-                    }
+                    {contents.map((content, index) => (
+                        <QuestionItem content={content} />
+                    ))}
                 </div>
                 <button className="filter-button" onClick={() => handleToggleFilter(true)}>
                     Filter
@@ -68,7 +71,7 @@ export default function index() {
                     isShow={isShowFilter}
                     handleDisplay={() => handleToggleFilter(false)}
                 />
-            </section>
-        </>
-    )
+            </div>
+        </section>
+    );
 }
