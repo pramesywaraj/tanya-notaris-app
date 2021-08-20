@@ -27,8 +27,6 @@ export default function CardFilter({
         handleChange(value);
     };
 
-    if (!isLoading && options.length === 0) return null;
-
     const skeleton = (
         <>
             <SkeletonLoader height={25} style={{ marginBottom: 24 }} />
@@ -41,7 +39,7 @@ export default function CardFilter({
         <div className={styles["card-filter-container"]} style={{ ...containerStyle }}>
             <h3>{title}</h3>
             <div className={styles["card-filter-list"]}>
-                {!isLoading && handleSelectAll && (
+                {handleSelectAll && (
                     <FilterItem
                         isBordered
                         handleChange={handleSelection}
@@ -64,7 +62,7 @@ export default function CardFilter({
                         />
                     ))}
 
-                {isLoading && skeleton}
+                {(isLoading || options.length === 0) && skeleton}
             </div>
         </div>
     );
