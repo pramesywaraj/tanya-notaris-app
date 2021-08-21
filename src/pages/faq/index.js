@@ -102,7 +102,9 @@ export default function FAQPage() {
                     </div>
                 )}
 
-                {!isLoadingFetchQuestions && questions.length === 0 && <SimpleEmptyState />}
+                {!isLoadingFetchQuestions && questions.length === 0 && (
+                    <SimpleEmptyState text="Tidak ada FAQ untuk ditampilkan." />
+                )}
             </div>
         );
     };

@@ -10,6 +10,7 @@ import Pagination from "components/Pagination";
 import { FilterBottomSheet } from "components/BottomSheet";
 import { CardFilter } from "components/Card";
 import { SkeletonLoader } from "components/Loader";
+import { SimpleEmptyState } from "components/EmptyState";
 
 import { parseCurrency } from "Utils";
 import IconPendirianPT from "assets/icon-pendirian-pt.svg";
@@ -65,6 +66,7 @@ export default function ServicePage() {
     const [filterIndustries, setFilterIndustries] = useState([]);
     const [selectedIndustries, setSelectedIndustries] = useState(null);
     const [queryParams, setQueryParams] = useState("");
+
     const firstLoad = useRef(true);
 
     const {
@@ -190,6 +192,10 @@ export default function ServicePage() {
                         <Pagination data={paginationItems} onPageChange={handleChangePage} />
                     </div>
                 )}
+
+                {!isLoadServices && services.length === 0 && (
+                    <SimpleEmptyState text="Tidak ada layanan untuk ditampilkan." />
+                )}
             </div>
         </div>
     );
@@ -214,6 +220,16 @@ export default function ServicePage() {
             <FilterBottomSheet
                 isShow={isShowFilter}
                 handleDisplay={() => handleToggleFilter(false)}
+                categories={[
+                    {
+                        id: FILTER_TYPE,
+                        title: "Kategori",
+                    },
+                    {
+                        id: FILTER_INDUSTRY,
+                        title: "Industri",
+                    },
+                ]}
             />
         </section>
     );
