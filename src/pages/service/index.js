@@ -12,7 +12,7 @@ import { CardFilter } from "components/Card";
 import { SkeletonLoader } from "components/Loader";
 import { SimpleEmptyState } from "components/EmptyState";
 
-import { parseCurrency } from "Utils";
+import { parseCurrency, imageLoader } from "Utils";
 import IconPendirianPT from "assets/icon-pendirian-pt.svg";
 
 const FILTER_TYPE = "FILTER/TYPE";
@@ -55,7 +55,7 @@ function ServiceCard({ data, containerStyle, isLoading }) {
                     </p>
                     <p id={styles["price"]}>
                         {isLoading && <SkeletonLoader width={150} height={20} />}
-                        {!isLoading && parseCurrency(price)}
+                        {!isLoading && parseCurrency(Number(price))}
                     </p>
                 </div>
             </div>
@@ -181,7 +181,7 @@ export default function ServicePage() {
                     ? services.map((service, index) => (
                         <ServiceCard
                             key={`service-${index + 1}`}
-                            data={service || {}}
+                            data={service}
                             containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
                         />
                     ))
@@ -225,15 +225,22 @@ export default function ServicePage() {
             </button>
             <FilterBottomSheet
                 isShow={isShowFilter}
+                isLoading={isLoadingFetchingTypes || isLoadingFetchingIndustries}
                 handleDisplay={() => handleToggleFilter(false)}
+                handleChangeOption={(value, id) => handleChangeFilterValue(value, id)}
+                handleSelectAll={handleChangeFilterValue}
                 categories={[
                     {
                         id: FILTER_TYPE,
                         title: "Kategori",
+                        name: "category",
+                        options: [...filterCategories],
                     },
                     {
                         id: FILTER_INDUSTRY,
                         title: "Industri",
+                        name: "industry",
+                        options: [...filterIndustries],
                     },
                 ]}
             />

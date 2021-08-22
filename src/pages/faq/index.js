@@ -11,6 +11,8 @@ import { CardFilter } from "components/Card";
 import Pagination from "components/Pagination";
 import { SimpleEmptyState } from "components/EmptyState";
 
+const FILTER_TYPE = "FILTER/TYPE";
+
 export default function FAQPage() {
     const [isShowFilter, setIsShowFilter] = useState(false);
 
@@ -132,7 +134,18 @@ export default function FAQPage() {
                 </button>
                 <FilterBottomSheet
                     isShow={isShowFilter}
+                    isLoading={isLoadingFetchingTypes}
                     handleDisplay={() => handleToggleFilter(false)}
+                    handleChangeOption={(value, id) => handleChangeFilterValue(value, id)}
+                    handleSelectAll={handleChangeFilterValue}
+                    categories={[
+                        {
+                            id: FILTER_TYPE,
+                            title: "Kategori",
+                            name: "category",
+                            options: [...filterCategories],
+                        },
+                    ]}
                 />
             </div>
         </section>
