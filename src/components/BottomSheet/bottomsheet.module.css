@@ -28,9 +28,8 @@
 .bottomsheet-container {
     position: fixed;
     z-index: 1001;
-    top: 0;
+    bottom: 0;
     left: 0;
-    overflow-y: hidden;
     height: 80%;
     width: 0;
     max-height: 1000px;
@@ -38,7 +37,7 @@
 
     padding: 1rem;
 
-    transform: translateY(200%);
+    transform: translateY(100%);
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 
@@ -46,11 +45,11 @@
 }
 
 .bottomsheet-container.active {
-    transform: translateY(50%);
+    transform: translateY(0%);
 }
 
 .bottomsheet-header {
-    @apply flex flex-row justify-center;
+    @apply flex flex-col;
 }
 
 .bottomsheet-header h3 {
@@ -58,13 +57,42 @@
 }
 
 .bottomsheet-content {
+    padding: 16px;
+    height: auto;
+
+    overflow-y: auto;
     @apply flex flex-col justify-between w-full;
 }
 
+.bottomsheet-close-container {
+    @apply flex flex-row justify-end items-center;
+}
+
 .bottomsheet-close {
-    position: absolute;
-    top: 26px;
-    right: 18px;
-    width: 26px;
-    height: 26px;
+    margin-left: auto;
+}
+
+.bottomsheet-tab-container {
+    display: flex;
+    flex-direction: row;
+
+    @apply w-full items-center justify-between;
+}
+
+.bottomsheet-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+}
+
+.bottomsheet-tab > p {
+    @apply text-body1 font-semibold;
+}
+
+.bottomsheet-tab.active {
+    border-bottom: 3px solid #f37a51;
+}
+
+.bottomsheet-tab.active > p {
+    @apply font-bold;
 }
