@@ -26,7 +26,13 @@ function ServiceCard({ data, containerStyle, isLoading }) {
             {isLoading && <SkeletonLoader circle height={64} width={64} />}
             {!isLoading && (
                 <div className={styles["service-card-image-container"]}>
-                    <Image src={icon || IconPendirianPT} alt={title} objectFit="contain" />
+                    <Image
+                        loader={imageLoader}
+                        src={icon?.url || IconPendirianPT}
+                        alt={title}
+                        objectFit="contain"
+                        layout={icon?.url && "fill"}
+                    />
                 </div>
             )}
 
