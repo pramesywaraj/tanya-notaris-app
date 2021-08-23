@@ -93,3 +93,74 @@
 .card-filter-list {
     margin: 24px 0;
 }
+
+/* Card Plan */
+.card-plan-container {
+    padding: 16px 24px 24px 24px;
+    border-radius: 16px;
+    max-width: 350px;
+    width: 100%;
+    
+    @apply flex-col text-white;
+}
+
+.card-plan-header {
+    @apply flex justify-between items-center pb-4 border-b-2 mb-5;
+}
+
+.card-plan-body {
+    @apply flex flex-col;
+}
+
+.card-plan-body small{
+    font-size: 14px;
+}
+
+/* Card Social Media */
+.detail-social-container {
+    margin-bottom: 120px;
+    flex: 1;
+}
+
+/* Card Footer Detail */
+.card-benefit-container {
+    padding: 20px 40px;
+    margin: 0px -14px;
+
+    @apply flex gap-x-14 bg-light py-10;
+}
+
+.card-benefit-image {
+    display: none;
+}
+
+.card-benefit-title {
+    @apply text-header2 font-bold mb-10;
+}
+
+.card-benefit-list {
+    @apply flex gap-x-4 mb-5 items-start text-body font-semibold;
+}
+
+@media screen(tablet) {
+    .card-benefit-container {
+        margin: 0px -48px;
+    }
+
+    .card-benefit-image {
+        display: flex;
+    }
+}
+
+@media screen(lgTablet) {
+    .card-benefit-container {
+        margin: 0px -80px;
+        padding: 40px 165px;
+    }
+}
+
+@media screen(desktop) {
+    .card-benefit-container {
+        margin: 0px -144px;
+    }
+}

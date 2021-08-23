@@ -1,5 +1,5 @@
 import { AdvantageSection, OverviewSection, ProfileSection } from "components/About";
-import Banner from "components/Banner"
+import { BannerAbout } from "components/Banner"
 
 
 export default function index() {
@@ -7,7 +7,7 @@ export default function index() {
 
     return (
         <>
-            <Banner name={banner} />
+            <BannerAbout name={banner} />
             <OverviewSection />
             <AdvantageSection />
             <ProfileSection />
