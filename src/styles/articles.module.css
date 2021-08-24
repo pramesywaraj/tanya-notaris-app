@@ -1,15 +1,22 @@
-.header-articles {
-    margin-top: 40px;
-
-    @apply flex flex-col items-start gap-y-32px;
+.articles-section-container {
+    padding: 24px 0;
+    @apply flex-1 w-full;
 }
 
-.header-title {
+.articles-header {
+    @apply flex flex-col items-start;
+}
+
+.articles-content-container {
+    margin-top: 40px;
+}
+
+.articles-title {
     @apply font-bold text-header2;
 }
 
 @media screen(tablet) {
-    .header-articles {
+    .articles-header {
         @apply flex-row justify-between;
     }
 
@@ -20,10 +27,8 @@
     }
 }
 
-@media screen(tablet) {
-    .header-articles {
-        margin-top: 60px;
-
+@media screen(lgTablet) {
+    .articles-header {
         @apply flex-row justify-between;
     }
 }
