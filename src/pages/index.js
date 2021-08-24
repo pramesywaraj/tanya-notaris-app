@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import styles from "styles/home.module.css";
 import colors from "constants/colors";
 
-import { CardTestimonies, CardSmallArticle } from "components/Card";
+import { CardTestimonies, CardArticle } from "components/Card";
 import { Carousel } from "components/Carousel";
 import { Button } from "components/Button";
 
@@ -341,23 +341,23 @@ function HomeNewArticles({ handleMoveToScreen }) {
     const [articles, setArticles] = useState([
         {
             title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Jan 2021",
-            image_link: "/image-newarticle.svg",
+            published_at: "12 Jan 2021",
+            featured_image_url: "/image-newarticle.svg",
         },
         {
             title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Des 2020",
-            image_link: "/highlight-2.svg",
+            published_at: "12 Des 2020",
+            featured_image_url: "/highlight-2.svg",
         },
         {
             title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Des 2020",
-            image_link: "/image-newarticle.svg",
+            published_at: "12 Des 2020",
+            featured_image_url: "/image-newarticle.svg",
         },
         {
             title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Des 2020",
-            image_link: "/highlight-2.svg",
+            published_at: "12 Des 2020",
+            featured_image_url: "/highlight-2.svg",
         },
     ]);
 
@@ -366,7 +366,7 @@ function HomeNewArticles({ handleMoveToScreen }) {
             <h1>Artikel Notaris</h1>
             <div className={styles["home-articles-container"]}>
                 {articles.map((article, index) => (
-                    <CardSmallArticle key={`article-${index + 1}`} content={article} />
+                    <CardArticle key={`article-${index + 1}`} content={article} />
                 ))}
             </div>
             <div className="w-full flex justify-center">
