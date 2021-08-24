@@ -69,8 +69,14 @@
 }
 
 .card-small-article-img {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 150px;
+
+    position: relative;
+}
+
+.card-small-article-img img {
+    border-radius: 8px;
 }
 
 /* Card Filter */
