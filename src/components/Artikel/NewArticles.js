@@ -1,40 +1,22 @@
-import { useState } from "react";
-import "components/Artikel/articles.module.css";
+import style from "components/Artikel/articles.module.css";
 
-import { CardSmallArticle } from "components/Card";
+import { CardArticle } from "components/Card";
 
-export default function NewArticles() {
-    const [contents, setContents] = useState([
-        {
-            title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Jan 2021",
-            image_link: "/image-newarticle.svg",
-        },
-        {
-            title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Des 2020",
-            image_link: "/highlight-2.svg",
-        },
-        {
-            title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Des 2020",
-            image_link: "/image-newarticle.svg",
-        },
-        {
-            title: "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date: "12 Des 2020",
-            image_link: "/highlight-2.svg",
-        },
-    ]);
-
-    const renderContents = contents.map((content, index) => (
-        <CardSmallArticle key={`article-${index + 1}`} content={content} />
-    ));
+export default function NewArticles({ data = [], isLoading }) {
+    const renderContents = () =>
+        data.map((content, index) => (
+            <CardArticle
+                key={`article-${index + 1}`}
+                content={content}
+                contentContainer={style["article-small-container"]}
+                isLoading={isLoading}
+            />
+        ));
 
     return (
         <section>
-            <h2>Artikel Terbaru</h2>
-            <div className="newarticle-container">{renderContents}</div>
+            <h2 className={style["article-section-title"]}>Artikel Terbaru</h2>
+            <div className={style["newarticle-container"]}>{renderContents()}</div>
         </section>
     );
 }

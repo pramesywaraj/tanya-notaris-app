@@ -1,58 +1,34 @@
-import "components/Artikel/articles.module.css"
-import { useState } from "react"
 import { useRouter } from "next/router";
+import style from "components/Artikel/articles.module.css";
 
-export default function PopularArticles() {
+import { CardArticle } from "components/Card";
+
+export default function PopularArticles({ data = [], isLoading }) {
     const router = useRouter();
-    const [contents, setContents] = useState([
-        {
-            id : 1,
-            title : "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date : "12 Jan 2021",
-            image_link : "/image-newarticle.svg",
-        },
-        {
-            id : 2,
-            title : "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date : "12 Des 2020",
-            image_link : "/highlight-2.svg",
-        },
-        {
-            id : 3,
-            title : "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date : "12 Des 2020",
-            image_link : "/image-newarticle.svg",
-        },
-        {
-            id : 4,
-            title : "Perbedaan Perjanjian Kerja Waktu Tertentu (PKWT) dan Perjanjian Outsourcing",
-            date : "12 Des 2020",
-            image_link : "/highlight-2.svg",
-        },
-    ]);
 
     const handleNavigateToDetail = (id) => {
         router.push(`/articles/detail/${id}`);
     };
 
-    const renderContents = contents.map((content, index) => (    
-        <div className="popular-content" onClick={() => handleNavigateToDetail(content.id)}>
-            <img src={content.image_link} alt="Section Image" className="highlight-image-small" />
-            <div>
-                <p className="font-bold">{content.title}</p>
-                <small className="text-mute">{content.date}</small>
-            </div>
-        </div>
-    ));
+    const renderContents = () =>
+        data.map((content, index) => (
+            <CardArticle
+                key={`article-${index + 1}`}
+                content={content}
+                containerClasses={`
+                    ${index !== data.length - 1 ? style["bordered"] : ""}
+                    ${style["popular-content"]}
+                `}
+                imageClasses={style["highlight-image-small"]}
+                contentContainer={style["article-small-container"]}
+                isLoading={isLoading}
+            />
+        ));
 
     return (
         <section>
-            <h2>
-                Artikel Popular
-            </h2>
-            <div className="popular-container">
-                {renderContents}
-            </div>
+            <h2 className={style["article-section-title"]}>Artikel Popular</h2>
+            <div className={style["popular-container"]}>{renderContents()}</div>
         </section>
-    )
+    );
 }
