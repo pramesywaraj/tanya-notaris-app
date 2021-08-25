@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
 import useRequest from "hooks/useRequest";
 
 import style from "styles/articles.module.css";
@@ -9,6 +9,7 @@ import { PopularArticles, HighlightArticle, NewArticles } from "components/Artik
 const articlesEndpoint = "v1/articles";
 
 export default function ArticlesPage() {
+    const router = useRouter();
     const {
         data: articlesHighlighted,
         isLoadingData: isLoadingHighlightedArticles,
@@ -27,11 +28,18 @@ export default function ArticlesPage() {
         error: errorLatestArticle,
     } = useRequest(`${articlesEndpoint}?per_page=4`);
 
+    const handleRedirectArticleSearch = (param) => {
+        router.push(`/articles/search/${param}`);
+    };
+
     return (
         <section className={style["articles-section-container"]}>
             <div className={style["articles-header"]}>
                 <h1 className={style["articles-title"]}>Artikel Notaris</h1>
-                <Search classNames="w-full mt-4 tablet:w-auto lgTablet:mt-0" />
+                <Search
+                    classNames="w-full mt-4 tablet:w-auto lgTablet:mt-0"
+                    onSearch={handleRedirectArticleSearch}
+                />
             </div>
             <div className={style["articles-content-container"]}>
                 <HighlightArticle
