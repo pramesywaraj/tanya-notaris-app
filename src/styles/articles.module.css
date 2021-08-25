@@ -15,6 +15,15 @@
     @apply font-bold text-header2;
 }
 
+.articles-search-list {
+    width: 100%;
+}
+
+.articles-pagination-container {
+    margin: 24px 0;
+    @apply flex flex-row items-center justify-center w-full;
+}
+
 @media screen(tablet) {
     .articles-header {
         @apply flex-row justify-between;
@@ -30,5 +39,9 @@
 @media screen(lgTablet) {
     .articles-header {
         @apply flex-row justify-between;
+    }
+
+    .articles-pagination-container {
+        @apply justify-end;
     }
 }
