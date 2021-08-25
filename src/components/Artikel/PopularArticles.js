@@ -26,7 +26,7 @@ export default function PopularArticles({ data = [], isLoading }) {
         ));
 
     return (
-        <section>
+        <section className={style["articles-section-margin"]}>
             <h2 className={style["article-section-title"]}>Artikel Popular</h2>
             <div className={style["popular-container"]}>{renderContents()}</div>
         </section>
