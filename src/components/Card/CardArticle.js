@@ -11,14 +11,23 @@ export default function CardArticle({
     contentContainer,
     content,
     isLoading,
+    onClick,
 }) {
     if (!content && !isLoading) return null;
     return (
-        <div className={`${styles["card-small-article-container"]} ${containerClasses}`}>
+        <div
+            role="button"
+            tabIndex={0}
+            className={`${styles["card-small-article-container"]} ${containerClasses}`}
+            onClick={onClick}
+            onKeyDown={() => { }}
+        >
             <div className={`${styles["card-small-article-img"]} ${imageClasses}`}>
                 {isLoading && <SkeletonLoader height={"100%"} />}
                 {!isLoading && (
                     <Image
+                        placeholder="blur"
+                        blurDataURL={content.featured_image_url}
                         loader={imageLoader}
                         src={content.featured_image_url}
                         alt={content.title}
@@ -28,14 +37,14 @@ export default function CardArticle({
                 )}
             </div>
             {!isLoading && (
-                <div className={contentContainer}>
+                <div className={contentContainer || ""}>
                     <h3 className="text-body font-bold">{content?.title}</h3>
                     <p className="text-xxsmall text-mute">{content?.published_at}</p>
                 </div>
             )}
 
             {isLoading && (
-                <div className="w-full">
+                <div className={`${contentContainer || ""} w-full`}>
                     <SkeletonLoader width={"100%"} />
                     <SkeletonLoader width={"50%"} />
                 </div>

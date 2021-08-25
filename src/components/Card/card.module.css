@@ -65,6 +65,7 @@
 
 /* Card Small Article */
 .card-small-article-container {
+    cursor: pointer;
     @apply flex flex-col gap-y-1;
 }
 
