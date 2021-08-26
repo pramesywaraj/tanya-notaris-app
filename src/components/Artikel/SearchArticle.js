@@ -1,11 +1,18 @@
+import { useRouter } from "next/router";
 import style from "components/Artikel/articles.module.css";
 
 import { CardArticle } from "components/Card";
 import { SimpleEmptyState } from "components/EmptyState";
 
-export default function SearchArticle({ data = [], isLoading }) {
-    const handleCardClick = (e) => {
-        console.log("CHECK CLICK", e);
+export default function SearchArticle({ data = [], isLoading, error }) {
+    const router = useRouter();
+
+    const handleCardClick = (article) => {
+        if (!article) return false;
+        if (router.asPath === router.route) return false;
+
+        const { slug } = article;
+        router.push(`/articles/detail/${slug}`);
     };
 
     return (
@@ -29,6 +36,8 @@ export default function SearchArticle({ data = [], isLoading }) {
                 <SimpleEmptyState text="Artikel tidak ditemukan." />
             )}
 
+            {!isLoading && error && <SimpleEmptyState text="Telah terjadi kesalahan." />}
+
             {!isLoading &&
                 data.length > 0 &&
                 data.map((article, index) => (
@@ -42,7 +51,7 @@ export default function SearchArticle({ data = [], isLoading }) {
                         imageClasses={style["search-article-image"]}
                         contentContainer={style["search-article-content"]}
                         isLoading={false}
-                        onClick={handleCardClick}
+                        onClick={() => handleCardClick(article)}
                     />
                 ))}
         </div>
