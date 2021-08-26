@@ -52,7 +52,7 @@ export default function ArticleSearchPage() {
                 />
             </div>
             <div className={style["articles-content-container"]}>
-                <SearchArticle data={articles} isLoading={isLoadingArticle} />
+                <SearchArticle data={articles} isLoading={isLoadingArticle} error={error} />
                 {paginationItems && paginationItems.length > 0 && (
                     <div className={style["articles-pagination-container"]}>
                         <Pagination data={paginationItems} onPageChange={handleChangePage} />
