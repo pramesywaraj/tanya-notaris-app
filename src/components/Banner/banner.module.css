@@ -25,3 +25,12 @@
         @apply -mx-44;
     }
 }
+
+.service-banner-container {
+    padding: 69px 60px;
+    @apply bg-banner-service bg-cover;
+}
+
+.service-banner-title {
+    @apply text-header4 font-bold text-white;
+}

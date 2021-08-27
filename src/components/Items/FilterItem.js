@@ -1,39 +1,25 @@
-import "components/Items/items.module.css";
-import { useState } from "react";
+/* eslint-disable jsx-a11y/interactive-supports-focus */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import styles from "components/Items/items.module.css";
 
+import { RadioInput } from "components/Input";
 
-export default function FilterItem() {
-    const [isShow, setIsShow] = useState(false);
-
-    const handleFilter = () => {
-        setIsShow(!isShow);
-    }
-
-    const activeClass = isShow ? "active" : "";
-
-    const [links, setLinks] = useState([
-        {
-            name: "Semua Kategori",
-        },
-        {
-            name: "Kategori 1",
-        },
-    ]);
+export default function FilterItem({ handleChange, isBordered, label, value, name, checked }) {
+    const isBorderedStyle = isBordered ? styles["bordered"] : styles["borderless"];
 
     return (
-        <nav className="filter-nav">
-            <ul>
-                {links.map(({ name }, i) => (
-                    <li
-                        key={`item-${i}`}
-                        className={`filter-nav-links ${i === links.length - 1 && "borderless"}`}
-                        onClick={handleFilter}
-                    >
-                        <a>{name}</a>
-                        <img src="/arrow-right.svg" alt="Arrow Icon" className="filter-arrow" />
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    )
+        <div
+            role="radio"
+            className={`${styles["filter-item-container"]} ${isBorderedStyle}`}
+            onClick={handleChange}
+        >
+            <RadioInput
+                label={label}
+                value={value}
+                name={name}
+                handleChange={handleChange}
+                checked={checked}
+            />
+        </div>
+    );
 }

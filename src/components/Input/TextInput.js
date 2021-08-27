@@ -24,6 +24,7 @@ export default function TextInput({
                 placeholder={placeholder}
                 value={value}
                 onChange={(e) => onChange(e)}
+                className="text-input"
             />
         </div>
     );

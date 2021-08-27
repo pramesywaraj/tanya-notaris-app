@@ -28,6 +28,7 @@ module.exports = {
             },
             backgroundImage: (theme) => ({
                 "banner-img": "url('/banner-img.png')",
+                "banner-service": "url('/Banner.png')",
             }),
             spacing: {
                 "390px": "390px",
