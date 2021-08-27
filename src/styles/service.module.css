@@ -140,3 +140,22 @@
         @apply justify-end;
     }
 }
+
+/* Detail Service */
+.payment-plan-container {
+    @apply flex flex-col flex-1 gap-y-30px pt-10 items-center mt-6 mb-10;
+}
+
+.information-content {
+    @apply mb-10;
+}
+
+.information-content p{
+    @apply font-semibold text-xsmall;
+}
+
+@media screen(tablet) {
+    .payment-plan-container {
+        @apply flex-row gap-x-30px justify-center mb-16;
+    }
+}

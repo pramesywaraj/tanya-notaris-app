@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import useRequest from "hooks/useRequest";
 import usePagination from "hooks/usePagination";
+import { useRouter } from "next/router";
 
 import styles from "styles/service.module.css";
 
@@ -18,11 +19,11 @@ import IconPendirianPT from "assets/icon-pendirian-pt.svg";
 const FILTER_TYPE = "FILTER/TYPE";
 const FILTER_INDUSTRY = "FILTER/INDUSTRY";
 
-function ServiceCard({ data, containerStyle, isLoading }) {
+function ServiceCard({ data, containerStyle, isLoading , handleNavigateToDetail }) {
     const { title, description, price, icon } = data;
 
     return (
-        <div style={{ ...containerStyle }} className={styles["service-card-container"]}>
+        <div style={{ ...containerStyle }} className={styles["service-card-container"]} onClick={handleNavigateToDetail}>
             {isLoading && <SkeletonLoader circle height={64} width={64} />}
             {!isLoading && (
                 <div className={styles["service-card-image-container"]}>
@@ -74,6 +75,8 @@ export default function ServicePage() {
     const [queryParams, setQueryParams] = useState("");
 
     const firstLoad = useRef(true);
+
+    const router = useRouter();
 
     const {
         data: typesData,
@@ -155,6 +158,10 @@ export default function ServicePage() {
         setQueryParams(`q=${searchText}&`);
     };
 
+    const handleNavigateToDetail = (id) => {
+        router.push(`/service/detail/${id}`);
+    };
+
     const renderContents = () => (
         <div className={styles["service-contents-container"]}>
             <div className={styles["service-filter-container"]}>
@@ -183,6 +190,7 @@ export default function ServicePage() {
                             key={`service-${index + 1}`}
                             data={service}
                             containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
+                            handleNavigateToDetail={() => handleNavigateToDetail(service.id)}
                         />
                     ))
                     : [1, 2, 3, 4, 5, 6].map((_, index) => (
@@ -191,6 +199,7 @@ export default function ServicePage() {
                             data={{}}
                             containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
                             isLoading
+                            
                         />
                     ))}
                 {paginationItems && paginationItems.length > 0 && (
