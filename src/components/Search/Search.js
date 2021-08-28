@@ -14,6 +14,10 @@ export default function Search({ classNames, onSearch, onReset, styles }) {
         if (!e.target.value) onReset();
     };
 
+    const handlePressKey = (e) => {
+        if (e.key === "Enter") onSearch(searchText);
+    }
+
     return (
         <div className={`search-container ${classNames}`} style={{ ...styles }}>
             <input
@@ -21,6 +25,7 @@ export default function Search({ classNames, onSearch, onReset, styles }) {
                 className="search-input"
                 value={searchText}
                 onChange={handleChangeText}
+                onKeyPress={handlePressKey}
             />
             <IconButton
                 src={SearchIcon}
