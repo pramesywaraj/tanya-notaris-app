@@ -32,6 +32,14 @@ export default function ArticlesPage() {
         router.push(`/articles/search/${param}`);
     };
 
+    const handleCardClick = (article) => {
+        if (!article) return false;
+        // if (router.asPath === router.route) return false;
+
+        const { slug } = article;
+        router.push(`/articles/detail/${slug}`);
+    };
+
     return (
         <section className={style["articles-section-container"]}>
             <div className={style["articles-header"]}>
@@ -45,14 +53,17 @@ export default function ArticlesPage() {
                 <HighlightArticle
                     data={articlesHighlighted?.data || []}
                     isLoading={isLoadingHighlightedArticles}
+                    onClick={handleCardClick}
                 />
                 <NewArticles
                     data={articlesLatest?.data || []}
                     isLoading={isLoadingLatestArticles}
+                    onClick={handleCardClick}
                 />
                 <PopularArticles
                     data={articlesPopular?.data || []}
                     isLoading={isLoadingPopularArticles}
+                    onClick={handleCardClick}
                 />
             </div>
         </section>
