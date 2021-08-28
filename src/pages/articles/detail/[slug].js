@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import useRequest from "hooks/useRequest";
+import parse, { domToReact } from "html-react-parser";
 
 import style from "styles/articles.module.css";
 
@@ -100,7 +101,7 @@ export default function ArticleDetailPage() {
                             />
                         )}
                 </div>
-                <p className="mb-20">Detail Berita</p>
+                <div className="mb-20">{detail?.data?.content && parse(detail.data.content)}</div>
             </div>
             <FooterSocialMedia />
         </section>

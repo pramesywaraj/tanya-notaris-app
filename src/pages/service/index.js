@@ -19,11 +19,15 @@ import IconPendirianPT from "assets/icon-pendirian-pt.svg";
 const FILTER_TYPE = "FILTER/TYPE";
 const FILTER_INDUSTRY = "FILTER/INDUSTRY";
 
-function ServiceCard({ data, containerStyle, isLoading , handleNavigateToDetail }) {
-    const { title, description, price, icon } = data;
+function ServiceCard({ data, containerStyle, isLoading, handleNavigateToDetail }) {
+    const { title, short_description, price, icon } = data;
 
     return (
-        <div style={{ ...containerStyle }} className={styles["service-card-container"]} onClick={handleNavigateToDetail}>
+        <div
+            style={{ ...containerStyle }}
+            className={styles["service-card-container"]}
+            onClick={handleNavigateToDetail}
+        >
             {isLoading && <SkeletonLoader circle height={64} width={64} />}
             {!isLoading && (
                 <div className={styles["service-card-image-container"]}>
@@ -45,7 +49,7 @@ function ServiceCard({ data, containerStyle, isLoading , handleNavigateToDetail 
                     </p>
                     <p id={styles["description"]}>
                         {isLoading && <SkeletonLoader height={15} />}
-                        {!isLoading && description}
+                        {!isLoading && short_description}
                     </p>
                 </div>
 
@@ -184,6 +188,10 @@ export default function ServicePage() {
                 />
             </div>
             <div className={styles["service-list-container"]}>
+                {!isLoadServices && services.length === 0 && (
+                    <SimpleEmptyState text="Tidak ada layanan untuk ditampilkan." />
+                )}
+
                 {!isLoadServices && services
                     ? services.map((service, index) => (
                         <ServiceCard
@@ -199,17 +207,12 @@ export default function ServicePage() {
                             data={{}}
                             containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
                             isLoading
-                            
                         />
                     ))}
                 {paginationItems && paginationItems.length > 0 && (
                     <div className={styles["service-pagination-container"]}>
                         <Pagination data={paginationItems} onPageChange={handleChangePage} />
                     </div>
-                )}
-
-                {!isLoadServices && services.length === 0 && (
-                    <SimpleEmptyState text="Tidak ada layanan untuk ditampilkan." />
                 )}
             </div>
         </div>

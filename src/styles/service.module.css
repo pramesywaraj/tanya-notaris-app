@@ -30,6 +30,7 @@
     flex-direction: row;
 
     overflow: scroll;
+    cursor: pointer;
 }
 
 .service-card-image-container {
@@ -150,7 +151,7 @@
     @apply mb-10;
 }
 
-.information-content p{
+.information-content p {
     @apply font-semibold text-xsmall;
 }
 

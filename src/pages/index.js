@@ -277,7 +277,7 @@ function TestimoniesSection() {
     ]);
 
     return (
-        <section className={`${styles["home-section"]} my-20`}>
+        <section className={`${styles["home-section"]}`}>
             <h1>Dengar Langsung dari Klien Kami</h1>
             <Carousel
                 datas={testimonies}

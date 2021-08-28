@@ -103,7 +103,7 @@
 
 /* Achievements section */
 .home-achievements-section {
-    margin: 40px auto;
+    /* margin: 40px auto; */
     background-color: rgba(243, 122, 81, 0.05);
 
     display: flex;
@@ -112,7 +112,7 @@
 
     row-gap: 16px;
 
-    @apply px-4 py-8;
+    @apply px-4 py-8 my-20;
 }
 
 .home-achievements-items {
