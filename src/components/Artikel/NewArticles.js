@@ -9,15 +9,26 @@ export default function NewArticles({ data = [], isLoading, onClick }) {
                 key={`article-${index + 1}`}
                 content={content}
                 contentContainer={style["article-small-container"]}
-                isLoading={isLoading}
                 onClick={() => onClick(content)}
+            />
+        ));
+
+    const renderLoading = () =>
+        [1, 2, 3, 4].map((content, index) => (
+            <CardArticle
+                key={`article-${index + 1}`}
+                content={{}}
+                contentContainer={style["article-small-container"]}
+                isLoading
             />
         ));
 
     return (
         <section className={style["articles-section-margin"]}>
             <h2 className={style["article-section-title"]}>Artikel Terbaru</h2>
-            <div className={style["newarticle-container"]}>{renderContents()}</div>
+            <div className={style["newarticle-container"]}>
+                {isLoading ? renderLoading() : renderContents()}
+            </div>
         </section>
     );
 }
