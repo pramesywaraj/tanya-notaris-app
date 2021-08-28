@@ -2,7 +2,7 @@ import style from "components/Artikel/articles.module.css";
 
 import { CardArticle } from "components/Card";
 
-export default function NewArticles({ data = [], isLoading }) {
+export default function NewArticles({ data = [], isLoading, onClick }) {
     const renderContents = () =>
         data.map((content, index) => (
             <CardArticle
@@ -10,6 +10,7 @@ export default function NewArticles({ data = [], isLoading }) {
                 content={content}
                 contentContainer={style["article-small-container"]}
                 isLoading={isLoading}
+                onClick={() => onClick(content)}
             />
         ));
 

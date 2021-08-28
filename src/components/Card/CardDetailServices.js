@@ -1,4 +1,5 @@
-import SanitizedHTML from 'react-sanitized-html';
+import parse, { domToReact } from "html-react-parser";
+
 import { SkeletonLoader } from "components/Loader";
 
 export default function CardDetailServices({
@@ -8,25 +9,23 @@ export default function CardDetailServices({
     containerStyle,
     titleStyle,
 }) {
-    
     const skeleton = (
-        <>
-            <SkeletonLoader height={25} style={{ marginBottom: 24 }} />
-            <SkeletonLoader height={25} style={{ marginBottom: 24 }} />
-            <SkeletonLoader height={25} />
-        </>
+        <div className="mb-6">
+            <SkeletonLoader height={30} style={{ marginBottom: 25 }} width={"50%"} />
+            <SkeletonLoader count={5} height={20} />
+        </div>
     );
 
     return (
         <div className="mb-6" style={{ ...containerStyle }}>
-            <h2 className="font-bold text-header4 mb-4" style={{ ...titleStyle }}>{titleCard}</h2>
-                {!isLoading && (
-                    <div className="mb-4">
-                        <SanitizedHTML html={ data } />
-                    </div>
-                )}
+            {!isLoading && (
+                <h2 className="font-bold text-header4 mb-4" style={{ ...titleStyle }}>
+                    {titleCard}
+                </h2>
+            )}
+            {!isLoading && data && parse(data)}
 
-                {isLoading && skeleton}
+            {isLoading && skeleton}
         </div>
     );
 }

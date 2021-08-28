@@ -2,7 +2,7 @@ import style from "components/Artikel/articles.module.css";
 
 import { CardArticle } from "components/Card";
 
-export default function HighlightArticle({ data, isLoading }) {
+export default function HighlightArticle({ data, isLoading, onClick }) {
     const [firstPost, secondPost, thirdPost] = data;
 
     return (
@@ -13,6 +13,7 @@ export default function HighlightArticle({ data, isLoading }) {
                     contentContainer={style["highlight-first-text"]}
                     imageClasses={style["highlight-image-big"]}
                     isLoading={isLoading}
+                    onClick={() => onClick(firstPost)}
                 />
             </div>
             <div className={style["highlight-second"]}>
@@ -22,6 +23,7 @@ export default function HighlightArticle({ data, isLoading }) {
                     imageClasses={style["highlight-image-small"]}
                     containerClasses={`${style["second-content"]} ${style["bordered"]}`}
                     isLoading={isLoading}
+                    onClick={() => onClick(secondPost)}
                 />
                 <CardArticle
                     content={thirdPost}
@@ -29,6 +31,7 @@ export default function HighlightArticle({ data, isLoading }) {
                     imageClasses={style["highlight-image-small"]}
                     containerClasses={`${style["second-content"]} ${style["bordered"]}`}
                     isLoading={isLoading}
+                    onClick={() => onClick(thirdPost)}
                 />
             </div>
         </section>

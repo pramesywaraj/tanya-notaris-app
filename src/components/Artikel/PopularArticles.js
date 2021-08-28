@@ -3,13 +3,7 @@ import style from "components/Artikel/articles.module.css";
 
 import { CardArticle } from "components/Card";
 
-export default function PopularArticles({ data = [], isLoading }) {
-    const router = useRouter();
-
-    const handleNavigateToDetail = (id) => {
-        router.push(`/articles/detail/${id}`);
-    };
-
+export default function PopularArticles({ data = [], isLoading, onClick }) {
     const renderContents = () =>
         data.map((content, index) => (
             <CardArticle
@@ -22,6 +16,7 @@ export default function PopularArticles({ data = [], isLoading }) {
                 imageClasses={style["highlight-image-small"]}
                 contentContainer={style["article-small-container"]}
                 isLoading={isLoading}
+                onClick={() => onClick(content)}
             />
         ));
 

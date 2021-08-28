@@ -1,99 +1,87 @@
-import { useState , useEffect } from "react";
-
-import { BannerService } from "components/Banner"
-import { CardDetailServices, CardFooterBenefit, CardPlan, CardSocialMedia } from "components/Card";
+import { useState, useEffect } from "react";
 import useRequest from "hooks/useRequest";
 import { useRouter } from "next/router";
 
 import styles from "styles/service.module.css";
 
+import { BannerService } from "components/Banner";
+import { CardDetailServices, CardFooterBenefit, CardPlan, CardSocialMedia } from "components/Card";
+import { SkeletonLoader } from "components/Loader";
 
 export default function Detail() {
     const banner = "Pendirian PT";
+    const router = useRouter();
 
-    const router = useRouter()
-
-    const [serviceId, setServiceId] = useState("")
+    const [serviceId, setServiceId] = useState("");
     const [isPopular, setPopular] = useState(false);
+
+    useEffect(() => {
+        if (router.asPath !== router.route) {
+            const { id } = router.query;
+            setServiceId(id);
+        }
+    }, [router]);
 
     const {
         data: detailData,
         error: detailError,
         isLoadingData: isLoadingFetchingDetail,
-    } = useRequest(`v1/products/${serviceId}`);
-
-    useEffect(() => {
-        if (!router.query.id) {
-            return false;
-        }
-        setServiceId(router.query.id)
-       
-    }, [router.query.id])
-
+    } = useRequest(`v1/products/${serviceId || router.query.id}`);
 
     const renderContents = () => (
-        <>
-            <div className={styles["information-content"]}>
-                {detailData?.description && detailData?.description !== "-" &&
-                    <DescriptionCard
-                        data={detailData.description}
-                    />
-                }
+        <div className={styles["information-content"]}>
+            <CardDetailServices
+                titleCard="Deskripsi Layanan"
+                data={detailData?.data?.description || ""}
+                isLoading={isLoadingFetchingDetail}
+            />
 
-                    <CardDetailServices 
-                        titleCard = "Detail Layanan"
-                        data = '<p>Kontrak Hukum dapat membantu Anda untuk mendirikan badan usaha secara mudah dan cepat berikut perizinan umum yang diperlukan, yaitu Nomor Induk Berusaha (NIB), Izin Lokasi dan Izin Usaha.</p>'
-                    />
+            <CardDetailServices
+                titleCard="Disclaimer"
+                data={detailData?.data?.disclaimer || ""}
+                containerStyle={{ padding: "1rem", background: "rgba(243, 122, 81, 0.05)" }}
+                titleStyle={{ fontSize: "14px" }}
+                isLoading={isLoadingFetchingDetail}
+            />
 
-                    <CardDetailServices 
-                        titleCard = "Disclaimer"
-                        data = '<p>Pada beberapa bidang usaha, Izin OSS akan tertera belum efektif/belum memenuhi komitmen. Kami hanya melakukan pengurusan sampai tingkat pendaftaran dan penerbitan di Lembaga OSS saja. Tidak termasuk pengefektifan/pemenuhan komitmen perizinan.<br/><br/>Layanan ini akan mencakup penerbitan Akta, SK Kemenkumham (*2 hari dari dokumen lengkap akan di keluarkan akta dan SK digital), NIB, Izin Lokasi dan Izin Usaha melalui proses Online Single Submission (OSS).<br/><br/>*SLA sesuai tertera dengan kondisi semua dokumen kami terima lengkap, tidak ada kendala teknis, dan prosedur tepat waktu dilaksanakan oleh klien.</p>'
-                        containerStyle = {{padding: "1rem", background: "rgb(235, 235, 235)"}}
-                        titleStyle = {{ fontSize: "14px" }}
-                    />
+            <CardDetailServices
+                titleCard="Persyaratan"
+                data={detailData?.data?.requirement || ""}
+                isLoading={isLoadingFetchingDetail}
+            />
 
-                    <CardDetailServices 
-                        titleCard = "Persyaratan"
-                        data = '<p>Kontrak Hukum dapat membantu Anda untuk mendirikan badan usaha secara mudah dan cepat berikut perizinan umum yang diperlukan, yaitu Nomor Induk Berusaha (NIB), Izin Lokasi dan Izin Usaha.</p>'
-                    />
-
-                    <CardDetailServices 
-                        titleCard = "Tahapan Pengerjaan"
-                        data = '<p>Kontrak Hukum dapat membantu Anda untuk mendirikan badan usaha secara mudah dan cepat berikut perizinan umum yang diperlukan, yaitu Nomor Induk Berusaha (NIB), Izin Lokasi dan Izin Usaha.</p>'
-                    />
-            </div>
-        </>
+            <CardDetailServices
+                titleCard="Tahapan Pengerjaan"
+                data={detailData?.data?.work_stage || ""}
+                isLoading={isLoadingFetchingDetail}
+            />
+        </div>
     );
 
-    const renderPlans = () => (
-        <>
-            {detailData?.plans &&
-                detailData.plans.map((plan, index) => (
-                    <CardPlan 
-                        data={plan}
-                        containerStyle={{ backgroundColor: plan.type == "ENTERPRISE_PLAN" ? "#333333" : "C7C7C7" }}
-                        title={{title: plan.type == "ENTERPRISE_PLAN" ? "Enterprise Plan" : "Starter Plan"}}
-                    />
-                ))
-                
-            }
-        </>
-    );
-
+    const renderPlans = () =>
+        (detailData?.data?.plans || []).map((plan, index) => (
+            <CardPlan key={`plan-${index + 1}`} data={plan} isLoading={isLoadingFetchingDetail} />
+        ));
 
     return (
-        <>
+        <section>
             <BannerService name={banner} />
 
             {/* Payment Plan */}
             <div className={styles["payment-plan-container"]}>
-                {renderPlans()}
+                {!isLoadingFetchingDetail ? (
+                    renderPlans()
+                ) : (
+                        <div style={{ height: 360, width: 350 }}>
+                            <SkeletonLoader height={"100%"} />
+                        </div>
+                    )}
             </div>
-            {renderContents()} 
+            {renderContents()}
 
-            <CardSocialMedia title = "Bagikan Layanan" linkUrl={router.asPath}/>
+            <CardSocialMedia title="Bagikan Layanan" linkUrl={router.asPath} />
 
             <CardFooterBenefit />
-        </>
-    )
+        </section>
+    );
 }
