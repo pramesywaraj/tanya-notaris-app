@@ -106,8 +106,10 @@
     padding: 16px 24px 24px 24px;
     border-radius: 16px;
     max-width: 350px;
+    height: 100%;
+    max-height: 400px;
     width: 100%;
-    
+
     @apply flex-col text-white;
 }
 
@@ -119,7 +121,7 @@
     @apply flex flex-col;
 }
 
-.card-plan-body small{
+.card-plan-body small {
     font-size: 14px;
 }
 
@@ -134,7 +136,9 @@
     padding: 20px 40px;
     margin: 0px -14px;
 
-    @apply flex gap-x-14 bg-light py-10;
+    background-color: rgba(243, 122, 81, 0.05);
+
+    @apply flex gap-x-14 py-10;
 }
 
 .card-benefit-image {
