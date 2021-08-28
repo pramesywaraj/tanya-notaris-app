@@ -1,12 +1,9 @@
+import style from "components/Banner/banner.module.css";
+
 export default function BannerService({ name }) {
-
-    const content = {
-        name: name,
-    };
-
     return (
-        <div className="about-banner-padding service-banner-container">
-            <h2 className="service-banner-title">{name}</h2>
+        <div className={`${style["service-banner-padding"]} ${style["service-banner-container"]}`}>
+            <h2 className={`${style["service-banner-title"]}`}>{name}</h2>
         </div>
-    )
+    );
 }
