@@ -5,6 +5,7 @@ import CardPlan from "components/Card/CardPlan";
 import CardDetailServices from "components/Card/CardDetailServices";
 import CardSocialMedia from "components/Card/CardSocialMedia";
 import CardFooterBenefit from "components/Card/CardFooterBenefit";
+import CardMainService from "components/Card/CardMainService";
 
 export {
     CardTestimonies,
@@ -14,4 +15,5 @@ export {
     CardDetailServices,
     CardSocialMedia,
     CardFooterBenefit,
+    CardMainService,
 };

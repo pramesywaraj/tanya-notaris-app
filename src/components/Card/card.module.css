@@ -35,6 +35,8 @@
 
 .card-content-container #quotes-text {
     margin-bottom: 8;
+    overflow: auto;
+    max-height: 100px;
     @apply font-semibold text-body;
 }
 
@@ -71,7 +73,7 @@
 
 .card-small-article-img {
     width: auto;
-    height: 150px;
+    height: 200px;
 
     position: relative;
 }
@@ -151,6 +153,45 @@
 
 .card-benefit-list {
     @apply flex gap-x-4 mb-5 items-start text-body font-semibold;
+}
+
+/* Card Main Service */
+.card-home-main-service {
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px 16px;
+    height: 272px;
+    border-radius: 12px;
+
+    @apply text-white;
+}
+
+.orange {
+    @apply bg-primary;
+}
+
+.purple {
+    @apply bg-secondary;
+}
+
+.card-home-main-service-content {
+    flex: 3;
+}
+
+.card-home-main-service-content h2 {
+    margin: 12px 0;
+    @apply text-header5 font-bold;
+}
+
+.card-home-main-service-content p {
+    margin: 12px 0;
+}
+
+.card-home-main-service-button-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 @media screen(tablet) {
