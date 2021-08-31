@@ -18,6 +18,14 @@
     transition: border 0.5s ease;
 }
 
+.error {
+    border: 1px solid rgba(219, 15, 0, 1) !important;
+}
+
+.error-text {
+    @apply text-red text-small;
+}
+
 .text-input:focus {
     @apply border-primary border-2;
 }

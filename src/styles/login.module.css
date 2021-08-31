@@ -4,7 +4,9 @@
     flex: 1;
 
     height: 100vh;
-    padding-top: 24px;
+    /* padding-top: 24px; */
+
+    margin-top: 25px;
 }
 
 .login-container {
@@ -40,6 +42,17 @@
     display: none;
 
     @apply bg-primary;
+}
+
+.error-text {
+    margin-top: 12px;
+    @apply text-red;
+}
+
+.form-button:disabled {
+    cursor: inherit;
+    opacity: 0.5;
+    @apply bg-darkPrimary;
 }
 
 @media screen(lgTablet) {

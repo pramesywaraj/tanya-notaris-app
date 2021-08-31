@@ -25,6 +25,7 @@ module.exports = {
                 white: "rgb(255, 255, 255)",
                 dark: "rgb(18, 18, 18)",
                 purple: "rgba(124, 88, 159, 1)",
+                red: "rgba(219, 15, 0, 1)",
             },
             backgroundImage: (theme) => ({
                 "banner-img": "url('/banner-img.png')",

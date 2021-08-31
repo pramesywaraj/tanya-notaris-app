@@ -1,28 +1,36 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useState } from "react";
+import usePost from "hooks/usePost";
 
 import styles from "styles/login.module.css";
 
 import { Button } from "components/Button";
 import { TextInput } from "components/Input";
 
+const loginDefaultVal = {
+    email: "",
+    password: "",
+};
+
+const registerDefaultVal = {
+    name: "",
+    email: "",
+    password: "",
+};
+
 export default function Login() {
     const [isRegister, setIsRegister] = useState(false);
-    const [loginPayload, setLoginPayload] = useState({
-        email: "",
-        password: "",
-    });
-
-    const [registerPayload, setRegisterPayload] = useState({
-        name: "",
-        email: "",
-        password: "",
-    });
+    const [formError, setFormErrorMessage] = useState({});
+    const [loginPayload, setLoginPayload] = useState(loginDefaultVal);
+    const [registerPayload, setRegisterPayload] = useState(registerDefaultVal);
+    const { data, errors, isRequesting, handlePost } = usePost();
 
     const handleChangeValue = (event) => {
         const { name, value } = event.target;
 
         event.preventDefault();
+
+        checkRegex(name, value);
 
         if (isRegister) {
             setRegisterPayload({
@@ -39,25 +47,63 @@ export default function Login() {
         });
     };
 
+    const checkRegex = (name, value) => {
+        const tempErr = { ...formError };
+
+        switch (name) {
+            case "email": {
+                const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
+                if (!emailRegex.test(value)) tempErr[name] = "Email tidak sesuai dengan format.";
+                if (emailRegex.test(value)) delete tempErr[name];
+
+                break;
+            }
+            case "password": {
+                if (value.length < 8) tempErr[name] = "Minimum 8 karakter.";
+                if (value.length >= 8) delete tempErr[name];
+
+                break;
+            }
+            case "name": {
+                if (value.length < 2) tempErr[name] = "Minimum 2 karakter.";
+                if (value.length >= 2) delete tempErr[name];
+
+                break;
+            }
+            default:
+                break;
+        }
+
+        setFormErrorMessage(tempErr);
+    };
+
     const handleSubmitLogin = (event) => {
         event.preventDefault();
+        if (Object.entries(formError).length > 0) return false;
 
         console.log("Check Login", event);
     };
 
     const handleSubmitRegister = (event) => {
         event.preventDefault();
+        if (Object.entries(formError).length > 0) return false;
 
-        console.log("Check Register", event);
+        handlePost("v1/auth/register", registerPayload);
     };
 
     const handleChangesScreen = () => {
+        if (isRegister) setRegisterPayload(registerDefaultVal);
+        if (!isRegister) setLoginPayload(loginDefaultVal);
+
         setIsRegister(!isRegister);
+        setFormErrorMessage({});
     };
 
     const renderLogin = (
         <div className={styles["form-wrapper"]}>
             <h2>Sign In,</h2>
+            {errors && <p className={styles["error-text"]}>{errors}</p>}
             <form onSubmit={handleSubmitLogin} className="form-container">
                 <TextInput
                     label="Email"
@@ -67,6 +113,7 @@ export default function Login() {
                     value={loginPayload.email}
                     onChange={handleChangeValue}
                     required
+                    error={formError["email"]}
                 />
                 <TextInput
                     containerStyle={{ marginTop: 16 }}
@@ -77,8 +124,15 @@ export default function Login() {
                     value={loginPayload.password}
                     onChange={handleChangeValue}
                     required
+                    error={formError["password"]}
                 />
                 <Button
+                    disabled={
+                        Object.entries(formError).length > 0 ||
+                        !loginPayload.email ||
+                        !loginPayload.password
+                    }
+                    classNames="form-button"
                     styles={{ width: "100%", maxWidth: 445, marginTop: 32, borderRadius: 8 }}
                     type="submit"
                 >
@@ -88,13 +142,15 @@ export default function Login() {
             <div className="login-notlogged-container">
                 <p className="font-body">
                     Belum punya akun?{" "}
-                    <a
+                    <button
+                        tabIndex={0}
                         style={{ cursor: "pointer" }}
                         onClick={handleChangesScreen}
                         className="text-primary underline font-semibold"
+                        onKeyPress={() => { }}
                     >
                         Daftar
-                    </a>
+                    </button>
                 </p>
             </div>
         </div>
@@ -103,6 +159,7 @@ export default function Login() {
     const renderRegister = (
         <div className={styles["form-wrapper"]}>
             <h2>Sign Up,</h2>
+            {errors && <p className={styles["error-text"]}>{errors}</p>}
             <form onSubmit={handleSubmitRegister} className={styles["form-container"]}>
                 <TextInput
                     label="Nama Lengkap"
@@ -112,6 +169,7 @@ export default function Login() {
                     value={registerPayload.name}
                     onChange={handleChangeValue}
                     required
+                    error={formError["name"]}
                 />
                 <TextInput
                     containerStyle={{ marginTop: 16 }}
@@ -122,6 +180,7 @@ export default function Login() {
                     value={registerPayload.email}
                     onChange={handleChangeValue}
                     required
+                    error={formError["email"]}
                 />
                 <TextInput
                     containerStyle={{ marginTop: 16 }}
@@ -132,24 +191,34 @@ export default function Login() {
                     value={registerPayload.password}
                     onChange={handleChangeValue}
                     required
+                    error={formError["password"]}
                 />
                 <Button
+                    disabled={
+                        Object.entries(formError).length > 0 ||
+                        !registerPayload.email ||
+                        !registerPayload.password ||
+                        !registerPayload.name
+                    }
+                    classNames="form-button"
                     styles={{ width: "100%", maxWidth: 445, marginTop: 32, borderRadius: 8 }}
                     type="submit"
                 >
-                    Daftar
+                    {isRequesting ? "Tunggu sebentar..." : "Daftar"}
                 </Button>
             </form>
             <div className={styles["login-notlogged-container"]}>
                 <p className="font-body">
                     Sudah punya akun?{" "}
-                    <a
+                    <button
+                        tabIndex={0}
                         style={{ cursor: "pointer" }}
                         onClick={handleChangesScreen}
                         className="text-primary underline font-semibold"
+                        onKeyPress={() => { }}
                     >
                         Masuk
-                    </a>
+                    </button>
                 </p>
             </div>
         </div>
