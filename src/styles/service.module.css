@@ -148,6 +148,7 @@
 }
 
 .information-content {
+    margin-top: 5vh;
     @apply mb-10;
 }
 

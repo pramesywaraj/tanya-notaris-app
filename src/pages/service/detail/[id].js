@@ -9,7 +9,6 @@ import { CardDetailServices, CardFooterBenefit, CardPlan, CardSocialMedia } from
 import { SkeletonLoader } from "components/Loader";
 
 export default function Detail() {
-    const banner = "Pendirian PT";
     const router = useRouter();
 
     const [serviceId, setServiceId] = useState("");
@@ -58,25 +57,40 @@ export default function Detail() {
         </div>
     );
 
-    const renderPlans = () =>
-        (detailData?.data?.plans || []).map((plan, index) => (
-            <CardPlan key={`plan-${index + 1}`} data={plan} isLoading={isLoadingFetchingDetail} />
-        ));
+    const renderPlans = () => {
+        if (
+            !isLoadingFetchingDetail &&
+            detailData?.data?.plans &&
+            detailData?.data?.plans.length === 0
+        )
+            return null;
+
+        const skeleton = (
+            <div style={{ height: 360, width: 350 }}>
+                <SkeletonLoader height={"100%"} />
+            </div>
+        );
+
+        return (
+            <div className={styles["payment-plan-container"]}>
+                {!isLoadingFetchingDetail &&
+                    (detailData?.data?.plans || []).map((plan, index) => (
+                        <CardPlan
+                            key={`plan-${index + 1}`}
+                            data={plan}
+                            isLoading={isLoadingFetchingDetail}
+                        />
+                    ))}
+
+                {isLoadingFetchingDetail && skeleton}
+            </div>
+        );
+    };
 
     return (
         <section>
-            <BannerService name={banner} />
-
-            {/* Payment Plan */}
-            <div className={styles["payment-plan-container"]}>
-                {!isLoadingFetchingDetail ? (
-                    renderPlans()
-                ) : (
-                        <div style={{ height: 360, width: 350 }}>
-                            <SkeletonLoader height={"100%"} />
-                        </div>
-                    )}
-            </div>
+            <BannerService name={detailData?.data?.title || ""} />
+            {renderPlans()}
             {renderContents()}
 
             <CardSocialMedia title="Bagikan Layanan" linkUrl={router.asPath} />
