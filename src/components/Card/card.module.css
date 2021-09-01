@@ -194,6 +194,34 @@
     align-items: center;
 }
 
+/* Card Detail Service */
+.card-detail-service-container {
+    margin: 24px 0;
+}
+
+.card-detail-service-container > h1,
+.card-detail-service-container > h2,
+.card-detail-service-container > h3,
+.card-detail-service-container > h4,
+.card-detail-service-container > h5,
+.card-detail-service-container > h6 {
+    margin-bottom: 2vh;
+    line-height: 32px;
+}
+
+.card-detail-service-container > ol,
+.card-detail-service-container > ul {
+    padding-left: 20px;
+}
+
+.card-detail-service-container > ol {
+    list-style: decimal;
+}
+
+/* .card-detail-service-container > ol {
+    list-style-type:
+} */
+
 @media screen(tablet) {
     .card-benefit-container {
         margin: 0px -48px;
