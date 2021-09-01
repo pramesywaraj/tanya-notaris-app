@@ -49,6 +49,11 @@
     @apply text-red;
 }
 
+.success-text {
+    margin-top: 12px;
+    @apply text-green;
+}
+
 .form-button:disabled {
     cursor: inherit;
     opacity: 0.5;
