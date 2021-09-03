@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useAuthContext } from "contexts/AuthContext";
 
 import NavbarLogo from "assets/tanya-notaris-navbar-logo.svg";
 import IconUser from "assets/icon-user.svg";
@@ -13,6 +13,7 @@ import { Button } from "components/Button";
 
 import "components/Navbar/navbar.module.css";
 import colors from "constants/colors";
+import { LOGGED_OUT } from "constants/reduxConst";
 import { navigationLinks } from "constants/navigation";
 
 function NavbarNav({ links }) {
@@ -35,8 +36,9 @@ function NavbarNav({ links }) {
 }
 
 export default function Navbar({ isNoLayout }) {
+    const { state, dispatch } = useAuthContext();
+
     const [isShowSideMenu, setIsShowSideMenu] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [links, setLinks] = useState(navigationLinks);
     const [navbarBg, setNavbarBg] = useState(false);
 
@@ -60,6 +62,14 @@ export default function Navbar({ isNoLayout }) {
         }
     };
 
+    const handleLogout = async () => {
+        await dispatch({
+            type: LOGGED_OUT,
+        });
+
+        handleNavigateToLogin();
+    };
+
     useEffect(() => {
         window.addEventListener("scroll", handleChangeNavbarBg);
 
@@ -80,12 +90,14 @@ export default function Navbar({ isNoLayout }) {
     const logoutBtn = (
         <>
             <div className="flex flex-row mr-4 justify-between">
-                <p className="pr-4">Ahmad</p>
+                <p className="navbar-name-text pr-4 overflow-hidden">
+                    {state?.userData?.name.split(" ")[0] || "User"}
+                </p>
                 <Image width="30" height="30" src={IconUser} alt="User Account Icon" />
             </div>
             <Button
                 classNames="test"
-                onClick={handleNavigateToLogin}
+                onClick={handleLogout}
                 styles={{
                     height: "56px",
                     width: "168px",
@@ -110,8 +122,12 @@ export default function Navbar({ isNoLayout }) {
                 <Image src={NavbarLogo} alt="Tanya Notaris Logo" objectFit="contain" />
             </div>
             <NavbarNav links={links} />
-            <NavbarSideMenu handleSideMenu={handleSideMenu} isShowSideMenu={isShowSideMenu} />
-            <div className="navbar-login-btn">{isLoggedIn ? logoutBtn : loginBtn}</div>
+            <NavbarSideMenu
+                handleSideMenu={handleSideMenu}
+                isShowSideMenu={isShowSideMenu}
+                handleLogout={handleLogout}
+            />
+            <div className="navbar-login-btn">{state.isLoggedIn ? logoutBtn : loginBtn}</div>
             <div className="helper-div" />
         </header>
     );
