@@ -1,5 +1,6 @@
-import parse, { domToReact } from "html-react-parser";
-
+// import parse, { domToReact } from "html-react-parser";
+import ReactMarkdown from "react-markdown/react-markdown.min";
+import style from "components/Card/card.module.css";
 import { SkeletonLoader } from "components/Loader";
 
 export default function CardDetailServices({
@@ -16,6 +17,8 @@ export default function CardDetailServices({
         </div>
     );
 
+    if (!isLoading && (!data || data === "-")) return null;
+
     return (
         <div className="mb-6" style={{ ...containerStyle }}>
             {!isLoading && (
@@ -23,8 +26,10 @@ export default function CardDetailServices({
                     {titleCard}
                 </h2>
             )}
-            {!isLoading && data && parse(data)}
-
+            {/* {!isLoading && data && parse(data)} */}
+            <div className={style["card-detail-service-container"]}>
+                {!isLoading && data && <ReactMarkdown>{data}</ReactMarkdown>}
+            </div>
             {isLoading && skeleton}
         </div>
     );
