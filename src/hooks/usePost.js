@@ -7,11 +7,13 @@ export default function usePost() {
     const [data, setData] = useState(null);
     const [errors, setErrors] = useState(null);
 
-    const handlePost = async (url = "", payload = {}, options = {}) => {
+    const handlePost = async (url = "", payload = {}, options = {}, callback) => {
         try {
             setIsRequesting(true);
 
-            const { data, success, errors } = await axios.post(
+            const {
+                data: { success, data, errors },
+            } = await axios.post(
                 `${apiBaseURL}/${url}`,
                 { ...payload },
                 {
@@ -24,14 +26,23 @@ export default function usePost() {
             );
 
             if (!success) throw new Error(errors);
+            if (callback) callback(data);
 
             setData(data);
             setIsRequesting(false);
         } catch (e) {
-            console.error("ERR::", e);
             let message = e.message || "";
 
-            if (Object.keys(e).length > 0) message = e[Object.keys(e)[0]][0];
+            if (e.response) {
+                const {
+                    data: { errors },
+                } = e.response;
+
+                message = errors.message;
+            }
+            if (Object.keys(e).length > 0 && !e.response) message = e[Object.keys(e)[0]][0];
+
+            console.error("ERR::", e.message);
 
             setErrors(message);
             setIsRequesting(false);
