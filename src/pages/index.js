@@ -67,7 +67,7 @@ function HomeInformationSection({ handleMoveToScreen }) {
                                     <Image
                                         src={item?.image_url || ""}
                                         alt={item?.name || ""}
-                                        objectFit="cover"
+                                        objectFit="contain"
                                         loader={imageLoader}
                                         layout="fill"
                                     />
@@ -80,6 +80,25 @@ function HomeInformationSection({ handleMoveToScreen }) {
                         slidesToShow: 1,
                         slidesToScroll: 1,
                         infinite: true,
+                        responsive: [
+                            {
+                                breakpoint: 1023,
+                                settings: {
+                                    slidesPerRow: 1,
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                },
+                            },
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesPerRow: 1,
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    swipeToSlide: true,
+                                },
+                            },
+                        ],
                     }}
                 />
             </div>
@@ -143,8 +162,8 @@ function MainServiceSection({ handleMoveToScreen }) {
                         slidesToShow: 2,
                         slidesToScroll: 1,
                         infinite: true,
-                        nextArrow: <SwipeArrow />,
-                        prevArrow: <SwipeArrow />,
+                        nextArrow: <SwipeArrow type="NEXT" />,
+                        prevArrow: <SwipeArrow type="PREV" />,
                         responsive: [
                             {
                                 breakpoint: 1023,
