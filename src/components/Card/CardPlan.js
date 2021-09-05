@@ -3,9 +3,8 @@ import styles from "components/Card/card.module.css";
 
 import { parseCurrency } from "Utils";
 
-export default function CardPlan({ data }) {
+export default function CardPlan({ data, onReserve }) {
     const { is_popular, estimation_time, price, type } = data;
-    const noWhatsApp = "https://wa.me/62888888888";
 
     const PopulerButton = () => (
         <Button
@@ -67,14 +66,13 @@ export default function CardPlan({ data }) {
             </div>
 
             <Button
+                onClick={onReserve}
                 styles={{
                     width: "100%",
                     padding: "12px 32px",
                 }}
             >
-                <a href={noWhatsApp} target="_blank" rel="noreferrer">
-                    Pesan Sekarang
-                </a>
+                Pesan Sekarang
             </Button>
         </div>
     );
