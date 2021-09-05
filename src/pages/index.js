@@ -61,7 +61,9 @@ function HomeInformationSection({ handleMoveToScreen }) {
                                 onKeyPress={() => { }}
                             >
                                 {isLoadingBanners && (
-                                    <SkeletonLoader width={"100%"} height={"100%"} />
+                                    <div style={{ flex: 1 }}>
+                                        <SkeletonLoader width={"100%"} height={"100%"} />
+                                    </div>
                                 )}
                                 {!isLoadingBanners && (
                                     <Image
@@ -461,7 +463,7 @@ export default function Home() {
     };
 
     return (
-        <div className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]}`}>
+        <div className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]} overflow-hidden`}>
             <HomeInformationSection handleMoveToScreen={handleMoveToScreen} />
             <MainServiceSection handleMoveToScreen={handleMoveToScreen} />
             <AboutSection />
