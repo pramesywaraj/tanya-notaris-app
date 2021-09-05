@@ -48,9 +48,7 @@ export default function Navbar({ isNoLayout }) {
         setIsShowSideMenu(!isShowSideMenu);
     };
 
-    const handleNavigateToLogin = (e) => {
-        e.preventDefault();
-
+    const handleNavigateToLogin = () => {
         router.push("/login");
     };
 
