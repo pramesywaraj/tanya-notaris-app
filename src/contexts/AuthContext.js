@@ -1,6 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
 
-import { LOGGED_IN, LOGGED_OUT, USER_AVAILABLE } from "constants/reduxConst";
+import {
+    LOGGED_IN,
+    LOGGED_OUT,
+    USER_AVAILABLE,
+    SCREEN_LOADER_SHOW,
+    SCREEN_LOADER_HIDE,
+} from "constants/reduxConst";
 import { removeCookies, createCookies } from "Utils";
 
 const AuthContext = createContext(null);
@@ -8,6 +14,7 @@ const AuthContext = createContext(null);
 export function AuthWrapper({ children }) {
     let initialState = {
         isLoggedIn: false,
+        isScreenLoaderShow: false,
         userData: null,
     };
 
@@ -43,6 +50,18 @@ export function AuthWrapper({ children }) {
                     ...state,
                     isLoggedIn: true,
                     userData,
+                };
+            }
+            case SCREEN_LOADER_SHOW: {
+                return {
+                    ...state,
+                    isScreenLoaderShow: true,
+                };
+            }
+            case SCREEN_LOADER_HIDE: {
+                return {
+                    ...state,
+                    isScreenLoaderShow: false,
                 };
             }
             default:

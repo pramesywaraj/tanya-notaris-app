@@ -4,12 +4,13 @@ import { useAuthContext } from "contexts/AuthContext";
 
 import { Navbar } from "components/Navbar";
 import Footer from "components/Footer";
+import { ScreenLoader } from "components/Loader";
 
 import { getCookies } from "Utils";
 import { USER_AVAILABLE } from "constants/reduxConst";
 
 export default function Layout({ children }) {
-    const { dispatch } = useAuthContext();
+    const { state, dispatch } = useAuthContext();
     const [isNoLayout, setIsNoLayout] = useState(false);
     const router = useRouter();
 
@@ -33,7 +34,8 @@ export default function Layout({ children }) {
     }, [router.pathname]);
 
     return (
-        <main>
+        <main className="relative">
+            <ScreenLoader isScreenLoaderShow={state.isScreenLoaderShow} />
             <Navbar isNoLayout={isNoLayout} />
             <div className="main-container layout-padding">{children}</div>
             {!isNoLayout && <Footer />}
