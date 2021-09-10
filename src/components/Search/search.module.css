@@ -1,0 +1,25 @@
+@tailwind components;
+
+.test-name {
+    font-weight: 700;
+    font-size: 500px;
+}
+
+.search-container {
+    @apply flex text-body justify-between font-bold;
+}
+
+.search-input {
+    border: 1px solid #c7c7c7;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    padding: 0px 17px;
+    font-size: 16px;
+
+    @apply w-full bg-transparent;
+}
+
+.search-input:focus {
+    border: 1px solid #c7c7c7;
+}

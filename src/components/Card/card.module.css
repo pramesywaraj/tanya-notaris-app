@@ -1,0 +1,253 @@
+.home-testimonies-card {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    width: 100%;
+    height: 350px;
+
+    justify-content: center;
+
+    background-color: white;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.16);
+    padding: 16px;
+
+    border-radius: 16px;
+}
+
+.home-testimonies-card .card-content-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.card-content-container #quotes {
+    font-weight: 800;
+    font-size: 46px;
+    line-height: 58px;
+
+    margin: 0;
+
+    @apply text-primary;
+}
+
+.card-content-container #quotes-text {
+    margin-bottom: 8;
+    overflow: auto;
+    max-height: 100px;
+    @apply font-semibold text-body;
+}
+
+.card-content-container hr {
+    border: 2px solid #f37a51;
+    width: 40%;
+    border-radius: 10px;
+
+    margin: 16px 0;
+}
+
+.card-profile-container {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.card-profile-container .card-profile-image-container {
+    border-radius: 50px;
+}
+
+.card-profile-container #username {
+    @apply font-bold text-body1 mt-4;
+}
+
+/* Card Small Article */
+.card-small-article-container {
+    cursor: pointer;
+    @apply flex flex-col gap-y-1;
+}
+
+.card-small-article-img {
+    width: auto;
+    height: 200px;
+
+    position: relative;
+}
+
+.card-small-article-img img {
+    border-radius: 8px;
+}
+
+/* Card Filter */
+.card-filter-container {
+    padding: 16px;
+    box-sizing: border-box;
+    border-radius: 8px;
+
+    max-width: 280px;
+
+    border: 1px solid;
+
+    @apply bg-white border-grey;
+}
+
+.card-filter-container h3 {
+    @apply text-header5 font-bold;
+}
+
+.card-filter-list {
+    margin: 24px 0;
+}
+
+/* Card Plan */
+.card-plan-container {
+    padding: 16px 24px 24px 24px;
+    border-radius: 16px;
+    max-width: 350px;
+    height: 100%;
+    max-height: 400px;
+    width: 100%;
+
+    @apply flex-col text-white;
+}
+
+.card-plan-header {
+    @apply flex justify-between items-center pb-4 border-b-2 mb-5;
+}
+
+.card-plan-body {
+    @apply flex flex-col;
+}
+
+.card-plan-body small {
+    font-size: 14px;
+}
+
+/* Card Social Media */
+.detail-social-container {
+    margin-bottom: 120px;
+    flex: 1;
+}
+
+/* Card Footer Detail */
+.card-benefit-container {
+    padding: 20px 40px;
+    margin: 0px -14px;
+
+    background-color: rgba(243, 122, 81, 0.05);
+
+    @apply flex gap-x-14 py-10;
+}
+
+.card-benefit-image {
+    display: none;
+}
+
+.card-benefit-title {
+    @apply text-header2 font-bold mb-10;
+}
+
+.card-benefit-list {
+    @apply flex gap-x-4 mb-5 items-start text-body font-semibold;
+}
+
+/* Card Main Service */
+.card-home-main-service {
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px 16px;
+    height: 272px;
+    border-radius: 12px;
+
+    @apply text-white;
+}
+
+.orange {
+    @apply bg-primary;
+}
+
+.purple {
+    @apply bg-secondary;
+}
+
+.card-home-main-service-content {
+    flex: 3;
+}
+
+.card-home-main-service-content h2 {
+    margin: 12px 0;
+    @apply text-header5 font-bold;
+}
+
+.card-home-main-service-content p {
+    margin: 12px 0;
+}
+
+.card-home-main-service-button-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Card Detail Service */
+.card-detail-service-container {
+    margin: 24px 0;
+}
+
+.card-detail-service-container > h1,
+.card-detail-service-container > h2,
+.card-detail-service-container > h3,
+.card-detail-service-container > h4,
+.card-detail-service-container > h5,
+.card-detail-service-container > h6 {
+    margin-bottom: 2vh;
+    line-height: 32px;
+
+    @apply text-black;
+}
+
+.card-detail-service-container > ol,
+.card-detail-service-container > ul {
+    padding-left: 20px;
+    @apply font-normal text-black;
+}
+
+.card-detail-service-container > ol {
+    list-style: decimal;
+}
+
+.card-detail-service-container > p {
+    @apply font-normal text-body text-black;
+}
+
+/* .card-detail-service-container > ol {
+    list-style-type:
+} */
+
+@media screen(tablet) {
+    .card-benefit-container {
+        margin: 0px -48px;
+    }
+
+    .card-benefit-image {
+        display: flex;
+    }
+}
+
+@media screen(lgTablet) {
+    .card-benefit-container {
+        margin: 0px -80px;
+        padding: 40px 165px;
+    }
+}
+
+@media screen(desktop) {
+    .card-benefit-container {
+        margin: 0px -144px;
+    }
+}

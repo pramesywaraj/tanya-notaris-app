@@ -1,0 +1,122 @@
+.footer-container {
+    min-height: 710px;
+
+    position: relative;
+    padding: 32px 16px;
+
+    @apply flex flex-col justify-start bg-black;
+}
+
+.footer-container::before {
+    content: url("/m_footer-shape-bottom.svg");
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.footer-container::after {
+    content: url("/m_footer-shape-top.svg");
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.footer-information-container {
+    @apply flex flex-col;
+}
+
+.footer-address-container {
+    @apply my-4 text-white;
+}
+
+#footer-section-title {
+    font-size: 18px;
+    line-height: 32px;
+
+    @apply font-bold text-white;
+}
+
+#footer-address-text {
+    max-width: 500px;
+    @apply text-body font-semibold mt-2;
+}
+
+.footer-nav-container {
+    @apply flex flex-row w-full justify-between mt-8;
+}
+
+.footer-nav-container li {
+    @apply text-white;
+}
+
+#footer-nav-text {
+    @apply text-body mt-4;
+}
+
+.copyright-text {
+    bottom: 1rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @apply absolute text-white text-small w-full text-center;
+}
+
+.footer-social-container {
+    @apply flex flex-col mt-8;
+}
+
+@media screen(tablet) {
+    .footer-container {
+        @apply px-12;
+    }
+}
+
+@media screen(lgTablet) {
+    .footer-container {
+        min-height: auto;
+        height: 370px;
+
+        @apply flex-row px-20;
+    }
+
+    .footer-address-container {
+        flex: 2;
+        max-width: 400px;
+    }
+
+    .footer-nav-container {
+        margin-top: 12px;
+        margin-left: 1rem;
+        flex: 2;
+    }
+
+    .footer-social-container {
+        margin-top: 12px;
+        margin-left: 1rem;
+        flex: 1;
+    }
+}
+
+@media screen(desktop) {
+    .footer-container {
+        @apply px-36;
+    }
+}
+
+@media screen(fullDesktop) {
+    .footer-container {
+        @apply px-44;
+    }
+
+    .footer-nav-container {
+        margin-left: 3rem;
+    }
+
+    .footer-social-container {
+        margin-left: 3rem;
+    }
+
+    .footer-address-container {
+        max-width: 600px;
+    }
+}

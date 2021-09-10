@@ -1,7 +1,16 @@
+import { AdvantageSection, OverviewSection, ProfileSection } from "components/About";
+import { BannerAbout } from "components/Banner"
+
+
 export default function index() {
+    const banner = "Mengapa Kami";
+
     return (
-        <div>
-            <h1>About</h1>
-        </div>
+        <>
+            <BannerAbout name={banner} />
+            <OverviewSection />
+            <AdvantageSection />
+            <ProfileSection />
+        </>
     )
 }

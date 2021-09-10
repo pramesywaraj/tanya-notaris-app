@@ -1,0 +1,98 @@
+/* Bottom Filter */
+.bottomsheet-backdrop {
+    position: fixed;
+    z-index: 1000;
+    background-color: #333333;
+    height: 100vh;
+    width: 100vw;
+
+    top: 0;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    visibility: hidden;
+    opacity: 0;
+
+    -webkit-transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}
+
+.bottomsheet-backdrop.active {
+    visibility: visible;
+    opacity: 0.7;
+
+    transition-delay: 0s;
+}
+
+.bottomsheet-container {
+    position: fixed;
+    z-index: 1001;
+    bottom: 0;
+    left: 0;
+    height: 80%;
+    width: 0;
+    max-height: 1000px;
+    border-radius: 12px 12px 0 0;
+
+    padding: 1rem;
+
+    transform: translateY(100%);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+
+    @apply flex flex-col w-full bg-white;
+}
+
+.bottomsheet-container.active {
+    transform: translateY(0%);
+}
+
+.bottomsheet-header {
+    @apply flex flex-col;
+}
+
+.bottomsheet-header h3 {
+    @apply font-bold pt-16 pb-14;
+}
+
+.bottomsheet-content {
+    padding: 16px;
+    height: auto;
+
+    overflow-y: auto;
+    @apply flex flex-col justify-between w-full;
+}
+
+.bottomsheet-close-container {
+    @apply flex flex-row justify-end items-center;
+}
+
+.bottomsheet-close {
+    margin-left: auto;
+}
+
+.bottomsheet-tab-container {
+    display: flex;
+    flex-direction: row;
+
+    @apply w-full items-center justify-between;
+}
+
+.bottomsheet-tab {
+    flex: 1;
+    text-align: center;
+    padding: 8px;
+}
+
+.bottomsheet-tab > p {
+    @apply text-body1 font-semibold;
+}
+
+.bottomsheet-tab.active {
+    border-bottom: 3px solid #f37a51;
+}
+
+.bottomsheet-tab.active > p {
+    @apply font-bold;
+}

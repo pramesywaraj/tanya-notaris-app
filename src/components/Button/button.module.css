@@ -1,0 +1,110 @@
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    @apply focus:outline-none;
+}
+
+/* NORMAL BUTTON */
+.btn-normal {
+    padding: 12px 1rem;
+    border-radius: 12px;
+
+    @apply bg-primary text-white text-body font-semibold hover:bg-darkPrimary transition-colors;
+}
+
+/* ICON BUTTON */
+.btn-iconed {
+    padding: 12px 1rem;
+    border-radius: 12px;
+
+    @apply bg-transparent;
+}
+
+.btn-search {
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+
+    @apply bg-primary text-white hover:bg-darkPrimary transition-colors;
+}
+
+/* FILTER BUTTON */
+
+/* Bottom Filter */
+.bottomfilter-backdrop {
+    position: fixed;
+    z-index: 1;
+    background-color: #333333;
+    height: 100vh;
+    width: 100vw;
+
+    top: 0;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    visibility: hidden;
+    opacity: 0;
+
+    -webkit-transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+}
+
+.bottomfilter-backdrop.active {
+    visibility: visible;
+    opacity: 0.7;
+
+    transition-delay: 0s;
+}
+
+.bottomfilter-container {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    overflow-y: hidden;
+    height: 80%;
+    width: 0;
+    max-height: 1000px;
+
+    padding: 1rem;
+
+    transform: translateY(200%);
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+
+    @apply flex flex-col w-full bg-white;
+}
+
+.bottomfilter-container.active {
+    transform: translateY(50%);
+}
+
+.bottomfilter-header {
+    @apply flex flex-row justify-center;
+}
+
+.bottomfilter-header h3 {
+    @apply font-bold pt-16 pb-14;
+}
+
+.bottomfilter-content {
+    @apply flex flex-col justify-between w-full;
+}
+
+.bottomfilter-close {
+    position: absolute;
+    top: 26px;
+    right: 18px;
+    width: 26px;
+    height: 26px;
+}
