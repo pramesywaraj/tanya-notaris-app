@@ -1,5 +1,6 @@
-import Highlight from "components/Artikel/Highlight";
+import HighlightArticle from "components/Artikel/HighlightArticle";
 import NewArticles from "components/Artikel/NewArticles";
 import PopularArticles from "components/Artikel/PopularArticles";
+import SearchArticle from "components/Artikel/SearchArticle";
 
-export { Highlight, NewArticles, PopularArticles };
+export { HighlightArticle, NewArticles, PopularArticles, SearchArticle };

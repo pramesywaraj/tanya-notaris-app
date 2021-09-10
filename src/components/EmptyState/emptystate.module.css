@@ -1,0 +1,4 @@
+.empty-state-container {
+    min-height: 100px;
+    @apply w-full flex items-center justify-center;
+}

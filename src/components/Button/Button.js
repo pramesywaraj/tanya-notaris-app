@@ -1,6 +1,6 @@
 import "components/Button/button.module.css";
 
-export default function Button({ onClick, children, styles, classNames, type }) {
+export default function Button({ onClick, children, styles, classNames, type, disabled }) {
     const classes = classNames ? classNames : "";
 
     return (
@@ -9,6 +9,7 @@ export default function Button({ onClick, children, styles, classNames, type }) 
             onClick={onClick}
             style={{ ...styles }}
             type={type || "button"}
+            disabled={disabled}
         >
             {children}
         </button>

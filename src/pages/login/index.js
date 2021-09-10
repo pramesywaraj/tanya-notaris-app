@@ -1,28 +1,50 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import usePost from "hooks/usePost";
+import { useRouter } from "next/router";
+import { useAuthContext } from "contexts/AuthContext";
 
 import styles from "styles/login.module.css";
 
 import { Button } from "components/Button";
 import { TextInput } from "components/Input";
 
-export default function Login() {
-    const [isRegister, setIsRegister] = useState(false);
-    const [loginPayload, setLoginPayload] = useState({
-        email: "",
-        password: "",
-    });
+import { LOGGED_IN } from "constants/reduxConst";
 
-    const [registerPayload, setRegisterPayload] = useState({
-        name: "",
-        email: "",
-        password: "",
-    });
+const loginDefaultVal = {
+    email: "",
+    password: "",
+};
+
+const registerDefaultVal = {
+    name: "",
+    email: "",
+    password: "",
+};
+
+export default function Login() {
+    const { dispatch } = useAuthContext();
+    const [isRegister, setIsRegister] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [formError, setFormErrorMessage] = useState({});
+    const [loginPayload, setLoginPayload] = useState(loginDefaultVal);
+    const [registerPayload, setRegisterPayload] = useState(registerDefaultVal);
+    const [successMessage, setSuccessMessage] = useState("");
+
+    const { data, errors, isRequesting, handlePost } = usePost();
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (errors) setIsError(true);
+    }, [errors]);
 
     const handleChangeValue = (event) => {
         const { name, value } = event.target;
 
         event.preventDefault();
+
+        checkRegex(name, value);
 
         if (isRegister) {
             setRegisterPayload({
@@ -39,25 +61,87 @@ export default function Login() {
         });
     };
 
-    const handleSubmitLogin = (event) => {
-        event.preventDefault();
+    const checkRegex = (name, value) => {
+        const tempErr = { ...formError };
 
-        console.log("Check Login", event);
+        switch (name) {
+            case "email": {
+                const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+
+                if (!emailRegex.test(value)) tempErr[name] = "Email tidak sesuai dengan format.";
+                if (emailRegex.test(value)) delete tempErr[name];
+
+                break;
+            }
+            case "password": {
+                if (value.length < 8) tempErr[name] = "Minimum 8 karakter.";
+                if (value.length >= 8) delete tempErr[name];
+
+                break;
+            }
+            case "name": {
+                if (value.length < 2) tempErr[name] = "Minimum 2 karakter.";
+                if (value.length >= 2) delete tempErr[name];
+
+                break;
+            }
+            default:
+                break;
+        }
+
+        setFormErrorMessage(tempErr);
     };
 
+    // Login
+    const handleSubmitLogin = (event) => {
+        event.preventDefault();
+        if (Object.entries(formError).length > 0) return false;
+
+        handlePost("v1/auth/login", loginPayload, {}, async (data) => {
+            setSuccessMessage("Anda berhasil login.");
+
+            const { user, access_token, token_type } = data;
+
+            await dispatch({
+                type: LOGGED_IN,
+                payload: {
+                    userData: { ...user },
+                    token: `${token_type} ${access_token}`,
+                },
+            });
+
+            setTimeout(() => {
+                router.push("/");
+            }, 2000);
+        });
+    };
+
+    // Register
     const handleSubmitRegister = (event) => {
         event.preventDefault();
+        if (Object.entries(formError).length > 0) return false;
 
-        console.log("Check Register", event);
+        handlePost("v1/auth/register", registerPayload, {}, () => {
+            setSuccessMessage("Akun Anda telah berhasil terdaftar, silahkan masuk.");
+            handleChangesScreen();
+        });
     };
 
     const handleChangesScreen = () => {
+        if (isRegister) setRegisterPayload(registerDefaultVal);
+        if (!isRegister) setLoginPayload(loginDefaultVal);
+
         setIsRegister(!isRegister);
+        setIsError(false);
+        setFormErrorMessage({});
     };
 
+    // Login
     const renderLogin = (
         <div className={styles["form-wrapper"]}>
             <h2>Sign In,</h2>
+            {isError && errors && <p className={styles["error-text"]}>{errors}</p>}
+            {successMessage && <p className={styles["success-text"]}>{successMessage}</p>}
             <form onSubmit={handleSubmitLogin} className="form-container">
                 <TextInput
                     label="Email"
@@ -67,6 +151,7 @@ export default function Login() {
                     value={loginPayload.email}
                     onChange={handleChangeValue}
                     required
+                    error={formError["email"]}
                 />
                 <TextInput
                     containerStyle={{ marginTop: 16 }}
@@ -77,32 +162,44 @@ export default function Login() {
                     value={loginPayload.password}
                     onChange={handleChangeValue}
                     required
+                    error={formError["password"]}
                 />
                 <Button
+                    disabled={
+                        Object.entries(formError).length > 0 ||
+                        !loginPayload.email ||
+                        !loginPayload.password
+                    }
+                    classNames="form-button"
                     styles={{ width: "100%", maxWidth: 445, marginTop: 32, borderRadius: 8 }}
                     type="submit"
                 >
-                    Masuk
+                    {isRequesting ? "Tunggu sebentar..." : "Masuk"}
                 </Button>
             </form>
             <div className="login-notlogged-container">
                 <p className="font-body">
                     Belum punya akun?{" "}
-                    <a
+                    <button
+                        tabIndex={0}
                         style={{ cursor: "pointer" }}
                         onClick={handleChangesScreen}
                         className="text-primary underline font-semibold"
+                        onKeyPress={() => { }}
                     >
                         Daftar
-                    </a>
+                    </button>
                 </p>
             </div>
         </div>
     );
 
+    // Register
     const renderRegister = (
         <div className={styles["form-wrapper"]}>
             <h2>Sign Up,</h2>
+            {isError && errors && <p className={styles["error-text"]}>{errors}</p>}
+            {successMessage && <p className={styles["success-text"]}>{successMessage}</p>}
             <form onSubmit={handleSubmitRegister} className={styles["form-container"]}>
                 <TextInput
                     label="Nama Lengkap"
@@ -112,6 +209,7 @@ export default function Login() {
                     value={registerPayload.name}
                     onChange={handleChangeValue}
                     required
+                    error={formError["name"]}
                 />
                 <TextInput
                     containerStyle={{ marginTop: 16 }}
@@ -122,6 +220,7 @@ export default function Login() {
                     value={registerPayload.email}
                     onChange={handleChangeValue}
                     required
+                    error={formError["email"]}
                 />
                 <TextInput
                     containerStyle={{ marginTop: 16 }}
@@ -132,24 +231,34 @@ export default function Login() {
                     value={registerPayload.password}
                     onChange={handleChangeValue}
                     required
+                    error={formError["password"]}
                 />
                 <Button
+                    disabled={
+                        Object.entries(formError).length > 0 ||
+                        !registerPayload.email ||
+                        !registerPayload.password ||
+                        !registerPayload.name
+                    }
+                    classNames="form-button"
                     styles={{ width: "100%", maxWidth: 445, marginTop: 32, borderRadius: 8 }}
                     type="submit"
                 >
-                    Daftar
+                    {isRequesting ? "Tunggu sebentar..." : "Daftar"}
                 </Button>
             </form>
             <div className={styles["login-notlogged-container"]}>
                 <p className="font-body">
                     Sudah punya akun?{" "}
-                    <a
+                    <button
+                        tabIndex={0}
                         style={{ cursor: "pointer" }}
                         onClick={handleChangesScreen}
                         className="text-primary underline font-semibold"
+                        onKeyPress={() => { }}
                     >
                         Masuk
-                    </a>
+                    </button>
                 </p>
             </div>
         </div>

@@ -11,7 +11,6 @@
 /* Page */
 @import "./login.module.css";
 @import "./articles.module.css";
-@import "./detail.module.css";
 @import "./faq.module.css";
 
 @import "../components/Artikel/articles.module.css";

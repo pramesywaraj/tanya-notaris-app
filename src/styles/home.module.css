@@ -5,7 +5,6 @@
 
 .home-section {
     position: relative;
-
     width: 100%;
 }
 
@@ -16,24 +15,35 @@
 /* Home Info */
 
 .home-info-section {
-    display: flex;
-
-    align-items: center;
-
-    min-height: 90vh;
     width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
 }
 
 .home-info-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.home-info-banner-img {
+    width: 100%;
+    min-height: 20vw;
+    min-height: 110px;
+    position: relative;
+
+    display: flex !important;
 }
 
 /*  */
 
 .home-offer-container {
     /* Temporary */
-    height: 500px;
+}
+
+.home-offer-carousel-container {
+    display: flex;
+    flex-direction: row;
 }
 
 /* About Section */
@@ -103,7 +113,7 @@
 
 /* Achievements section */
 .home-achievements-section {
-    margin: 40px auto;
+    /* margin: 40px auto; */
     background-color: rgba(243, 122, 81, 0.05);
 
     display: flex;
@@ -112,7 +122,7 @@
 
     row-gap: 16px;
 
-    @apply px-4 py-8;
+    @apply px-4 py-8 my-20;
 }
 
 .home-achievements-items {
@@ -185,12 +195,22 @@
     @apply grid grid-cols-2 gap-x-4 gap-y-4;
 }
 
+@media screen(tablet) {
+    .home-info-banner-img {
+        min-height: 350px;
+    }
+}
+
 @media screen(lgTablet) {
     .home-page-top::before {
         content: url("/vector_home_bg_1.svg");
         position: absolute;
         left: 0;
         top: 0;
+    }
+
+    .home-info-banner-img {
+        min-height: 350px;
     }
 
     /* About */

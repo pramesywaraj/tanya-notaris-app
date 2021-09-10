@@ -1,99 +1,179 @@
-import { useState , useEffect } from "react";
-
-import { BannerService } from "components/Banner"
-import { CardDetailServices, CardFooterBenefit, CardPlan, CardSocialMedia } from "components/Card";
+import { useState, useEffect, useRef } from "react";
 import useRequest from "hooks/useRequest";
+import usePost from "hooks/usePost";
 import { useRouter } from "next/router";
+import { useAuthContext } from "contexts/AuthContext";
+import { getCookies } from "Utils";
 
 import styles from "styles/service.module.css";
+import { SCREEN_LOADER_SHOW, SCREEN_LOADER_HIDE } from "constants/reduxConst";
 
+import { BannerService } from "components/Banner";
+import { CardDetailServices, CardFooterBenefit, CardPlan, CardSocialMedia } from "components/Card";
+import { SkeletonLoader } from "components/Loader";
+
+const planText = {
+    STARTER_PLAN: "Paket Pemula",
+    ENTERPRISE_PLAN: "Paket Perusahaan",
+};
 
 export default function Detail() {
-    const banner = "Pendirian PT";
-
-    const router = useRouter()
-
-    const [serviceId, setServiceId] = useState("")
-    const [isPopular, setPopular] = useState(false);
+    const router = useRouter();
+    const { state, dispatch } = useAuthContext();
+    const [serviceId, setServiceId] = useState("");
+    const firstLoad = useRef(true);
 
     const {
         data: detailData,
         error: detailError,
         isLoadingData: isLoadingFetchingDetail,
-    } = useRequest(`v1/products/${serviceId}`);
+    } = useRequest(`v1/products/${serviceId || router.query.id}`);
+
+    const {
+        data: generalData,
+        error: generalError,
+        isLoadingData: isLoadingFetchingGeneral,
+    } = useRequest(`v1/settings/general`);
+
+    const { data: postData, errors: postErrors, isRequesting: isPosting, handlePost } = usePost();
 
     useEffect(() => {
-        if (!router.query.id) {
-            return false;
+        if (router.asPath !== router.route) {
+            const { id } = router.query;
+            setServiceId(id);
         }
-        setServiceId(router.query.id)
-       
-    }, [router.query.id])
+    }, [router]);
 
+    useEffect(() => {
+        if (!firstLoad.current && postErrors) {
+            dispatch({ type: SCREEN_LOADER_HIDE });
+            alert(postErrors);
+        }
+    }, [postErrors]);
+
+    const handleReserveService = async (item) => {
+        if (!item) return false;
+
+        try {
+            const { type, price } = item;
+            const { userData } = state;
+            const { title } = detailData.data;
+            const userToken = getCookies()["access_token"];
+
+            await dispatch({ type: SCREEN_LOADER_SHOW });
+
+            if (!userToken || !userData) throw new Error("UN_LOGGED_IN");
+
+            const reqPayload = {
+                name: title || "",
+                type,
+                price,
+                user_name: userData?.name || "",
+                user_email: userData?.email || "",
+                user_phone_number: null,
+            };
+
+            const headers = {
+                Authorization: userToken,
+            };
+
+            const csPhoneNumber = generalData?.data["general.phone"] || "+62";
+
+            handlePost("v1/orders", reqPayload, { headers }, () => {
+                const { type } = item;
+                const message = `Halo Tanya Notaris, Saya ingin bertanya terkait ${title} ini untuk ${planText[type]}.`;
+                const redirectUrl = `https://api.whatsapp.com/send/?phone=${csPhoneNumber}&text=${message}&app_absent=0`;
+
+                router.push({ pathname: "/redirect/[redirectUrl]", query: { redirectUrl } });
+
+                dispatch({ type: SCREEN_LOADER_HIDE });
+            });
+        } catch (e) {
+            if (e.message === "UN_LOGGED_IN") {
+                alert("Anda diharuskan login terlebih dahulu untuk memesan suatu layanan.");
+
+                router.push({
+                    pathname: "/redirect/[redirectUrl]",
+                    query: { redirectUrl: "/login" },
+                });
+            }
+
+            dispatch({ type: SCREEN_LOADER_HIDE });
+        }
+    };
 
     const renderContents = () => (
-        <>
-            <div className={styles["information-content"]}>
-                {detailData?.description && detailData?.description !== "-" &&
-                    <DescriptionCard
-                        data={detailData.description}
-                    />
-                }
+        <div className={styles["information-content"]}>
+            <CardDetailServices
+                titleCard="Deskripsi Layanan"
+                data={detailData?.data?.description || ""}
+                isLoading={isLoadingFetchingDetail}
+            />
 
-                    <CardDetailServices 
-                        titleCard = "Detail Layanan"
-                        data = '<p>Kontrak Hukum dapat membantu Anda untuk mendirikan badan usaha secara mudah dan cepat berikut perizinan umum yang diperlukan, yaitu Nomor Induk Berusaha (NIB), Izin Lokasi dan Izin Usaha.</p>'
-                    />
+            <CardDetailServices
+                titleCard="Disclaimer"
+                data={detailData?.data?.disclaimer || ""}
+                containerStyle={{ padding: "1rem", background: "rgba(243, 122, 81, 0.05)" }}
+                titleStyle={{ fontSize: "16px" }}
+                isLoading={isLoadingFetchingDetail}
+            />
 
-                    <CardDetailServices 
-                        titleCard = "Disclaimer"
-                        data = '<p>Pada beberapa bidang usaha, Izin OSS akan tertera belum efektif/belum memenuhi komitmen. Kami hanya melakukan pengurusan sampai tingkat pendaftaran dan penerbitan di Lembaga OSS saja. Tidak termasuk pengefektifan/pemenuhan komitmen perizinan.<br/><br/>Layanan ini akan mencakup penerbitan Akta, SK Kemenkumham (*2 hari dari dokumen lengkap akan di keluarkan akta dan SK digital), NIB, Izin Lokasi dan Izin Usaha melalui proses Online Single Submission (OSS).<br/><br/>*SLA sesuai tertera dengan kondisi semua dokumen kami terima lengkap, tidak ada kendala teknis, dan prosedur tepat waktu dilaksanakan oleh klien.</p>'
-                        containerStyle = {{padding: "1rem", background: "rgb(235, 235, 235)"}}
-                        titleStyle = {{ fontSize: "14px" }}
-                    />
+            <CardDetailServices
+                titleCard="Persyaratan"
+                data={detailData?.data?.requirement || ""}
+                isLoading={isLoadingFetchingDetail}
+            />
 
-                    <CardDetailServices 
-                        titleCard = "Persyaratan"
-                        data = '<p>Kontrak Hukum dapat membantu Anda untuk mendirikan badan usaha secara mudah dan cepat berikut perizinan umum yang diperlukan, yaitu Nomor Induk Berusaha (NIB), Izin Lokasi dan Izin Usaha.</p>'
-                    />
+            <CardDetailServices
+                titleCard="Tahapan Pengerjaan"
+                data={detailData?.data?.work_stage || ""}
+                isLoading={isLoadingFetchingDetail}
+            />
+        </div>
+    );
 
-                    <CardDetailServices 
-                        titleCard = "Tahapan Pengerjaan"
-                        data = '<p>Kontrak Hukum dapat membantu Anda untuk mendirikan badan usaha secara mudah dan cepat berikut perizinan umum yang diperlukan, yaitu Nomor Induk Berusaha (NIB), Izin Lokasi dan Izin Usaha.</p>'
-                    />
+    const renderPlans = () => {
+        if (
+            !isLoadingFetchingDetail &&
+            detailData?.data?.plans &&
+            detailData?.data?.plans.length === 0
+        )
+            return null;
+
+        const skeleton = (
+            <div style={{ height: 360, width: 350 }}>
+                <SkeletonLoader height={"100%"} />
             </div>
-        </>
-    );
+        );
 
-    const renderPlans = () => (
-        <>
-            {detailData?.plans &&
-                detailData.plans.map((plan, index) => (
-                    <CardPlan 
-                        data={plan}
-                        containerStyle={{ backgroundColor: plan.type == "ENTERPRISE_PLAN" ? "#333333" : "C7C7C7" }}
-                        title={{title: plan.type == "ENTERPRISE_PLAN" ? "Enterprise Plan" : "Starter Plan"}}
-                    />
-                ))
-                
-            }
-        </>
-    );
+        return (
+            <div className={styles["payment-plan-container"]}>
+                {!isLoadingFetchingDetail &&
+                    (detailData?.data?.plans || []).map((plan, index) => (
+                        <CardPlan
+                            key={`plan-${index + 1}`}
+                            data={plan}
+                            onReserve={() => handleReserveService(plan)}
+                        />
+                    ))}
 
+                {isLoadingFetchingDetail && skeleton}
+            </div>
+        );
+    };
 
     return (
-        <>
-            <BannerService name={banner} />
+        <section>
+            <BannerService
+                name={detailData?.data?.title || ""}
+                isLoading={isLoadingFetchingDetail}
+            />
+            {renderPlans()}
+            {renderContents()}
 
-            {/* Payment Plan */}
-            <div className={styles["payment-plan-container"]}>
-                {renderPlans()}
-            </div>
-            {renderContents()} 
-
-            <CardSocialMedia title = "Bagikan Layanan" linkUrl={router.asPath}/>
+            <CardSocialMedia title="Bagikan Layanan" linkUrl={router.asPath} />
 
             <CardFooterBenefit />
-        </>
-    )
+        </section>
+    );
 }

@@ -11,7 +11,7 @@
     border: none;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    background-color: rgb(235, 235, 235);
+    background-color: rgba(243, 122, 81, 0.05);
 }
 
 .question-content a {
@@ -30,9 +30,14 @@
 
 .question-answer.active {
     visibility: visible;
-    height: 120px;
     padding: 12px 12px;
-    background-color: rgb(235, 235, 235);
+
+    height: fit-content;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    overflow-y: auto;
+    background-color: rgba(243, 122, 81, 0.05);
 
     @apply text-left text-small font-normal;
 }

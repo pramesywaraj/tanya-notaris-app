@@ -11,22 +11,33 @@ import Pagination from "components/Pagination";
 import { FilterBottomSheet } from "components/BottomSheet";
 import { CardFilter } from "components/Card";
 import { SkeletonLoader } from "components/Loader";
+import { SimpleEmptyState } from "components/EmptyState";
 
-import { parseCurrency } from "Utils";
+import { parseCurrency, imageLoader } from "Utils";
 import IconPendirianPT from "assets/icon-pendirian-pt.svg";
 
 const FILTER_TYPE = "FILTER/TYPE";
 const FILTER_INDUSTRY = "FILTER/INDUSTRY";
 
-function ServiceCard({ data, containerStyle, isLoading , handleNavigateToDetail }) {
-    const { title, description, price, icon } = data;
+function ServiceCard({ data, containerStyle, isLoading, handleNavigateToDetail }) {
+    const { title, short_description, price, icon } = data;
 
     return (
-        <div style={{ ...containerStyle }} className={styles["service-card-container"]} onClick={handleNavigateToDetail}>
+        <div
+            style={{ ...containerStyle }}
+            className={styles["service-card-container"]}
+            onClick={handleNavigateToDetail}
+        >
             {isLoading && <SkeletonLoader circle height={64} width={64} />}
             {!isLoading && (
                 <div className={styles["service-card-image-container"]}>
-                    <Image src={icon || IconPendirianPT} alt={title} objectFit="contain" />
+                    <Image
+                        loader={imageLoader}
+                        src={icon?.url || IconPendirianPT}
+                        alt={title}
+                        objectFit="contain"
+                        layout={icon?.url && "fill"}
+                    />
                 </div>
             )}
 
@@ -38,7 +49,7 @@ function ServiceCard({ data, containerStyle, isLoading , handleNavigateToDetail 
                     </p>
                     <p id={styles["description"]}>
                         {isLoading && <SkeletonLoader height={15} />}
-                        {!isLoading && description}
+                        {!isLoading && short_description}
                     </p>
                 </div>
 
@@ -49,7 +60,7 @@ function ServiceCard({ data, containerStyle, isLoading , handleNavigateToDetail 
                     </p>
                     <p id={styles["price"]}>
                         {isLoading && <SkeletonLoader width={150} height={20} />}
-                        {!isLoading && parseCurrency(price)}
+                        {!isLoading && parseCurrency(Number(price))}
                     </p>
                 </div>
             </div>
@@ -66,6 +77,7 @@ export default function ServicePage() {
     const [filterIndustries, setFilterIndustries] = useState([]);
     const [selectedIndustries, setSelectedIndustries] = useState(null);
     const [queryParams, setQueryParams] = useState("");
+
     const firstLoad = useRef(true);
 
     const router = useRouter();
@@ -176,11 +188,15 @@ export default function ServicePage() {
                 />
             </div>
             <div className={styles["service-list-container"]}>
+                {!isLoadServices && services.length === 0 && (
+                    <SimpleEmptyState text="Tidak ada layanan untuk ditampilkan." />
+                )}
+
                 {!isLoadServices && services
                     ? services.map((service, index) => (
                         <ServiceCard
                             key={`service-${index + 1}`}
-                            data={service || {}}
+                            data={service}
                             containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
                             handleNavigateToDetail={() => handleNavigateToDetail(service.id)}
                         />
@@ -191,7 +207,6 @@ export default function ServicePage() {
                             data={{}}
                             containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
                             isLoading
-                            
                         />
                     ))}
                 {paginationItems && paginationItems.length > 0 && (
@@ -208,7 +223,7 @@ export default function ServicePage() {
             <div className={styles["service-title-container"]}>
                 <h1>Layanan Kami</h1>
                 <Search
-                    classNames="w-full mt-4 tablet:w-auto lgTablet:"
+                    classNames="w-full mt-4 tablet:w-auto lgTablet:mt-0"
                     onSearch={handleChangeSearchQuery}
                     onReset={() => setQueryParams("")}
                 />
@@ -222,7 +237,24 @@ export default function ServicePage() {
             </button>
             <FilterBottomSheet
                 isShow={isShowFilter}
+                isLoading={isLoadingFetchingTypes || isLoadingFetchingIndustries}
                 handleDisplay={() => handleToggleFilter(false)}
+                handleChangeOption={(value, id) => handleChangeFilterValue(value, id)}
+                handleSelectAll={handleChangeFilterValue}
+                categories={[
+                    {
+                        id: FILTER_TYPE,
+                        title: "Kategori",
+                        name: "category",
+                        options: [...filterCategories],
+                    },
+                    {
+                        id: FILTER_INDUSTRY,
+                        title: "Industri",
+                        name: "industry",
+                        options: [...filterIndustries],
+                    },
+                ]}
             />
         </section>
     );

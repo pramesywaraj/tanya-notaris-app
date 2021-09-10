@@ -4,6 +4,7 @@
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { useAuthContext } from "contexts/AuthContext";
 
 import NavbarLogo from "assets/tanya-notaris-navbar-logo.svg";
 import CloseIcon from "assets/cross.svg";
@@ -61,12 +62,18 @@ function SidemenuNav({ handleNavigate }) {
     );
 }
 
-export default function Sidemenu({ handleSideMenu, isShowSideMenu }) {
+export default function Sidemenu({ isShowSideMenu, handleSideMenu, handleLogout }) {
+    const { state } = useAuthContext();
     const router = useRouter();
     const activeClass = isShowSideMenu ? "active" : "";
 
     const handleNavigate = (e, link) => {
         e.preventDefault();
+
+        if (handleLogout && state.isLoggedIn) {
+            handleLogout();
+            return;
+        }
 
         handleSideMenu();
         router.push(link);
@@ -84,20 +91,22 @@ export default function Sidemenu({ handleSideMenu, isShowSideMenu }) {
                             onClick={(e) => handleNavigate(e, "/login")}
                             styles={{ width: "100%" }}
                         >
-                            Masuk
+                            {state.isLoggedIn ? "Keluar" : "Masuk"}
                         </Button>
-                        <Button
-                            onClick={(e) => handleNavigate(e, "/login")}
-                            styles={{
-                                width: "100%",
-                                backgroundColor: "transparent",
-                                border: `1px solid ${colors.primary}`,
-                                color: colors.primary,
-                                marginTop: "14px",
-                            }}
-                        >
-                            Daftar
-                        </Button>
+                        {!state.isLoggedIn && (
+                            <Button
+                                onClick={(e) => handleNavigate(e, "/login")}
+                                styles={{
+                                    width: "100%",
+                                    backgroundColor: "transparent",
+                                    border: `1px solid ${colors.primary}`,
+                                    color: colors.primary,
+                                    marginTop: "14px",
+                                }}
+                            >
+                                Daftar
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,9 +1,13 @@
 import Image from "next/image";
-import "components/Button/button.module.css";
+import style from "components/Button/button.module.css";
 
-export default function IconButton({ onClick, styles, src, alt }) {
+export default function IconButton({ onClick, styles, src, alt, className }) {
     return (
-        <button className="btn btn-iconed" onClick={onClick} style={{ ...styles }}>
+        <button
+            className={`${style["btn"]} ${style["btn-iconed"]} ${className || ""}`}
+            onClick={onClick}
+            style={{ ...styles }}
+        >
             <Image src={src} alt={alt} objectFit="contain" />
         </button>
     );

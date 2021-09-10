@@ -43,11 +43,12 @@ const makePaginationLayout = (currentPage, paginationArray = []) => {
 
 const usePagination = (endpoint, queryParams = "") => {
     const [selectedPage, setSelectedPage] = useState(1);
-    const isPaged = (!queryParams && `&page=${selectedPage}`) || "";
+    const isPaged = !queryParams ? `&page=${selectedPage}` : "";
 
     const { data, error, isValidating } = useSWR(
         `${apiBaseURL}/${endpoint}?${queryParams}per_page=${PAGE_SIZE}${isPaged}`,
-        fetcher
+        fetcher,
+        { refreshInterval: 600000, revalidateOnFocus: false }
     );
 
     const setPage = (page) => {

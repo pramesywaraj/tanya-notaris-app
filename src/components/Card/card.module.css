@@ -35,6 +35,8 @@
 
 .card-content-container #quotes-text {
     margin-bottom: 8;
+    overflow: auto;
+    max-height: 100px;
     @apply font-semibold text-body;
 }
 
@@ -65,12 +67,19 @@
 
 /* Card Small Article */
 .card-small-article-container {
+    cursor: pointer;
     @apply flex flex-col gap-y-1;
 }
 
 .card-small-article-img {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 200px;
+
+    position: relative;
+}
+
+.card-small-article-img img {
+    border-radius: 8px;
 }
 
 /* Card Filter */
@@ -99,8 +108,10 @@
     padding: 16px 24px 24px 24px;
     border-radius: 16px;
     max-width: 350px;
+    height: 100%;
+    max-height: 400px;
     width: 100%;
-    
+
     @apply flex-col text-white;
 }
 
@@ -112,7 +123,7 @@
     @apply flex flex-col;
 }
 
-.card-plan-body small{
+.card-plan-body small {
     font-size: 14px;
 }
 
@@ -127,7 +138,9 @@
     padding: 20px 40px;
     margin: 0px -14px;
 
-    @apply flex gap-x-14 bg-light py-10;
+    background-color: rgba(243, 122, 81, 0.05);
+
+    @apply flex gap-x-14 py-10;
 }
 
 .card-benefit-image {
@@ -141,6 +154,80 @@
 .card-benefit-list {
     @apply flex gap-x-4 mb-5 items-start text-body font-semibold;
 }
+
+/* Card Main Service */
+.card-home-main-service {
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px 16px;
+    height: 272px;
+    border-radius: 12px;
+
+    @apply text-white;
+}
+
+.orange {
+    @apply bg-primary;
+}
+
+.purple {
+    @apply bg-secondary;
+}
+
+.card-home-main-service-content {
+    flex: 3;
+}
+
+.card-home-main-service-content h2 {
+    margin: 12px 0;
+    @apply text-header5 font-bold;
+}
+
+.card-home-main-service-content p {
+    margin: 12px 0;
+}
+
+.card-home-main-service-button-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Card Detail Service */
+.card-detail-service-container {
+    margin: 24px 0;
+}
+
+.card-detail-service-container > h1,
+.card-detail-service-container > h2,
+.card-detail-service-container > h3,
+.card-detail-service-container > h4,
+.card-detail-service-container > h5,
+.card-detail-service-container > h6 {
+    margin-bottom: 2vh;
+    line-height: 32px;
+
+    @apply text-black;
+}
+
+.card-detail-service-container > ol,
+.card-detail-service-container > ul {
+    padding-left: 20px;
+    @apply font-normal text-black;
+}
+
+.card-detail-service-container > ol {
+    list-style: decimal;
+}
+
+.card-detail-service-container > p {
+    @apply font-normal text-body text-black;
+}
+
+/* .card-detail-service-container > ol {
+    list-style-type:
+} */
 
 @media screen(tablet) {
     .card-benefit-container {

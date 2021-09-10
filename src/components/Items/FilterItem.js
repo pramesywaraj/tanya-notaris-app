@@ -6,12 +6,11 @@ import { RadioInput } from "components/Input";
 
 export default function FilterItem({ handleChange, isBordered, label, value, name, checked }) {
     const isBorderedStyle = isBordered ? styles["bordered"] : styles["borderless"];
-
     return (
         <div
+            aria-checked={checked}
             role="radio"
             className={`${styles["filter-item-container"]} ${isBorderedStyle}`}
-            onClick={handleChange}
         >
             <RadioInput
                 label={label}
