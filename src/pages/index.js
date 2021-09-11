@@ -463,9 +463,7 @@ export default function Home() {
     };
 
     return (
-        <div
-            className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]} overflow-hidden`}
-        >
+        <div className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]}`}>
             <HomeInformationSection handleMoveToScreen={handleMoveToScreen} />
             <MainServiceSection handleMoveToScreen={handleMoveToScreen} />
             <AboutSection />
