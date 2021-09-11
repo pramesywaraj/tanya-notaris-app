@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import "components/Items/items.module.css";
 import { useState } from "react";
 

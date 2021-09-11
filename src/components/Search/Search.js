@@ -16,7 +16,7 @@ export default function Search({ classNames, onSearch, onReset, styles }) {
 
     const handlePressKey = (e) => {
         if (e.key === "Enter") onSearch(searchText);
-    }
+    };
 
     return (
         <div className={`search-container ${classNames}`} style={{ ...styles }}>

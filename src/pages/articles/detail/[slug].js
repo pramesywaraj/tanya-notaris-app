@@ -83,23 +83,23 @@ export default function ArticleDetailPage() {
                     {isLoadingData ? (
                         <SkeletonLoader height={20} />
                     ) : (
-                            <p>{detail.data?.published_at}</p>
-                        )}
+                        <p>{detail.data?.published_at}</p>
+                    )}
                 </div>
                 <div className={style["articles-detail-image"]}>
                     {isLoadingData ? (
                         <SkeletonLoader height={"100%"} />
                     ) : (
-                            <Image
-                                placeholder="blur"
-                                blurDataURL={detail.data?.featured_image_url || ""}
-                                loader={imageLoader}
-                                src={detail.data?.featured_image_url || ""}
-                                alt={detail.data?.title || ""}
-                                layout="fill"
-                                objectFit="cover"
-                            />
-                        )}
+                        <Image
+                            placeholder="blur"
+                            blurDataURL={detail.data?.featured_image_url || ""}
+                            loader={imageLoader}
+                            src={detail.data?.featured_image_url || ""}
+                            alt={detail.data?.title || ""}
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    )}
                 </div>
                 <div className="mb-20">{detail?.data?.content && parse(detail.data.content)}</div>
             </div>

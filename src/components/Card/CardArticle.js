@@ -20,7 +20,7 @@ export default function CardArticle({
             tabIndex={0}
             className={`${styles["card-small-article-container"]} ${containerClasses}`}
             onClick={onClick}
-            onKeyDown={() => { }}
+            onKeyDown={() => {}}
         >
             <div className={`${styles["card-small-article-img"]} ${imageClasses}`}>
                 {isLoading && <SkeletonLoader height={"100%"} />}

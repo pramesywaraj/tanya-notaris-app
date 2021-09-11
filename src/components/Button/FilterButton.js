@@ -7,7 +7,6 @@ import Image from "next/image";
 
 import CloseIcon from "assets/cross.svg";
 
-
 import "components/Button/button.module.css";
 import { FilterItem } from "components/Items";
 

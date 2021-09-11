@@ -58,7 +58,7 @@ function HomeInformationSection({ handleMoveToScreen }) {
                                 onClick={() => handleRedirect(item)}
                                 className={styles["home-info-banner-img"]}
                                 key={`banner-image-${index + 1}`}
-                                onKeyPress={() => { }}
+                                onKeyPress={() => {}}
                             >
                                 {isLoadingBanners && (
                                     <div style={{ flex: 1 }}>
@@ -463,7 +463,9 @@ export default function Home() {
     };
 
     return (
-        <div className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]} overflow-hidden`}>
+        <div
+            className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]} overflow-hidden`}
+        >
             <HomeInformationSection handleMoveToScreen={handleMoveToScreen} />
             <MainServiceSection handleMoveToScreen={handleMoveToScreen} />
             <AboutSection />

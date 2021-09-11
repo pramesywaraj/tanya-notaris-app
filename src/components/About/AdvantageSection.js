@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 
 export default function AdvantageSection() {
@@ -29,7 +30,7 @@ export default function AdvantageSection() {
     const renderContents = contents.map((content, index) => (
         <div key={`content-${index + 1}`} className="flex flex-row gap-x-16px">
             <div className="flex items-center justify-center w-icon h-icon bg-secondary rounded-2xl">
-                <img src={content.image_link} alt="Section Image" className="" />
+                <img src={content.image_link} alt="Section" className="" />
             </div>
             <div>
                 <h1 className="text-body font-bold text-secondary sm:text-header5">
@@ -57,7 +58,7 @@ export default function AdvantageSection() {
                 <div className="flex md:flex-1">
                     <img
                         src={img.image_link}
-                        alt="Section Image"
+                        alt="Section"
                         className="md:w-full object-cover rounded-2xl"
                     />
                 </div>
