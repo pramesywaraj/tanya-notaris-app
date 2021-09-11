@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment, useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import styles from "components/bottomsheet/bottomsheet.module.css";
+import styles from "components/BottomSheet/bottomsheet.module.css";
 
 import CloseIcon from "assets/cross.svg";
 
