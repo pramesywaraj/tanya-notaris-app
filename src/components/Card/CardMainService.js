@@ -8,8 +8,9 @@ export default function CardMainService({ data, onClick }) {
     const { title, caption, button_text, type, redirect_path } = data;
     return (
         <div
-            className={`${style["card-home-main-service"]} ${type === MAIN_SERVICE_TYPE_ORANGE ? style["orange"] : style["purple"]
-                }`}
+            className={`${style["card-home-main-service"]} ${
+                type === MAIN_SERVICE_TYPE_ORANGE ? style["orange"] : style["purple"]
+            }`}
             style={{ margin: "0 6px" }}
         >
             <div className={style["card-home-main-service-content"]}>

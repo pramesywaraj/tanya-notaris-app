@@ -185,7 +185,7 @@ export default function Login() {
                         style={{ cursor: "pointer" }}
                         onClick={handleChangesScreen}
                         className="text-primary underline font-semibold"
-                        onKeyPress={() => { }}
+                        onKeyPress={() => {}}
                     >
                         Daftar
                     </button>
@@ -255,7 +255,7 @@ export default function Login() {
                         style={{ cursor: "pointer" }}
                         onClick={handleChangesScreen}
                         className="text-primary underline font-semibold"
-                        onKeyPress={() => { }}
+                        onKeyPress={() => {}}
                     >
                         Masuk
                     </button>

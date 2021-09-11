@@ -28,7 +28,8 @@ function FilterHeader({ handleDisplay, handleSelectTab, selectedTab, tabs = [] }
             {tabs.length > 0 && (
                 <div className={styles["bottomsheet-tab-container"]}>
                     {tabs.map((item, index) => {
-                        const activeStyle = tabs.length > 1 && selectedTab?.id === item.id ? styles["active"] : "";
+                        const activeStyle =
+                            tabs.length > 1 && selectedTab?.id === item.id ? styles["active"] : "";
                         return (
                             <div
                                 key={`tab-${index + 1}`}

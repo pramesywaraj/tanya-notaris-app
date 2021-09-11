@@ -27,6 +27,9 @@ function ServiceCard({ data, containerStyle, isLoading, handleNavigateToDetail }
             style={{ ...containerStyle }}
             className={styles["service-card-container"]}
             onClick={handleNavigateToDetail}
+            role="menuitem"
+            onKeyDown={() => {}}
+            tabIndex={0}
         >
             {isLoading && <SkeletonLoader circle height={64} width={64} />}
             {!isLoading && (
@@ -194,21 +197,21 @@ export default function ServicePage() {
 
                 {!isLoadServices && services
                     ? services.map((service, index) => (
-                        <ServiceCard
-                            key={`service-${index + 1}`}
-                            data={service}
-                            containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
-                            handleNavigateToDetail={() => handleNavigateToDetail(service.id)}
-                        />
-                    ))
+                          <ServiceCard
+                              key={`service-${index + 1}`}
+                              data={service}
+                              containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
+                              handleNavigateToDetail={() => handleNavigateToDetail(service.id)}
+                          />
+                      ))
                     : [1, 2, 3, 4, 5, 6].map((_, index) => (
-                        <ServiceCard
-                            key={`service-${index + 1}`}
-                            data={{}}
-                            containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
-                            isLoading
-                        />
-                    ))}
+                          <ServiceCard
+                              key={`service-${index + 1}`}
+                              data={{}}
+                              containerStyle={{ marginTop: index === 0 ? 0 : 16 }}
+                              isLoading
+                          />
+                      ))}
                 {paginationItems && paginationItems.length > 0 && (
                     <div className={styles["service-pagination-container"]}>
                         <Pagination data={paginationItems} onPageChange={handleChangePage} />

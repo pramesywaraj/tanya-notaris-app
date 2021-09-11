@@ -21,11 +21,13 @@ export default function Carousel(props) {
         afterChange: (i) => {
             setActiveIndex(i);
         },
+        // eslint-disable-next-line react/display-name
         customPaging: (i) => {
             return (
                 <div
-                    className={`${styles["slider-dot"]} ${i === activeIndex ? styles["slider-dot-active"] : ""
-                        }`}
+                    className={`${styles["slider-dot"]} ${
+                        i === activeIndex ? styles["slider-dot-active"] : ""
+                    }`}
                 />
             );
         },
