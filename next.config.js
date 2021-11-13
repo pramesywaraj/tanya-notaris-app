@@ -1,8 +1,8 @@
-// const withTM = require("next-transpile-modules")(["react-markdown"]);
+const withTM = require("next-transpile-modules")(["react-markdown"]);
 
-module.exports = {
+module.exports = withTM({
     reactStrictMode: true,
     env: {
         API_BASE_URL: process.env.API_BASE_URL,
     },
-};
+});
