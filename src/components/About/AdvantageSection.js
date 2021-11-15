@@ -4,21 +4,33 @@ import { useState } from "react";
 export default function AdvantageSection() {
     const [contents, setContents] = useState([
         {
-            title: "Keahlian",
+            title: "Baru Merintis Usaha",
             description:
-                "Semua layanan kami dikerjakan dengan standar tinggi secara in-house oleh para ahli hukum dan notaris",
+                "Belum mengetahui tahap dan ketentuan legalitas usaha",
+            description1:
+                "Membuka usaha Bersama partner dan memerlukan panduan atau kepastian legalitas",
+            description2:
+                "Usaha anda baru masuk ke dalam kategori start-up",
             image_link: "/iconkeahlian.png",
         },
         {
-            title: "Reputasi",
+            title: "Sedang di Tahap Scale-up",
             description:
-                "Terpecaya oleh lebih dari 5.000 UMKM, Inkubator, Akselerator dan terpilih menjadi mitra Pemerintah.",
+                "Ingin mencari investor atau pendanaan dan memerlukan bantuan legal",
+            description1:
+                "Sudah mulai merekrut karyawan dalam jumlah banyak dan memerlukan bantuan legal terkait kontrak",
+            description2: 
+                "Mulai melakukan Kerjasama usaha skala besar dengan klien",
             image_link: "/icon-reputasi.png",
         },
         {
-            title: "Peduli",
+            title: "Membutuhkan efisiensi ",
             description:
-                "Kami sungguh peduli dengan keperluan anda, memberikan yang terbaik sudah menjadi DNA kami.",
+                "Perlu untuk menggunakan layanan legal tetapi tidak rutin",
+            description1:
+                "Perlu membuat perjanjian dan kontrak dalam skala besar",
+            description2:
+                "Membutuhkan tim legal outsorced",
             image_link: "/icon-peduli.png",
         },
     ]);
@@ -32,11 +44,13 @@ export default function AdvantageSection() {
             <div className="flex items-center justify-center w-icon h-icon bg-secondary rounded-2xl">
                 <img src={content.image_link} alt="Section" className="" />
             </div>
-            <div>
-                <h1 className="text-body font-bold text-secondary sm:text-header5">
+            <div className="flex-1">
+                <h1 className="text-body pb-2 font-bold text-secondary sm:text-header5">
                     {content.title}
                 </h1>
-                <p className="text-xsmall font-light sm:text-body">{content.description}</p>
+                <p className="text-xsmall pb-2 font-light sm:text-body">{content.description}</p>
+                <p className="text-xsmall pb-2 font-light sm:text-body">{content.description1}</p>
+                <p className="text-xsmall pb-2 font-light sm:text-body">{content.description2}</p>
             </div>
         </div>
     ));
@@ -46,10 +60,10 @@ export default function AdvantageSection() {
             <div className="flex flex-col gap-y-16px md:flex-row gap-x-16px">
                 <div className="flex flex-col gap-y-16px md:flex-1 lg:pr-100px lg:gap-y-32px">
                     <h1 className="text-header3 font-bold lg:text-header1">
-                        Kenapa Menggunakan Jasa Layanan Kami
+                        Kapan Anda Perlu Menggunakan Layanan Kami?
                     </h1>
                     <h2 className="text-body font-semibold text-mute lg:text-header5">
-                        Mengapa para perusahaan ternama, UMKM dan Startup menyukai kami
+                       
                     </h2>
 
                     {/* Render Content */}

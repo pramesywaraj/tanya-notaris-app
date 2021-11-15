@@ -198,24 +198,24 @@ function AboutSection() {
         {
             title: "Keahlian",
             description:
-                "Semua layanan kami dikerjakan dengan standar tinggi secara in-house oleh para ahli hukum dan notaris.",
+                "Tanya Notaris bermitra dengan para notaris resmi dan ahli hukum perdata yang berpengalaman, serta berstandar tinggi dalam menyelesaikan pekerjaannya. ",
             image_link: IconKeahlian,
             bgColor: "linear-gradient(135deg, #F37A51 0%, #D76A45 100%)",
             color: colors.primary,
         },
         {
-            title: "Reputasi",
+            title: "Pelayanan",
             description:
-                "Terpecaya oleh lebih dari 5.000 UMKM, Inkubator, Akselerator dan terpilih menjadi mitra Pemerintah.",
-            image_link: IconReputasi,
+                "kami sangat memastikan pengguna jasa Tanya Notaris mendapatkan pelayanan yang nyaman, cepat, dan tepat. Akses pelayanan kami juga dibuat semudah dan se fleksibel mungkin untuk pengguna kami.",
+            image_link: IconPeduli,
             bgColor: "linear-gradient(135deg, #7C589F 0%, #603D84 100%)",
             color: colors.secondary,
         },
         {
-            title: "Peduli",
+            title: "Reputasi",
             description:
-                "Kami sungguh peduli dengan keperluan anda, memberikan yang terbaik sudah menjadi DNA kami.",
-            image_link: IconPeduli,
+                "dipercaya oleh 1000+ perusahan, UMKM, inkubator dan akselerator bisnis serta pengguna individu.",
+            image_link: IconReputasi,
             bgColor: colors.black,
             color: colors.black,
         },
@@ -248,7 +248,7 @@ function AboutSection() {
             <div className={styles["home-about-description-container"]}>
                 <div className={styles["home-about-title-container"]}>
                     <h1>Kenapa Menggunakan Jasa Layanan Kami ?</h1>
-                    <p>Mengapa para perusahaan ternama, UMKM dan Startup menyukai kami</p>
+                    <p>Alasan para perusahaan, UMKM, start-up dan masyarakat percaya dengan kami</p>
                 </div>
                 <div className={styles["home-about-point-container"]}>{renderContents}</div>
             </div>

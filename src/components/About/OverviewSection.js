@@ -4,19 +4,19 @@ import Section from "components/Section";
 export default function OverviewSection() {
     const content = {
         description:
-            "Tanya Notaris berfokus untuk melindungi sisi hukum bisnis dari usaha kecil dan menengah (UKM) melalui platform digital",
+            "Tanya Notaris berfokus pada pelayanan kenotariatan dan hukum perdata yang cepat, mudah, dan terjangkau, baik untuk kalangan individu, UMKM maupun company melalui platform digital.",
         image_link: "/section1.png",
     };
 
     const content1 = {
         description:
-            "Kontrak Hukum hadir untuk melayani segala kebutuhan hukum Anda secara cepat, mudah, dan terjangkau. Dengan sistem yang terintegrasi secara digital, Kontrak Hukum dapat menyelesaikan permasalahan hukum Anda dalam hitungan jam secara optimal.",
+            "Pelayanan kami yang terintegrasi secara digital akan sangat memudahkan pengguna yang membutuhkan pelayanan hukum dengan cepat. Kami sangat memperhatikan kenyamanan pengguna dari segi waktu, biaya, dan kemudahan akses.",
         image_link: "/section2.png",
     };
 
     const content2 = {
         description:
-            "Kami sangat senang berbagi pengetahuan kami. Karenanya kami selalu terbuka untuk peluang kerjasama dalam mengadakan pelatihan hukum, seperti Legal Workshop, Legal Mentor, dan Legal Clinic.",
+            "Tanya Notaris juga menjalankan fungsi penyebaran informasi dan edukasi terkait notaris dan hukum perdata melalui media digital maupun penyelenggaraan event. Kami sangat terbuka terhadap peluang kerjasama dalam penyelenggaraan edukasi terkait legal, seperti legal clinic, legal mentor, maupun legal workshop.",
         image_link: "/section3.png",
     };
     return (

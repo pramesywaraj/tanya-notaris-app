@@ -49,10 +49,10 @@ module.exports = {
                 banner: "158px",
                 "section-img": "98px",
                 "section-img-web": "160px",
-                icon: "70px",
+                icon: "80px",
             },
             width: {
-                icon: "140px",
+                icon: "80px",
                 "section-img": "70px",
                 "section-img-web": "224px",
                 "section-last": "1800px",
