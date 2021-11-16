@@ -37,6 +37,9 @@
     display: flex !important;
 }
 
+.home-info-banner-img-wrapper {
+    padding: 0 8px !important;
+}
 /*  */
 
 .home-offer-container {

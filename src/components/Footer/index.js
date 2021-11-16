@@ -10,6 +10,7 @@ import IconTelephone from "assets/icon-telephone.svg";
 import IconTwitter from "assets/icon-twitter.svg";
 import IconFacebook from "assets/icon-facebook.svg";
 import IconLinkedin from "assets/icon-linkedin.svg";
+import IconInstagram from "assets/icon-instagram.svg";
 
 function FooterInfo() {
     return (
@@ -23,6 +24,9 @@ function FooterInfo() {
                 <p id="footer-address-text">
                     Gedung The East Lt. 42, Jl. DR. Ide Anak Agung Gde Agung No.1, RT.10/RW.1, East
                     Kuningan, Setiabudi, South Jakarta City, Jakarta 12950
+                </p>
+                <p className="pt-3" id="footer-address-text">
+                    Jam Kerja pelayanan 08.00 - 17.00
                 </p>
             </div>
         </div>
@@ -59,7 +63,7 @@ function FooterNav() {
                         width="24"
                         height="24"
                     />
-                    <p className="text-body text-white ml-2">email@email.com</p>
+                    <p className="text-body text-white ml-2">info@tanyanotaris.id</p>
                 </div>
                 <div className="flex flex-row mt-2">
                     <Image
@@ -69,7 +73,7 @@ function FooterNav() {
                         width="24"
                         height="24"
                     />
-                    <p className="text-body text-white ml-2">01324214</p>
+                    <p className="text-body text-white ml-2">083806169710</p>
                 </div>
             </div>
         </div>
@@ -106,6 +110,17 @@ function FooterSocialMedia() {
                     src={IconLinkedin}
                     onClick={() => console.log("CHECK")}
                     alt="Linkedin"
+                    styles={{
+                        padding: 0,
+                        marginLeft: "1rem",
+                        display: "inline-block",
+                        verticalAlign: "middle",
+                    }}
+                />
+                <IconButton
+                    src={IconInstagram}
+                    onClick={() => console.log("CHECK")}
+                    alt="Instagram"
                     styles={{
                         padding: 0,
                         marginLeft: "1rem",

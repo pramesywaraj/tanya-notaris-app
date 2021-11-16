@@ -1,20 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 export default function ProfileSection() {
     const content = {
-        title: "Tentang Perusahaan",
+        title: "Tentang Tanya Notaris",
         description1:
-            "Kontrak Hukum adalah platform cerdas pertama yang melayani jasa legal untuk UMKM dan perusahaan besar sejak 2016 di Indonesia. Kami bangga menjadi yang pertama dan satu-satunya platform yang melayani legalitas tanpa ada batasan, berkualitas, dan terjangkau. Kontrak Hukum juga merupakan startup di bidang hukum pertama yang mendapatkan pendanaan di Indonesia.",
+            "Tanya Notaris merupakan platform digital yang bergerak khusus di pelayanan kenotariatan dan hukum perdata. Kami melayani jasa legal untuk individu maupun instansi. Kami berfokus pada kualitas dan kenyamanan pelayanan serta memastikan biaya terjangkau untuk semua kalangan. ",
         description2:
-            "Kontrak Hukum sebagai startup ternama, berwawasan, dan inovatif yang juga tercermin dalam budaya dan layanan dari tim Kontrak Hukum. Kontrak Hukum percaya bahwa jasa layanan hukum yang mudah dan terjangkau harus dimiliki oleh semua orang.",
+            "Tanya Notaris juga bergerak dalam penyebaran informasi dan edukasi terkait dengan kenotariatan dan hukum perdata. Tanya Notaris siap menjadi garda terdepan agar akses terhadap informasi, edukasi, dan jasa layanan hukum yang mudah dan terjangkau harus dimiliki semua kalangan.",
         image_link: "/section2.svg",
     };
 
     const content1 = {
-        title: "Apa Kata CEO Kami?",
+        title: "Mengapa Layanan Kami Terpercaya",
         description1:
-            "Kontrak Hukum hadir untuk melayani segala kebutuhan hukum Anda secara cepat, mudah, dan terjangkau. Dengan sistem yang terintegrasi secara digital, Kontrak Hukum dapat menyelesaikan permasalahan hukum Anda dalam hitungan jam secara optimal.",
+            "Layanan kami dikerjakan oleh notaris resmi dan ahli hukum perdata yang berpengalaman, sehingga hasil akhir pekerjaan memiliki kualitas yang baik dan professional.",
         description2:
-            "Rieke juga dikenal sebagai salah satu pembawa berita ternama di Indonesia, salah satu programnya adalah 'Top Executives' dimana dia berhasil mewawancarai berbagai eksekutif nasional maupun internasional, seperti Steve Forbes, Dato Sri Tahir (Mayapada), Purnomo Prawiro (Blue Bird), William Tanuwijaya (Tokopedia), dan lainnya.",
+            "Proses pengumpulan data-data unutuk ketentuan dan persyaratan administrasi legal juga dilakukan langsung dengan administrator Tanya Notaris, tidak ada proses input secara online di website, sehingga aman dari kebocoran dan pencurian data.",
+        description3:
+            "Tanya Notaris sangat mengedepankan transparansi terhadap penggunaan data dan proses pengerjaan. Seluruh informasi untuk kebutuhan administrasi sudah tertera di setiap fitur layanan, sehingga pengguna dapat mengetahui dan mempersiapkannya.",
         image_link: "/section2.svg",
     };
 
@@ -35,6 +37,7 @@ export default function ProfileSection() {
                     <h1 className="text-header3 font-bold sm:text-header1">{content1.title}</h1>
                     <p className="text-small sm:text-body">{content1.description1}</p>
                     <p className="text-small sm:text-body">{content1.description2}</p>
+                    <p className="text-small sm:text-body">{content1.description3}</p>
                 </div>
                 <div className="flex lg:w-section-last">
                     <img src={content1.image_link} alt="Section" className="w-full max-h-390px" />

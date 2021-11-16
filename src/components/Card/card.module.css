@@ -62,7 +62,7 @@
 }
 
 .card-profile-container #username {
-    @apply font-bold text-body1 mt-4;
+    @apply font-bold text-body1 mt-4 text-center;
 }
 
 /* Card Small Article */
