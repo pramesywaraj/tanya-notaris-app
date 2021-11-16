@@ -67,6 +67,7 @@ function HomeInformationSection({ handleMoveToScreen }) {
                                 )}
                                 {!isLoadingBanners && (
                                     <Image
+                                        className={styles["home-info-banner-img-wrapper"]}
                                         src={item?.image_url || ""}
                                         alt={item?.name || ""}
                                         objectFit="contain"
@@ -78,10 +79,14 @@ function HomeInformationSection({ handleMoveToScreen }) {
                         );
                     }}
                     additionalSettings={{
-                        initialSlide: 0,
                         slidesToShow: 1,
                         slidesToScroll: 1,
                         infinite: true,
+                        speed: 500,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
+                        cssEase: "linear",
+                        centerPadding: "50px",
                         responsive: [
                             {
                                 breakpoint: 1023,
