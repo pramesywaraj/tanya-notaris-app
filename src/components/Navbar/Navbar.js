@@ -52,6 +52,10 @@ export default function Navbar({ isNoLayout }) {
         router.push("/login");
     };
 
+    const handleLogo = () => {
+        router.push("/");
+    };
+
     const handleChangeNavbarBg = () => {
         if (window.scrollY > 32) {
             setNavbarBg(true);
@@ -116,9 +120,9 @@ export default function Navbar({ isNoLayout }) {
             <button className="navbar-menu" onClick={handleSideMenu}>
                 <Image className="relative" src={MenuIcon} alt="burger-menu" objectFit="contain" />
             </button>
-            <div className="relative navbar-logo">
+            <button className="relative navbar-logo" onClick={handleLogo}>
                 <Image src={NavbarLogo} alt="Tanya Notaris Logo" objectFit="contain" />
-            </div>
+            </button>
             <NavbarNav links={links} />
             <NavbarSideMenu
                 handleSideMenu={handleSideMenu}
