@@ -5,32 +5,25 @@ export default function AdvantageSection() {
     const [contents, setContents] = useState([
         {
             title: "Baru Merintis Usaha",
-            description:
-                "Belum mengetahui tahap dan ketentuan legalitas usaha",
+            description: "Belum mengetahui tahap dan ketentuan legalitas usaha",
             description1:
                 "Membuka usaha Bersama partner dan memerlukan panduan atau kepastian legalitas",
-            description2:
-                "Usaha anda baru masuk ke dalam kategori start-up",
+            description2: "Usaha anda baru masuk ke dalam kategori start-up",
             image_link: "/iconkeahlian.png",
         },
         {
             title: "Sedang di Tahap Scale-up",
-            description:
-                "Ingin mencari investor atau pendanaan dan memerlukan bantuan legal",
+            description: "Ingin mencari investor atau pendanaan dan memerlukan bantuan legal",
             description1:
                 "Sudah mulai merekrut karyawan dalam jumlah banyak dan memerlukan bantuan legal terkait kontrak",
-            description2: 
-                "Mulai melakukan Kerjasama usaha skala besar dengan klien",
+            description2: "Mulai melakukan Kerjasama usaha skala besar dengan klien",
             image_link: "/icon-reputasi.png",
         },
         {
             title: "Membutuhkan efisiensi ",
-            description:
-                "Perlu untuk menggunakan layanan legal tetapi tidak rutin",
-            description1:
-                "Perlu membuat perjanjian dan kontrak dalam skala besar",
-            description2:
-                "Membutuhkan tim legal outsorced",
+            description: "Perlu untuk menggunakan layanan legal tetapi tidak rutin",
+            description1: "Perlu membuat perjanjian dan kontrak dalam skala besar",
+            description2: "Membutuhkan tim legal outsorced",
             image_link: "/icon-peduli.png",
         },
     ]);
@@ -62,9 +55,7 @@ export default function AdvantageSection() {
                     <h1 className="text-header3 font-bold lg:text-header1">
                         Kapan Anda Perlu Menggunakan Layanan Kami?
                     </h1>
-                    <h2 className="text-body font-semibold text-mute lg:text-header5">
-                       
-                    </h2>
+                    <h2 className="text-body font-semibold text-mute lg:text-header5"></h2>
 
                     {/* Render Content */}
                     {renderContents}
