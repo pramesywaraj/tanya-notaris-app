@@ -55,7 +55,6 @@ export default function AdvantageSection() {
                     <h1 className="text-header3 font-bold lg:text-header1">
                         Kapan Anda Perlu Menggunakan Layanan Kami?
                     </h1>
-                    <h2 className="text-body font-semibold text-mute lg:text-header5"></h2>
 
                     {/* Render Content */}
                     {renderContents}
