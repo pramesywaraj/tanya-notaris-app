@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "components/Card/card.module.css";
 import { FilterItem } from "components/Items";
 import { SkeletonLoader } from "components/Loader";
@@ -11,8 +11,13 @@ export default function CardFilter({
     name,
     isLoading,
     containerStyle,
+    refCardFilter,
 }) {
     const [selectedOptions, setSelectedOptions] = useState(`all-${name}`);
+
+    useEffect(() => {
+        if (refCardFilter) refCardFilter.current = handleChangeFilterValue;
+    }, [refCardFilter]);
 
     const handleSelection = (e) => {
         const value = e.target.value;
@@ -25,6 +30,10 @@ export default function CardFilter({
 
         setSelectedOptions(value);
         handleChange(value);
+    };
+
+    const handleChangeFilterValue = (val) => {
+        setSelectedOptions(val);
     };
 
     const skeleton = (

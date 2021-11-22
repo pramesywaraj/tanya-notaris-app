@@ -82,6 +82,7 @@ export default function ServicePage() {
     const [queryParams, setQueryParams] = useState("");
 
     const firstLoad = useRef(true);
+    const refCardFilter = useRef(null);
 
     const router = useRouter();
 
@@ -90,11 +91,11 @@ export default function ServicePage() {
         error: typesError,
         isLoadingData: isLoadingFetchingTypes,
     } = useRequest("v1/types");
-    const {
-        data: industriesData,
-        error: industriesError,
-        isLoadingData: isLoadingFetchingIndustries,
-    } = useRequest("v1/industries");
+    // const {
+    //     data: industriesData,
+    //     error: industriesError,
+    //     isLoadingData: isLoadingFetchingIndustries,
+    // } = useRequest("v1/industries");
     // const { data: serviceData, error: serviceError } = useRequest("v1/products?per_page=5");
     const {
         items: services,
@@ -107,16 +108,26 @@ export default function ServicePage() {
     useEffect(() => {
         if (typesData) {
             const { data } = typesData;
+
+            if (router.query?.typeId) {
+                const parsedTypeId = parseInt(router.query?.typeId);
+                const selectedFilter = data.find((element) => element.id === parsedTypeId);
+
+                handleChangeFilterValue(selectedFilter?.name, FILTER_TYPE);
+
+                refCardFilter?.current(selectedFilter?.name);
+            }
+
             setFilterCategories(data);
         }
     }, [typesData]);
 
-    useEffect(() => {
-        if (industriesData) {
-            const { data } = industriesData;
-            setFilterIndustries(data);
-        }
-    }, [industriesData]);
+    // useEffect(() => {
+    //     if (industriesData) {
+    //         const { data } = industriesData;
+    //         setFilterIndustries(data);
+    //     }
+    // }, [industriesData]);
 
     useEffect(() => {
         if (firstLoad.current) {
@@ -126,10 +137,11 @@ export default function ServicePage() {
         }
 
         const tempCategoryQuery = selectedCategory ? `type[]=${selectedCategory}&` : "";
-        const tempIndustryQuery = selectedIndustries ? `industry[]=${selectedIndustries}&` : "";
+        // const tempIndustryQuery = selectedIndustries ? `industry[]=${selectedIndustries}&` : "";
 
-        setQueryParams(tempCategoryQuery.concat(tempIndustryQuery));
-    }, [selectedCategory, selectedIndustries]);
+        // setQueryParams(tempCategoryQuery.concat(tempIndustryQuery));
+        setQueryParams(tempCategoryQuery);
+    }, [selectedCategory]);
 
     // Functions
 
@@ -179,6 +191,7 @@ export default function ServicePage() {
                     handleSelectAll={() => setSelectedCategory("")}
                     name="type"
                     isLoading={isLoadingFetchingTypes}
+                    refCardFilter={refCardFilter}
                 />
                 {/* Rather than delete this filter, we commented it if at any time needed  */}
                 {/* <CardFilter
@@ -241,7 +254,7 @@ export default function ServicePage() {
             </button>
             <FilterBottomSheet
                 isShow={isShowFilter}
-                isLoading={isLoadingFetchingTypes || isLoadingFetchingIndustries}
+                isLoading={isLoadingFetchingTypes}
                 handleDisplay={() => handleToggleFilter(false)}
                 handleChangeOption={(value, id) => handleChangeFilterValue(value, id)}
                 handleSelectAll={handleChangeFilterValue}
