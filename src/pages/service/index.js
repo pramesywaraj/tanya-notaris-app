@@ -180,7 +180,8 @@ export default function ServicePage() {
                     name="type"
                     isLoading={isLoadingFetchingTypes}
                 />
-                <CardFilter
+                {/* Rather than delete this filter, we commented it if at any time needed  */}
+                {/* <CardFilter
                     containerStyle={{ marginTop: 32 }}
                     title="Industri"
                     options={filterIndustries}
@@ -188,7 +189,7 @@ export default function ServicePage() {
                     handleSelectAll={() => setSelectedIndustries("")}
                     name="industry"
                     isLoading={isLoadingFetchingIndustries}
-                />
+                /> */}
             </div>
             <div className={styles["service-list-container"]}>
                 {!isLoadServices && services.length === 0 && (
@@ -251,12 +252,13 @@ export default function ServicePage() {
                         name: "category",
                         options: [...filterCategories],
                     },
-                    {
-                        id: FILTER_INDUSTRY,
-                        title: "Industri",
-                        name: "industry",
-                        options: [...filterIndustries],
-                    },
+                    // Rather than delete this filter, we commented it if at any time needed
+                    // {
+                    //     id: FILTER_INDUSTRY,
+                    //     title: "Industri",
+                    //     name: "industry",
+                    //     options: [...filterIndustries],
+                    // },
                 ]}
             />
         </section>
