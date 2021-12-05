@@ -24,7 +24,7 @@ export default function CardMainService({ data, onClick }) {
                     }
                     styles={{ width: "auto", maxWidth: 445, borderRadius: 8 }}
                     type="submit"
-                    onClick={() => onClick(redirect_path)}
+                    onClick={() => onClick(data)}
                 >
                     {button_text}
                 </Button>

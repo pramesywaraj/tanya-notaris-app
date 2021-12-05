@@ -109,9 +109,14 @@ export default function ServicePage() {
         if (typesData) {
             const { data } = typesData;
 
-            if (router.query?.typeId) {
+            // NOTES:: typeId for filter id and typeName for filter name
+            // you can set the filter query params either using id or it's name
+            if (router.query?.typeId || router.query?.typeName) {
                 const parsedTypeId = parseInt(router.query?.typeId);
-                const selectedFilter = data.find((element) => element.id === parsedTypeId);
+                const selectedFilter = data.find(
+                    (element) =>
+                        element.id === parsedTypeId || element.name === router.query?.typeName
+                );
 
                 handleChangeFilterValue(selectedFilter?.name, FILTER_TYPE);
 
