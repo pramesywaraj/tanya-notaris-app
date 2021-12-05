@@ -81,53 +81,53 @@ function FooterNav() {
 }
 
 function FooterSocialMedia() {
+    const [socialMedia, setSocialMedia] = useState([
+        {
+            icon: IconTwitter,
+            alt: "Twitter",
+            redirectUrl: "https://twitter.com/tanyanotarisid",
+        },
+        {
+            icon: IconFacebook,
+            alt: "Facebook",
+            redirectUrl: "https://www.facebook.com/tanyanotaris",
+        },
+        {
+            icon: IconLinkedin,
+            alt: "Linkedin",
+            redirectUrl: "https://www.linkedin.com/company/tanya-notaris",
+        },
+        {
+            icon: IconInstagram,
+            alt: "Instagram",
+            redirectUrl: "https://www.instagram.com/tanyanotarisid",
+        },
+    ]);
+
+    const handleOpenSocialMedia = (item) => {
+        if (!item || !item.redirectUrl) return false;
+        window.open(item.redirectUrl);
+        return true;
+    };
+
     return (
         <div className="footer-social-container">
             <h3 className="text-white font-bold text-header4 mb-4">Follow Us</h3>
             <div className="flex flex-row">
-                <IconButton
-                    src={IconTwitter}
-                    onClick={() => console.log("CHECK")}
-                    alt="Twitter"
-                    styles={{
-                        padding: 0,
-                        display: "inline-block",
-                        verticalAlign: "middle",
-                    }}
-                />
-                <IconButton
-                    src={IconFacebook}
-                    onClick={() => console.log("CHECK")}
-                    alt="Facebook"
-                    styles={{
-                        padding: 0,
-                        marginLeft: "1rem",
-                        display: "inline-block",
-                        verticalAlign: "middle",
-                    }}
-                />
-                <IconButton
-                    src={IconLinkedin}
-                    onClick={() => console.log("CHECK")}
-                    alt="Linkedin"
-                    styles={{
-                        padding: 0,
-                        marginLeft: "1rem",
-                        display: "inline-block",
-                        verticalAlign: "middle",
-                    }}
-                />
-                <IconButton
-                    src={IconInstagram}
-                    onClick={() => console.log("CHECK")}
-                    alt="Instagram"
-                    styles={{
-                        padding: 0,
-                        marginLeft: "1rem",
-                        display: "inline-block",
-                        verticalAlign: "middle",
-                    }}
-                />
+                {socialMedia.map((item, index) => (
+                    <IconButton
+                        key={Math.random()}
+                        src={item.icon}
+                        onClick={() => handleOpenSocialMedia(item)}
+                        alt={item.alt}
+                        styles={{
+                            padding: 0,
+                            marginLeft: index !== 0 ? "1rem" : 0,
+                            display: "inline-block",
+                            verticalAlign: "middle",
+                        }}
+                    />
+                ))}
             </div>
         </div>
     );
