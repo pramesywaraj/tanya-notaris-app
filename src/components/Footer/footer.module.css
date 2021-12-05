@@ -65,6 +65,21 @@
     @apply flex flex-col mt-8;
 }
 
+.footer-contact-image {
+    width: 100%;
+}
+
+.footer-contact-image > div {
+    position: unset !important;
+}
+
+.footer-contact-image .image {
+    object-fit: contain;
+    width: 24px !important;
+    position: relative !important;
+    height: 24px !important;
+}
+
 @media screen(tablet) {
     .footer-container {
         @apply px-12;

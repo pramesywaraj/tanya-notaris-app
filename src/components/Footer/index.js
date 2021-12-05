@@ -55,25 +55,28 @@ function FooterNav() {
             </div>
             <div className="flex-1">
                 <h3 id="footer-section-title">Kontak Kami</h3>
-                <div className="flex flex-row mt-4">
-                    <Image
-                        src={IconEmail}
-                        alt="Tanya Notaris Logo"
-                        objectFit="contain"
-                        width="24"
-                        height="24"
-                    />
-                    <p className="text-body text-white ml-2">info@tanyanotaris.id</p>
+                <div className="flex flex-row mt-2">
+                    <div className="footer-contanct-image">
+                        <Image
+                            className="image"
+                            src={IconEmail}
+                            alt="Tanya Notaris Logo"
+                            objectFit="fill"
+                        />
+                    </div>
+
+                    <p className="text-small text-white ml-2 break-all">info@tanyanotaris.id</p>
                 </div>
                 <div className="flex flex-row mt-2">
-                    <Image
-                        src={IconTelephone}
-                        alt="Tanya Notaris Logo"
-                        objectFit="contain"
-                        width="24"
-                        height="24"
-                    />
-                    <p className="text-body text-white ml-2">083806169710</p>
+                    <div className="footer-contanct-image">
+                        <Image
+                            className="image"
+                            src={IconTelephone}
+                            alt="Tanya Notaris Logo"
+                            objectFit="fill"
+                        />
+                    </div>
+                    <p className="text-small text-white ml-2">083806169710</p>
                 </div>
             </div>
         </div>
@@ -113,7 +116,7 @@ function FooterSocialMedia() {
     return (
         <div className="footer-social-container">
             <h3 className="text-white font-bold text-header4 mb-4">Follow Us</h3>
-            <div className="flex flex-row">
+            <div className="flex flex-row z-50">
                 {socialMedia.map((item, index) => (
                     <IconButton
                         key={Math.random()}

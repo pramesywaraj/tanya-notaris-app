@@ -39,6 +39,10 @@ export default function Login() {
         if (errors) setIsError(true);
     }, [errors]);
 
+    useEffect(() => {
+        if (successMessage) setIsError(false);
+    }, [successMessage]);
+
     const handleChangeValue = (event) => {
         const { name, value } = event.target;
 
