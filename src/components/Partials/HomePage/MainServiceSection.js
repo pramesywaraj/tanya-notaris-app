@@ -13,11 +13,7 @@ const MainServiceSection = ({ handleMoveToScreen }) => {
     const [services] = useState(MAIN_SERVICES);
     const router = useRouter();
 
-    const {
-        data: generalData,
-        error: generalError,
-        isLoadingData: isLoadingFetchingGeneral,
-    } = useRequest(`v1/settings/general`);
+    const { data: generalData } = useRequest(`v1/settings/general`);
 
     const onCardClick = (item) => {
         if (item.directTo === "EXTERNAL") {
