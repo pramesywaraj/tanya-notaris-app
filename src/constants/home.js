@@ -1,3 +1,8 @@
+import IconHappyClients from "assets/icon-home-happy-client.svg";
+import IconCases from "assets/icon-home-cases.svg";
+import IconWinningCases from "assets/icon-home-winning-cases.svg";
+import IconAwards from "assets/icon-home-awards.svg";
+
 export const MAIN_SERVICE_TYPE_ORANGE = "SERVICE-MAIN/ORANGE";
 export const MAIN_SERVICE_TYPE_PURPLE = "SERVICE-MAIN/PURPLE";
 
@@ -36,5 +41,28 @@ export const MAIN_SERVICES = [
         type: MAIN_SERVICE_TYPE_PURPLE,
         redirect_path: "/service?typeName=Dokumen",
         directTo: "INTERNAL",
+    },
+];
+
+export const MAIN_ACHIEVEMENT_SECTION = [
+    {
+        caption: "Klien Senang",
+        numbers: "177+",
+        icon: IconHappyClients,
+    },
+    {
+        caption: "Kasus",
+        numbers: "217+",
+        icon: IconCases,
+    },
+    {
+        caption: "Kasus Menang",
+        numbers: "177+",
+        icon: IconWinningCases,
+    },
+    {
+        caption: "Penghargaan",
+        numbers: "17700+",
+        icon: IconAwards,
     },
 ];

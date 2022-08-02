@@ -6,6 +6,7 @@ import styles from "styles/home.module.css";
 import colors from "constants/colors";
 
 import {
+    AchievementSection,
     HomeInformationSection,
     HomeNewArticles,
     MainServiceSection,
@@ -16,11 +17,6 @@ import IconKeahlian from "assets/iconkeahlian.png";
 import IconReputasi from "assets/icon-reputasi.png";
 import IconPeduli from "assets/icon-peduli.png";
 import AboutImage from "assets/asset-about-1.svg";
-
-import IconHappyClients from "assets/icon-home-happy-client.svg";
-import IconCases from "assets/icon-home-cases.svg";
-import IconWinningCases from "assets/icon-home-winning-cases.svg";
-import IconAwards from "assets/icon-home-awards.svg";
 
 function AboutSection() {
     const [contents] = useState([
@@ -90,56 +86,6 @@ function AboutSection() {
                     objectFit="cover"
                 />
             </div>
-        </section>
-    );
-}
-
-function AchievementSection() {
-    const [contents] = useState([
-        {
-            caption: "Klien Senang",
-            numbers: "177+",
-            icon: IconHappyClients,
-        },
-        {
-            caption: "Kasus",
-            numbers: "217+",
-            icon: IconCases,
-        },
-        {
-            caption: "Kasus Menang",
-            numbers: "177+",
-            icon: IconWinningCases,
-        },
-        {
-            caption: "Penghargaan",
-            numbers: "17700+",
-            icon: IconAwards,
-        },
-    ]);
-
-    return (
-        <section className={`padding-off ${styles["home-achievements-section"]}`}>
-            {contents.map((content, index) => (
-                <div
-                    className={styles["home-achievements-items"]}
-                    key={`item-achievement-${index}`}
-                >
-                    <div className={styles["home-achievements-items-image-container"]}>
-                        <Image
-                            className={styles["home-achievements-items-image"]}
-                            src={content.icon}
-                            alt={content.caption}
-                            layout="fill"
-                        />
-                    </div>
-
-                    <div className={styles["home-achievements-items-description"]}>
-                        <p id={styles["numbers"]}>{content.numbers}</p>
-                        <p id={styles["caption"]}>{content.caption}</p>
-                    </div>
-                </div>
-            ))}
         </section>
     );
 }
