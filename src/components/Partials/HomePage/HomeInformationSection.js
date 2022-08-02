@@ -27,7 +27,7 @@ const HomeInformationSection = ({ handleMoveToScreen }) => {
             <div className={styles["home-info-container"]}>
                 <Carousel
                     datas={!isLoadingBanners ? banners?.data || [] : [1, 2]}
-                    renderedItems={(item, index) => {
+                    renderedItems={(item, _) => {
                         if (item.is_visible === 0) return null;
 
                         return (
@@ -36,7 +36,6 @@ const HomeInformationSection = ({ handleMoveToScreen }) => {
                                 tabIndex={0}
                                 onClick={() => handleRedirect(item)}
                                 className={styles["home-info-banner-img"]}
-                                key={`banner-image-${index + 1}`}
                                 onKeyPress={() => {}}
                             >
                                 {isLoadingBanners && (

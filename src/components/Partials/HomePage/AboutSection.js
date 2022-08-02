@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import Image from "next/image";
 
 import { MAIN_ABOUT_SECTION } from "constants/home";
@@ -9,7 +10,6 @@ const AboutSection = () => {
     const renderContents = MAIN_ABOUT_SECTION.map((content, index) => (
         <div
             className={styles["home-about-items"]}
-            key={`item-about-${index}`}
             style={index !== MAIN_ABOUT_SECTION.length - 1 ? { marginBottom: 24 } : {}}
         >
             <div
