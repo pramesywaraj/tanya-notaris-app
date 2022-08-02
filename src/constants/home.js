@@ -2,6 +2,11 @@ import IconHappyClients from "assets/icon-home-happy-client.svg";
 import IconCases from "assets/icon-home-cases.svg";
 import IconWinningCases from "assets/icon-home-winning-cases.svg";
 import IconAwards from "assets/icon-home-awards.svg";
+import IconKeahlian from "assets/iconkeahlian.png";
+import IconReputasi from "assets/icon-reputasi.png";
+import IconPeduli from "assets/icon-peduli.png";
+
+import colors from "constants/colors";
 
 export const MAIN_SERVICE_TYPE_ORANGE = "SERVICE-MAIN/ORANGE";
 export const MAIN_SERVICE_TYPE_PURPLE = "SERVICE-MAIN/PURPLE";
@@ -64,5 +69,32 @@ export const MAIN_ACHIEVEMENT_SECTION = [
         caption: "Penghargaan",
         numbers: "17700+",
         icon: IconAwards,
+    },
+];
+
+export const MAIN_ABOUT_SECTION = [
+    {
+        title: "Keahlian",
+        description:
+            "Tanya Notaris bermitra dengan para notaris resmi dan ahli hukum perdata yang berpengalaman, serta berstandar tinggi dalam menyelesaikan pekerjaannya. ",
+        image_link: IconKeahlian,
+        bgColor: "linear-gradient(135deg, #F37A51 0%, #D76A45 100%)",
+        color: colors.primary,
+    },
+    {
+        title: "Pelayanan",
+        description:
+            "kami sangat memastikan pengguna jasa Tanya Notaris mendapatkan pelayanan yang nyaman, cepat, dan tepat. Akses pelayanan kami juga dibuat semudah dan se fleksibel mungkin untuk pengguna kami.",
+        image_link: IconPeduli,
+        bgColor: "linear-gradient(135deg, #7C589F 0%, #603D84 100%)",
+        color: colors.secondary,
+    },
+    {
+        title: "Reputasi",
+        description:
+            "dipercaya oleh 1000+ perusahan, UMKM, inkubator dan akselerator bisnis serta pengguna individu.",
+        image_link: IconReputasi,
+        bgColor: colors.black,
+        color: colors.black,
     },
 ];
