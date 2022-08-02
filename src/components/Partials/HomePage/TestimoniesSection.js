@@ -26,56 +26,29 @@ const TestimoniesSection = () => {
         <section className={`${styles["home-section"]}`}>
             <h1>Dengar Langsung dari Klien Kami</h1>
             {!testimoniesError && (
-                <Carousel
-                    datas={!isLoadingTestimonies ? testimonies?.data : [1, 2, 3, 4]}
-                    renderedItems={(item, index) => (
-                        <div
-                            key={`item-${index + 1}`}
-                            className={styles["home-testimonies-slide-item"]}
-                        >
-                            <CardTestimonies
-                                quotes={item?.message || ""}
-                                name={item?.name || ""}
-                                src={item?.image_url || ""}
-                                isLoading={isLoadingTestimonies}
-                            />
-                        </div>
-                    )}
-                />
+                <div>
+                    <Carousel
+                        datas={!isLoadingTestimonies ? testimonies?.data : [1, 2, 3, 4]}
+                        renderedItems={(item, index) => (
+                            <div
+                                key={`item-${index + 1}`}
+                                className={styles["home-testimonies-slide-item"]}
+                            >
+                                <CardTestimonies
+                                    quotes={item?.message || ""}
+                                    name={item?.name || ""}
+                                    src={item?.image_url || ""}
+                                    isLoading={isLoadingTestimonies}
+                                />
+                            </div>
+                        )}
+                    />
+                </div>
             )}
 
             {!clientsError && (
-                <Carousel
-                    containerStyles={{ margin: "48px 0px !important" }}
-                    additionalSettings={{
-                        slidesToShow: 7,
-                        rows: 2,
-                        dots: false,
-                        infinite: true,
-                        responsive: [
-                            {
-                                breakpoint: 1023,
-                                settings: {
-                                    slidesPerRow: 6,
-                                    slidesToShow: 1,
-                                    arrows: false,
-                                    swipeToSlide: true,
-                                },
-                            },
-                            {
-                                breakpoint: 767,
-                                settings: {
-                                    slidesPerRow: 5,
-                                    slidesToShow: 1,
-                                    rows: 4,
-                                    arrows: false,
-                                    swipeToSlide: true,
-                                },
-                            },
-                        ],
-                    }}
-                    datas={!isLoadingClients ? clients?.data : [1, 2, 3, 4]}
-                    renderedItems={(item, index) => {
+                <div className="grid grid-cols-8 gap-6 mt-12">
+                    {(!isLoadingClients ? clients?.data : [1, 2, 3, 4]).map((item, index) => {
                         if (!item || !item.image_url) return null;
                         return (
                             <div
@@ -83,17 +56,16 @@ const TestimoniesSection = () => {
                                 key={`client-${index + 1}`}
                             >
                                 <Image
-                                    className={styles["home-testimonies-clients-img"]}
                                     src={item?.image_url || ""}
                                     alt={item?.name || ""}
-                                    width={60}
-                                    height={60}
+                                    width={75}
+                                    height={75}
                                     loader={imageLoader}
                                 />
                             </div>
                         );
-                    }}
-                />
+                    })}
+                </div>
             )}
         </section>
     );

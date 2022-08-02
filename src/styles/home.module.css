@@ -190,11 +190,6 @@
     text-align: center;
 }
 
-.home-testimonies-clients .home-testimonies-clients-img {
-    width: 50px;
-    height: 50px;
-}
-
 /* Notaris Article Section */
 .home-articles-container {
     @apply grid grid-cols-2 gap-x-4 gap-y-4;
