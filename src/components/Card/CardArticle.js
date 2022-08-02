@@ -23,8 +23,8 @@ export default function CardArticle({
             onKeyDown={() => {}}
         >
             <div className={`${styles["card-small-article-img"]} ${imageClasses}`}>
-                {isLoading && <SkeletonLoader height={"100%"} />}
-                {!isLoading && (
+                {(isLoading || !content?.featured_image_url) && <SkeletonLoader height={"100%"} />}
+                {!isLoading && content?.featured_image_url && (
                     <Image
                         placeholder="blur"
                         blurDataURL={content.featured_image_url}
