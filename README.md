@@ -1,8 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+The TanyaNotaris app is a [Next.js](https://nextjs.org/) project that bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First, install all the dependencies using either the npm or yarn:
+```bash
+npm install
+# or
+yarn install
+```
+
+Second, just run the development server to try the app:
 
 ```bash
 npm run dev
@@ -12,11 +19,9 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+All the pages, components, configs, constants, hook, etc. are located within the `src` folder, and please just modify only in that folder (if you just want to change the view of the app, not the config). But, if you want to modify the current configuration of this nextjs project, they're located in `next.config.js`.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+**The current project is client side rendering only!**
 
 ## Learn More
 
