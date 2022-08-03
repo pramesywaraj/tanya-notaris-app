@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from "next/head";
 import useRequest from "hooks/useRequest";
 
 import style from "styles/articles.module.css";
@@ -42,6 +43,10 @@ export default function ArticlesPage() {
 
     return (
         <section className={style["articles-section-container"]}>
+            <Head>
+                <title>Tanya Notaris - Artikel Notaris</title>
+                <meta property="og:title" content="Tanya Notaris - Artikel Notaris" key="title" />
+            </Head>
             <div className={style["articles-header"]}>
                 <h1 className={style["articles-title"]}>Artikel Notaris</h1>
                 <Search

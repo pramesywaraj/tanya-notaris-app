@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Head from "next/head";
 import style from "styles/faq.module.css";
 
 import useRequest from "hooks/useRequest";
@@ -113,6 +114,14 @@ export default function FAQPage() {
 
     return (
         <section className={style["faq-section-container"]}>
+            <Head>
+                <title>Tanya Notaris - Frequently Asked Questions</title>
+                <meta
+                    property="og:title"
+                    content="Tanya Notaris - Frequently Asked Questions"
+                    key="title"
+                />
+            </Head>
             <div className="faq-header">
                 <h1 className="faq-title">Frequently Asked Question</h1>
                 <Search classNames="w-full mt-4 tablet:w-auto lgTablet:mt-0" />

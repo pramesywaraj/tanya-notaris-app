@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 import styles from "styles/home.module.css";
@@ -20,6 +21,10 @@ export default function Home() {
 
     return (
         <div className={`py-8 ${styles["home-page-top"]} ${styles["home-page-middle"]}`}>
+            <Head>
+                <title>Tanya Notaris</title>
+                <meta property="og:title" content="Tanya Notaris" key="title" />
+            </Head>
             <HomeInformationSection handleMoveToScreen={handleMoveToScreen} />
             <MainServiceSection handleMoveToScreen={handleMoveToScreen} />
             <AboutSection />

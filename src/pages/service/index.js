@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Head from "next/head";
 import useRequest from "hooks/useRequest";
 import usePagination from "hooks/usePagination";
 import { useRouter } from "next/router";
@@ -242,6 +243,10 @@ export default function ServicePage() {
 
     return (
         <section className={styles["service-section-container"]}>
+            <Head>
+                <title>Tanya Notaris - Layanan Kami</title>
+                <meta property="og:title" content="Tanya Notaris - Layanan Kami" key="title" />
+            </Head>
             <div className={styles["service-title-container"]}>
                 <h1>Layanan Kami</h1>
                 <Search

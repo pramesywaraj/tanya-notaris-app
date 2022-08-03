@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 // import Router from "next/router";
+import Head from "next/head";
 import "tailwindcss/tailwind.css";
 import "styles/globals.css";
 
@@ -7,13 +8,17 @@ import { AuthWrapper } from "contexts/AuthContext";
 import Layout from "components/Layout";
 
 function MyApp({ Component, pageProps }) {
-	return (
-		<AuthWrapper>
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
-		</AuthWrapper>
-	);
+    return (
+        <AuthWrapper>
+            <Head>
+                <title>Tanya Notaris</title>
+                <meta property="og:title" content="Tanya Notaris" key="title" />
+            </Head>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </AuthWrapper>
+    );
 }
 
 // const apiBaseURL = process.env.API_BASE_URL;
