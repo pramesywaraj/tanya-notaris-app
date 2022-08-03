@@ -1,0 +1,7 @@
+.layout-demo-tag-container {
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    @apply p-4 bg-yellow-400 w-full text-center text-header5 font-bold;
+}

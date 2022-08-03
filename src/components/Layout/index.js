@@ -5,6 +5,7 @@ import { useAuthContext } from "contexts/AuthContext";
 import { Navbar } from "components/Navbar";
 import Footer from "components/Footer";
 import { ScreenLoader } from "components/Loader";
+import DemoTag from "components/Tag/DemoTag";
 
 import { getCookies } from "Utils";
 import { USER_AVAILABLE } from "constants/reduxConst";
@@ -12,6 +13,7 @@ import { USER_AVAILABLE } from "constants/reduxConst";
 export default function Layout({ children }) {
     const { state, dispatch } = useAuthContext();
     const [isNoLayout, setIsNoLayout] = useState(false);
+    const [isShowDemo, setIsShowDemo] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -22,6 +24,8 @@ export default function Layout({ children }) {
         if (access_token && user) {
             dispatchAvailableUser(JSON.parse(user));
         }
+
+        if (process.env.SHOW_DEMO_ONLY === "true") setIsShowDemo(true);
     }, []);
 
     useEffect(() => {
@@ -35,6 +39,7 @@ export default function Layout({ children }) {
 
     return (
         <main className="relative">
+            {isShowDemo && <DemoTag />}
             <ScreenLoader isScreenLoaderShow={state.isScreenLoaderShow} />
             <Navbar isNoLayout={isNoLayout} />
             <div className="main-container layout-padding">{children}</div>
