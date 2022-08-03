@@ -22,18 +22,18 @@ export default function QuestionItem({ content, isLoading, containerStyle }) {
     return (
         <div style={{ ...containerStyle }}>
             <div className={`question-content ${activeClass}`}>
-                {!isLoading && (
-                    <>
-                        <a>{content.question}</a>
-                        <button onClick={handleAnswerButton}>
-                            <img
-                                src={`${arrowButton}`}
-                                alt="Arrow Icon"
-                                className="question-arrow"
-                            />
-                        </button>
-                    </>
-                )}
+                <button
+                    className="flex flex-row items-center justify-between w-full text-left gap-x-3"
+                    onClick={handleAnswerButton}
+                    disabled={isLoading}
+                >
+                    <a>{content.question}</a>
+                    <img
+                        src={`${arrowButton}`}
+                        alt="Arrow Icon"
+                        className={`question-arrow ${activeClass}`}
+                    />
+                </button>
 
                 {isLoading && (
                     <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>

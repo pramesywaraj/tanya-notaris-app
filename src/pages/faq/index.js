@@ -127,7 +127,7 @@ export default function FAQPage() {
                 <Search classNames="w-full mt-4 tablet:w-auto lgTablet:mt-0" />
             </div>
             <div className="faq-body">
-                <div className="faq-filter">
+                {/* <div className="faq-filter">
                     <CardFilter
                         title="Kategori"
                         options={filterCategories}
@@ -136,7 +136,7 @@ export default function FAQPage() {
                         name="type"
                         isLoading={isLoadingFetchingTypes}
                     />
-                </div>
+                </div> */}
                 {!error ? renderContent() : <p>Terdapat Kesalahan.</p>}
                 <button className="filter-button" onClick={() => handleToggleFilter(true)}>
                     Filter

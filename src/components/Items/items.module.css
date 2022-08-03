@@ -1,10 +1,11 @@
 /* Question Item */
 .question-content {
-    padding: 12px 12px;
     border: 1px solid #c7c7c7;
     border-radius: 12px;
 
-    @apply flex justify-between items-center;
+    transition: all 0.2s ease-out;
+
+    @apply p-4 flex justify-between items-center;
 }
 
 .question-content.active {
@@ -21,30 +22,33 @@
 .question-arrow {
     height: 24px;
     width: 24px;
+    transition: transform 0.8s ease-in-out;
+}
+
+.question-arrow.active {
+    transform: rotate(360deg);
 }
 
 .question-answer {
-    visibility: hidden;
-    height: 0px;
+    overflow: hidden;
+    max-height: 0px;
+
+    transition: all 0.2s ease-out;
 }
 
 .question-answer.active {
-    visibility: visible;
-    padding: 12px 12px;
-
-    height: fit-content;
+    overflow: auto;
+    max-height: fit-content;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
 
-    overflow-y: auto;
     background-color: rgba(243, 122, 81, 0.05);
-
-    @apply text-left text-small font-normal;
+    @apply px-4 pb-4 text-body font-normal;
 }
 
 @media screen(desktop) {
     .question-content {
-        padding: 24px 24px;
+        @apply p-4;
     }
 }
 

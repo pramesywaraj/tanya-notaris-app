@@ -12,7 +12,7 @@
 }
 
 .faq-body {
-    @apply flex flex-row gap-x-30px mb-100px;
+    @apply w-full;
 }
 
 .faq-filter {
@@ -75,12 +75,12 @@
 }
 
 @media screen(lgTablet) {
-    .faq-body {
+    /* .faq-body {
         display: grid;
         grid-template-columns: minmax(100px, 280px) 1fr;
 
         grid-column-gap: 30px;
-    }
+    } */
 
     .faq-header {
         @apply flex-row justify-between items-center;
